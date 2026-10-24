@@ -160,7 +160,7 @@ h1,h2,h3{font-weight:500}
 #intro.opening .door-stage{transform:scale(var(--zoom,1.65))}
 .door-frame{
   position:relative;
-  height:min(64vh,600px,calc((100vw - 56px) * 1.333));
+  height:max(250px,min(64vh,600px,calc(100vh - 372px),calc(100svh - 372px),calc((100vw - 56px) * 1.333)));
   aspect-ratio:1536/2048;
   padding:clamp(8px,1.4vw,14px);
   background:var(--cream-2);
@@ -521,6 +521,36 @@ html{scroll-padding-top:12px}
 @media (hover:hover){.ev-opt:hover{border-color:var(--gold)}.ev-card{transition:transform .5s cubic-bezier(.22,.61,.36,1),box-shadow .5s}.ev-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(91,78,56,.1)}}
 .arch-events .when b{font-weight:500;color:var(--olive-deep)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ---------- good to know cards ---------- */
+.good-cards{display:grid;gap:1rem;max-width:760px;margin:2.4rem auto 0;text-align:left}
+.good-card{background:rgba(253,250,241,.85);border:1px solid var(--gold-pale);padding:1.4rem 1.5rem;position:relative}
+.good-card::after{content:"";position:absolute;inset:5px;border:1px solid rgba(184,137,74,.2);pointer-events:none}
+.good-card h3{font-weight:500;font-size:1.35rem;color:var(--olive-deep);margin-bottom:.4rem}
+.good-card p{font-family:var(--sans);font-weight:300;font-size:.9rem;letter-spacing:.02em;line-height:1.75;color:var(--ink)}
+@media(min-width:900px){.good-cards{grid-template-columns:repeat(3,1fr);max-width:1040px}}
+.ev-card.key h3{color:var(--olive-deep)}
+.ev-card:not(.key){opacity:.92}
+.ev-card:not(.key) h3{font-size:1.25rem}
+/* ---------- cover: clear "tap here" cues ---------- */
+.cover-top{text-align:center;margin-bottom:1.1rem;padding:0 1rem;animation:swapIn 1.2s cubic-bezier(.22,.61,.36,1) both}
+.cv-eye{display:block;font-family:var(--sans);font-size:.66rem;letter-spacing:.5em;text-indent:.5em;text-transform:uppercase;color:var(--gold)}
+.cv-names{font-family:var(--script);font-size:clamp(2.6rem,11vw,3.6rem);color:var(--olive-deep);line-height:1.15;margin:.15rem 0}
+.cv-date{font-family:var(--sans);font-size:.64rem;letter-spacing:.36em;text-indent:.36em;text-transform:uppercase;color:var(--ink-soft)}
+.door-stage{cursor:pointer}
+.door-stage::after{content:"";position:absolute;inset:0;border-radius:2px;box-shadow:0 0 0 0 rgba(224,147,47,.0);animation:doorGlow 3.2s ease-in-out infinite;pointer-events:none}
+@keyframes doorGlow{0%,100%{box-shadow:0 0 0 0 rgba(224,147,47,0)}50%{box-shadow:0 0 38px 4px rgba(224,147,47,.28)}}
+.seal-wrap{position:relative;display:grid;place-items:center}
+.seal-wrap .seal::before{inset:-8px;border:2px solid rgba(122,47,42,.5)}
+.seal-wrap .ring2{position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(122,47,42,.4);animation:ring 2.6s ease-out 1.3s infinite;pointer-events:none}
+.tap-dot{position:absolute;left:58%;top:58%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(255,255,255,.55);border:2px solid rgba(255,255,255,.9);box-shadow:0 2px 10px rgba(0,0,0,.25);pointer-events:none;animation:tapDot 2.4s ease-in-out infinite}
+@keyframes tapDot{0%{transform:translate(26px,30px) scale(1);opacity:0}25%{opacity:1}55%{transform:translate(0,0) scale(1);opacity:1}70%{transform:translate(0,0) scale(.8);opacity:1}100%{transform:translate(0,0) scale(1.9);opacity:0}}
+.tap-hint{font-size:.74rem;letter-spacing:.3em;text-indent:.3em;color:var(--olive-deep);text-align:center;line-height:1.7}
+.tap-hint small{display:block;font-size:.6rem;letter-spacing:.24em;color:var(--ink-soft);margin-top:.2rem}
+.tap-hint.nudge{animation:nudge .6s ease 2}
+.tap-arrow{display:block;margin:0 auto -.2rem;width:14px;height:14px;border:solid var(--gold);border-width:2px 0 0 2px;transform:rotate(45deg);animation:arrowBob 1.4s ease-in-out infinite}
+@keyframes arrowBob{0%,100%{transform:translateY(4px) rotate(45deg);opacity:.4}50%{transform:translateY(-4px) rotate(45deg);opacity:1}}
+@media(max-height:720px){.cv-names{font-size:2.3rem}.cover-top{margin-bottom:.4rem}.seal{width:72px;height:72px}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
 }
@@ -555,6 +585,7 @@ html{scroll-padding-top:12px}
 
 <!-- ══════════ INTRO: closed door + seal ══════════ -->
 <div id="intro" role="dialog" aria-label="Wedding invitation opening">
+  <div class="cover-top"><span class="cv-eye">You are invited</span><div class="cv-names">Nidhi &amp; Nikhil</div><div class="cv-date">9 · 10 · 15 December 2026</div></div>
   <div class="door-stage" id="doorStage">
     <div class="door-frame">
       <div class="door-stack" id="doorStack">
@@ -566,8 +597,9 @@ html{scroll-padding-top:12px}
     </div>
   </div>
   <div class="seal-row">
-    <button class="seal" id="openBtn" aria-label="Open the invitation">N·N</button>
-    <span class="tap-hint">Tap the seal to open</span>
+    <span class="tap-arrow" aria-hidden="true"></span>
+    <div class="seal-wrap"><button class="seal" id="openBtn" aria-label="Open the invitation">N·N</button><span class="ring2" aria-hidden="true"></span><span class="tap-dot" aria-hidden="true"></span></div>
+    <span class="tap-hint" id="tapHint">Tap the seal to open<small>or tap the door</small></span>
   </div>
 </div>
 
@@ -635,7 +667,7 @@ html{scroll-padding-top:12px}
     <div class="reveal">
       <span class="eyebrow">How the days unfold</span>
       <h2 class="section-title">The flow of celebrations</h2>
-      <p class="tbc-note"><span class="ph">Exact timings will be shared soon</span></p>
+      <p class="tbc-note" id="tbcNote"><span class="ph">The Lucknow reception time will be shared soon</span></p>
     </div>
     <div class="river" id="river">
       <svg class="river-svg" id="riverSvg" aria-hidden="true">
@@ -655,6 +687,17 @@ html{scroll-padding-top:12px}
       </svg>
       <ol class="stops" id="stops"></ol>
     </div>
+  </div>
+</section>
+
+<!-- ══════════ GOOD TO KNOW ══════════ -->
+<section id="info" class="band">
+  <div class="pad-section">
+    <div class="reveal">
+      <span class="eyebrow">Good to know</span>
+      <h2 class="section-title">Travel &amp; stay</h2>
+    </div>
+    <div class="good-cards" id="goodCards"></div>
   </div>
 </section>
 
@@ -707,6 +750,8 @@ html{scroll-padding-top:12px}
           <p class="hint" style="margin:0 0 .4rem">Tick every celebration you plan to attend. Timings are shown on each.</p>
           <button type="button" class="ev-every" id="evEvery">Join every celebration</button>
           <div class="ev-grid" id="evGrid"></div>
+          <div class="ev-day"><div class="ev-head"><span><b>Travel help</b><small>Bangalore airport · optional</small></span></div>
+            <div class="ev-opts" id="trvGrid"></div></div>
         </div></div>
         <div class="step"><i id="stepLast">3</i><span>A note for the couple <em>(optional)</em></span></div>
         <textarea id="f-msg" rows="3" aria-label="A note for the couple" placeholder="Wishes, dietary needs, song requests…" maxlength="500"></textarea>
@@ -776,22 +821,37 @@ const CONFIG = {
   ]
 };
 
-/* Events: one list feeds the arches, the river and the RSVP tick-boxes. time:null shows a [time] placeholder. */
+/* Events: one list feeds the timeline, the celebration cards and the RSVP tick-boxes (key:1 events only). Timings from the family itinerary. time:null shows a [time] placeholder. */
 const DAYS = [
   { n: "Day One", date: "9 December", dow: "Wednesday", city: "Bangalore", events: [
-    { when: "Afternoon", time: null, title: "Haldi Ceremony",                  line: "A turmeric blessing with family" },
-    { when: "",          time: null, title: "Var Pooja, Tilak & Engagement",   line: "Blessings, rituals and the exchange of rings" },
-    { when: "",          time: null, title: "Baraat",                          line: "The procession, with music and dance" },
-    { when: "",          time: null, title: "Sangeet",                         line: "An evening of music, dance and joy" },
-    { when: "",          time: null, title: "Dinner",                          line: "A feast together to close the day" }
+    { time: "12:00 PM",         title: "Airport pick-up",                 line: "Courtesy bus from Bangalore airport to the venue" },
+    { time: "1:00 PM",          title: "Check-in at the resort",          line: "Settle into your room" },
+    { time: "2:00 PM",          title: "Lunch",                           line: "A relaxed meal after the journey" },
+    { time: "3:00 PM",          title: "Haldi Ceremony",                  line: "A turmeric blessing with family", key: 1 },
+    { time: "4:30 PM",          title: "High Tea",                        line: "Chai and snacks before the evening begins" },
+    { time: "5:00 PM",          title: "Var Pooja, Tilak & Ring Exchange", line: "Blessings, rituals and the exchange of rings", key: 1 },
+    { time: "6:00 PM",          title: "Baraat",                          line: "The procession sets off, with music and dance", key: 1 },
+    { time: "7:00 PM",          title: "Baraat Welcome",                  line: "The baraat is received with blessings" },
+    { time: "7:30 – 9:30 PM",   title: "Dinner",                          line: "Served alongside the Sangeet", key: 1 },
+    { time: "8:00 PM",          title: "Sangeet",                         line: "An evening of music, dance and joy", key: 1 },
+    { time: "10:00 PM",         title: "Rest for the night",              line: "Retire to your rooms" }
   ]},
   { n: "Day Two", date: "10 December", dow: "Thursday", city: "Bangalore", events: [
-    { when: "Morning", time: null, title: "Muhurtam",          line: "The pheras: sacred vows around the fire" },
-    { when: "",        time: null, title: "Reception & Lunch", line: "Lunch, blessings and toasts" }
+    { time: "6:30 – 7:00 AM",   title: "Morning Tea",                     line: "" },
+    { time: "8:00 – 9:00 AM",   title: "Breakfast",                       line: "" },
+    { time: "8:15 AM",          title: "Gowri Pooja",                     line: "A prayer for the bride's blessings" },
+    { time: "8:45 AM",          title: "Muhurtam",                        line: "Sacred vows and traditional ceremonies until 11:00 AM", key: 1 },
+    { time: "12:00 PM",         title: "Reception & Lunch",               line: "Meet the bride and groom; lunch is served alongside (12:00 – 1:00 PM)", key: 1 },
+    { time: "12:00 PM",         title: "Room check-out",                  line: "" },
+    { time: "2:00 PM",          title: "Farewell from the venue",         line: "Please vacate the venue by 2:00 PM" }
   ]},
   { n: "Day Three", date: "15 December", dow: "Tuesday", city: "Lucknow", events: [
-    { when: "Evening", time: null, title: "Reception", line: "Dinner, dancing and toasts" }
+    { when: "Evening", time: null, title: "Reception", line: "Dinner, dancing and toasts", key: 1 }
   ]}
+];
+const TRAVEL = [
+  { value: "Airport pick-up, Wed 9 Dec", label: "Airport pick-up", sub: "Wed 9 Dec" },
+  { value: "Airport drop, Thu 10 Dec",   label: "Airport drop",    sub: "Thu 10 Dec" }
 ];
 /* ═══════════════════════════════════════════════════════ */
 
@@ -826,7 +886,7 @@ $('#arches').innerHTML = DAYS.map((d,i) => `
     <div class="arch-date">${esc(d.date)}</div>
     <div class="arch-dow">${esc(d.dow)}</div>
     <span class="arch-city">${esc(d.city)}</span>
-    <ul class="arch-events">${d.events.map(e => `
+    <ul class="arch-events">${d.events.filter(e => e.key).map(e => `
       <li>${slot(e) ? `<div class="when">${e.time ? `<b>${esc(e.time)}</b>${e.when ? ' · ' + esc(e.when) : ''}` : esc(e.when)}</div>` : ''}<h3>${esc(e.title)}</h3><p>${esc(e.line)}</p></li>`).join('')}
     </ul>
   </div>`).join('');
@@ -838,8 +898,18 @@ $('#stops').innerHTML = DAYS.map(d => `
     <div class="banner-txt"><div class="n">${esc(d.n)}</div><div class="d">${esc(d.date)}</div><div class="c">${esc(d.dow)} · ${esc(d.city)}</div></div>
   </li>` + d.events.map(e => `
   <li class="stop ${side++ % 2 ? 'right' : 'left'} rise"><span class="dot"></span>
-    <div class="ev-card"><span class="ev-time">${e.time ? esc(e.time) : PH}${e.time && e.when ? ' · ' + esc(e.when) : ''}</span><h3>${esc(e.title)}</h3><p>${esc(e.line)}</p></div>
+    <div class="ev-card${e.key ? ' key' : ''}"><span class="ev-time">${e.time ? esc(e.time) : PH}${e.time && e.when ? ' · ' + esc(e.when) : ''}</span><h3>${esc(e.title)}</h3>${e.line ? `<p>${esc(e.line)}</p>` : ''}</div>
   </li>`).join('')).join('');
+
+/* ── good to know: travel, stay, departure ── */
+$('#goodCards').innerHTML = [
+  ['Getting there', `The venue is 9 km from Bangalore airport. A 12-seater bus makes two courtesy trips from the airport on Wednesday 9 December. Tell us your flight time in the RSVP note and we will plan around it.`],
+  ['Where to stay', SIDE === 'groom'
+    ? `15 double-occupancy rooms are reserved at the venue for the groom's family. Anyone arriving late can check into another hotel close to the venue.`
+    : `<span class="ph">[Room details for the bride's family to follow]</span> Anyone arriving late can check into another hotel close to the venue.`],
+  ['Leaving on Thursday', `Check out of your room by 12:00 PM and please vacate the venue by 2:00 PM. Two rooms stay open for baggage and changing. The bus makes two courtesy trips back to the airport, starting at 3:00 PM.`]
+].map(([h, p], i) => `<div class="good-card rise" style="--i:${i}"><h3>${h}</h3><p>${p}</p></div>`).join('');
+$('#tbcNote').hidden = !DAYS.some(d => d.events.some(e => !e.time));
 
 /* ── the river: path through every dot, drawn as you scroll ── */
 const river = $('#river'), rsvg = $('#riverSvg');
@@ -887,7 +957,7 @@ function qrSvg(text){
 const lampHTML = cls => `<div class="lamp ${cls}" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt="" loading="lazy"></div></div>`;
 const venueDays = v => DAYS.filter(d => d.city === v.city);
 function calDetails(v){
-  const lines = venueDays(v).map(d => `${d.date}: ${d.events.map(e => e.title).join(', ')}`);
+  const lines = venueDays(v).map(d => `${d.date}: ${d.events.filter(e => e.key).map(e => (e.time ? e.time + ' ' : '') + e.title).join(', ')}`);
   return `${NAMES} - ${v.for}\n${lines.join('\n')}\n\nVenue: ${v.name}\nMap: ${v.mapsUrl}\n\nWith the blessings of our families.`;
 }
 function gcalUrl(v){
@@ -952,7 +1022,7 @@ $('#venues').addEventListener('click', e => { const b = e.target.closest('[data-
 /* ── 1. Door opening sequence ── */
 const intro = $('#intro');
 let opened = false;
-$('#openBtn').addEventListener('click', () => {
+function openInvite(){
   if (opened) return;
   opened = true;
   const frame = document.querySelector('.door-frame').getBoundingClientRect();
@@ -966,7 +1036,10 @@ $('#openBtn').addEventListener('click', () => {
     document.documentElement.classList.remove('locked');
     startPetals(); dockReady = true; updateDock();
   }, 2100);
-});
+}
+$('#openBtn').addEventListener('click', e => { e.stopPropagation(); openInvite(); });
+$('#doorStage').addEventListener('click', openInvite);
+setTimeout(() => { if (!opened) $('#tapHint').classList.add('nudge'); }, 5000);
 
 function burstPetals(){
   const rect = document.querySelector('.door-stack').getBoundingClientRect();
@@ -1081,11 +1154,15 @@ $('#evGrid').innerHTML = DAYS.map((d,i) => `
   <div class="ev-day">
     <div class="ev-head"><span><b>${esc(d.date)}</b><small>${esc(d.dow)} · ${esc(d.city)}</small></span>
       <button type="button" class="ev-all" data-day="${i}">Select day</button></div>
-    <div class="ev-opts">${d.events.map(e => `
+    <div class="ev-opts">${d.events.filter(e => e.key).map(e => `
       <label class="ev-opt"><input type="checkbox" name="ev" data-day="${i}" data-t="${esc(e.time || '')}" value="${esc(shortDate(d) + ': ' + e.title)}">
         <span class="box"></span><span class="t">${esc(e.title)}${slot(e) ? `<small>${e.time ? `<b>${esc(e.time)}</b>${e.when ? ' · ' + esc(e.when) : ''}` : esc(e.when)}</small>` : ''}</span></label>`).join('')}
     </div>
   </div>`).join('');
+
+$('#trvGrid').innerHTML = TRAVEL.map(t => `
+  <label class="ev-opt"><input type="checkbox" name="trv" value="${esc(t.value)}"><span class="box"></span><span class="t">${esc(t.label)}<small>${esc(t.sub)}</small></span></label>`).join('');
+const trvBoxes = () => [...document.querySelectorAll('#trvGrid input')];
 
 const f = {
   form: $('#rsvpForm'), body: $('#rsvpFormBody'), done: $('#rsvpDone'),
@@ -1172,6 +1249,7 @@ function showForm(prefill){
     f.gnames.value = prefill.guestNames || '';
     f.msg.value = prefill.note || '';
     evBoxes().forEach(x => x.checked = (prefill.events || []).some(s => s === x.value || s.startsWith(x.value + ' (')));
+    trvBoxes().forEach(x => x.checked = (prefill.events || []).includes(x.value));
     syncEvButtons();
     f.btn.textContent = 'Update RSVP';
   }
@@ -1238,16 +1316,17 @@ f.form.addEventListener('submit', async e => {
   if (f.trap.value) { showDone({ name: f.name.value, attendance: 'Joyfully accepts', guests: 1 }, null, true); return; } /* bots fill the hidden field */
   const name = f.name.value.trim(), key = normPhone(f.phone.value), yes = attending();
   const events = yes ? evBoxes().filter(x => x.checked).map(x => x.value + (x.dataset.t ? ` (${x.dataset.t})` : '')) : [];
+  const travel = yes ? trvBoxes().filter(x => x.checked).map(x => x.value) : [];
   if (!name){ f.name.classList.add('bad'); return fail('Please enter your name.', f.name); }
   if (!validPhone(key)){ f.phone.classList.add('bad'); return fail('Please enter a valid phone number. Add the country code if it is not an Indian number.', f.phone); }
   if (yes && !events.length) return fail('Please tick at least one celebration you will join.', $('#evGrid'));
   const data = {
     name, phone: key, attendance: document.querySelector('.attend-chip.on').dataset.v,
-    guests: yes ? guestsN() : 0, events,
+    guests: yes ? guestsN() : 0, events: events.concat(travel),
     guestNames: yes && guestsN() > 1 ? f.gnames.value.trim() : '', note: f.msg.value.trim()
   };
   f.btn.disabled = true; f.btn.textContent = 'Sending…';
-  const res = await sendToSheet({ ...data, events: events.join('; '), side: SIDE, website: '' });
+  const res = await sendToSheet({ ...data, events: data.events.join('; '), side: SIDE, website: '' });
   if (!res || !res.ok) return fail('Sorry, that did not go through. Please check your connection and try again.');
   lsSet({ ...data, ts: Date.now() });
   const msg = res.status === 'updated' ? `Thank you, ${name.split(/\s+/)[0]}. We already had an RSVP for this number, so we updated it instead of adding a new one.` : null;
