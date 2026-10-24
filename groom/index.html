@@ -434,6 +434,7 @@ footer{text-align:center;padding:3.5rem 1.4rem calc(3rem + env(safe-area-inset-b
 .done-sum{list-style:none;margin:1.5rem auto 0;max-width:440px;text-align:left}
 .done-sum li{padding:.7rem 0;border-bottom:1px dashed var(--gold-pale);font-size:1.08rem;line-height:1.45;word-break:break-word}
 .done-sum li span{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.link-btn.alt{display:block;margin:.2rem auto 0;color:var(--ink-soft)}
 .link-btn{margin-top:1.6rem;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;color:var(--olive);text-decoration:underline;text-underline-offset:4px;padding:.6em;min-height:44px}
 
 /* ---------- venues v2: tap-through links, embedded map, calendar menu ---------- */
@@ -748,7 +749,7 @@ html{scroll-padding-top:12px}
             <button type="button" id="gMinus" aria-label="One fewer guest">&minus;</button>
             <output id="gOut" aria-live="polite">2</output>
             <button type="button" id="gPlus" aria-label="One more guest">+</button>
-            <input type="hidden" id="f-guests" value="2">
+            <input type="hidden" id="f-guests" value="2" autocomplete="off">
           </div>
           <div id="guestNamesWrap" class="collapse open"><div class="cin">
             <label for="f-gnames">Who is joining you? <em>(optional)</em></label>
@@ -775,6 +776,7 @@ html{scroll-padding-top:12px}
         <p class="done-msg" id="doneMsg"></p>
         <ul class="done-sum" id="doneSum"></ul>
         <button type="button" class="link-btn" id="editBtn">Need to change something? Update my RSVP</button>
+        <button type="button" class="link-btn alt" id="otherBtn">Replying for someone else? Start a new RSVP</button>
       </div>
     </form>
   </div>
@@ -812,7 +814,7 @@ const CONFIG = {
   bride: { name: "Nidhi",  role: "daughter", parents: "[Mr. Father's name] & [Mrs. Mother's name]" },
   groom: { name: "Nikhil", role: "son",      parents: "Satyanarayan Yadav & Jayashree Yadav",
            /* grandparents shown on the groom's link only: father's parents on the left, mother's parents on the right */
-           grand: { left: [["Ramau Yadav", true], ["Barki Yadav", false]], right: [["Jawaharlal Yadav", true], ["Smt. Kamala Yadav", true]] } },
+           grand: { left: [["Shri. Ramau Yadav", true], ["Barki Yadav", false]], right: [["Shri. Jawaharlal Yadav", true], ["Smt. Kamala Yadav", true]] } },
 
   /* Venues. mapsUrl opens Google Maps and is also what the QR code contains. */
   venues: [
@@ -1272,6 +1274,20 @@ function showForm(prefill){
   }
 }
 $('#editBtn').addEventListener('click', () => showForm(lsGet()));
+/* another person replying from this same phone (family, friends): a clean form with an editable number */
+$('#otherBtn').addEventListener('click', () => {
+  editing = false; f.phone.readOnly = false;
+  f.name.value = ''; f.phone.value = ''; f.gnames.value = ''; f.msg.value = ''; f.trap.value = '';
+  [f.name, f.phone].forEach(x => x.classList.remove('good', 'bad'));
+  f.chips.forEach((c, i) => { c.classList.toggle('on', i === 0); c.setAttribute('aria-pressed', String(i === 0)); });
+  setOpen(f.yes, true); $('#stepLast').textContent = '4';
+  evBoxes().forEach(x => x.checked = false); trvBoxes().forEach(x => x.checked = false);
+  setGuests(2, true); syncEvButtons(); setNote('');
+  f.err.hidden = true; f.btn.textContent = 'Send RSVP';
+  f.done.hidden = true; f.body.hidden = false;
+  f.form.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
+  setTimeout(() => f.name.focus({ preventScroll: true }), 500);
+});
 
 /* the note keeps a reserved 2-line slot so it never shifts the form under a tap */
 const PHONE_HINT = 'One RSVP per phone number. Indian numbers need no country code.';
@@ -1312,7 +1328,9 @@ async function sendToSheet(payload){
   const body = new URLSearchParams(payload);
   try {
     const r = await fetch(CONFIG.sheetUrl, { method: 'POST', body });
-    return await r.json();
+    const txt = await r.text();
+    try { return JSON.parse(txt); }
+    catch(e){ return r.ok ? { ok: true, status: 'sent' } : { ok: false, error: 'server' }; }   /* the server answered, so never send twice */
   } catch(e){
     /* browser could not read the reply: send once more without reading it. The script de-duplicates by phone, so repeats are safe. */
     try { await fetch(CONFIG.sheetUrl, { method: 'POST', body, mode: 'no-cors' }); return { ok: true, status: 'sent' }; }
@@ -1351,6 +1369,7 @@ f.form.addEventListener('submit', async e => {
   showDone(data, msg, true);
 });
 
+setGuests(+f.guests.value || 2, true);   /* a refresh can make some browsers restore stale field values; resync the display */
 /* already replied on this device: show the static "You're all set" screen */
 (function(){ const saved = lsGet(); if (saved && saved.phone) showDone(saved); })();
 
