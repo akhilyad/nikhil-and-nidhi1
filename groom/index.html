@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%237a2f2a%27/%3E%3Ctext x=%2732%27 y=%2741%27 font-size=%2726%27 font-family=%27Georgia,serif%27 fill=%27%23fdfaf1%27 text-anchor=%27middle%27%3ENN%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#f8f2e3">
 <title>Nikhil &amp; Nidhi · Wedding Celebrations · 9, 10 &amp; 15 December 2026</title>
 <meta name="description" content="Nikhil &amp; Nidhi invite you to celebrate their wedding. Bangalore, 9 &amp; 10 December 2026. Reception in Lucknow, 15 December 2026.">
@@ -375,7 +376,7 @@ body.opened .hero-mantra .rom{opacity:1}
 .attend-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:.4rem}
 .attend-chip{font-family:var(--sans);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--gold-soft);padding:.8em 1.4em;cursor:pointer;transition:all .35s;background:transparent}
 .attend-chip.on{background:var(--gold);border-color:var(--gold-ink);color:var(--cream-2)}
-.rsvp-note{margin-top:1.4rem;font-family:var(--sans);font-weight:300;font-size:.72rem;letter-spacing:.14em;color:var(--ink-soft)}
+.rsvp-note{margin-top:1.4rem;font-family:var(--sans);font-weight:400;font-size:.72rem;letter-spacing:.14em;color:var(--ink)}
 
 /* ---------- closing mantra: plain cream, nothing behind it ---------- */
 #mantra{text-align:center;padding:clamp(4rem,9vw,7rem) 1.4rem 1rem;position:relative}
@@ -398,7 +399,7 @@ footer{text-align:center;padding:3.5rem 1.4rem calc(3rem + env(safe-area-inset-b
 /* ---------- rsvp v2: phone key, event tick-boxes, done screen ---------- */
 #rsvp .rsvp-card{max-width:660px}
 .rsvp-card .trap{position:absolute !important;left:-9999px !important;width:1px !important;height:1px !important;opacity:0 !important}
-.hint{font-family:var(--sans);font-weight:300;font-size:.76rem;letter-spacing:.05em;color:var(--ink-soft);text-align:left;margin-top:.55rem;line-height:1.55}
+.hint{font-family:var(--sans);font-weight:400;font-size:.76rem;letter-spacing:.05em;color:var(--ink);text-align:left;margin-top:.55rem;line-height:1.55}
 .hint.ok{color:var(--olive)}
 #phoneNote{min-height:2.4em}#phoneNote.bad{color:var(--wax)}
 .rsvp-err{margin-top:1.1rem;color:var(--wax);font-family:var(--sans);font-size:.84rem;letter-spacing:.03em;line-height:1.5}
@@ -471,7 +472,7 @@ html{scroll-padding-top:12px}
 .dock a.go.pulse{animation:dockpulse 1.6s ease-out 2}
 @keyframes dockpulse{0%{box-shadow:0 0 0 0 rgba(122,138,76,.5)}100%{box-shadow:0 0 0 14px rgba(122,138,76,0)}}
 @media(max-width:380px){.dock a{padding:.8em .7em;font-size:.62rem;letter-spacing:.08em}}
-.form-lead{font-size:1.15rem;color:var(--ink-soft);margin-bottom:.4rem}
+.form-lead{font-size:1.15rem;color:var(--ink);margin-bottom:.4rem}
 .step{display:flex;align-items:center;gap:.7rem;margin:1.7rem 0 .2rem;font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--olive-deep);text-align:left}
 .step i{font-style:normal;flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:.95rem;letter-spacing:0;color:var(--gold-ink)}
 .step em,.rsvp-card label em{font-style:normal;text-transform:none;letter-spacing:.04em;color:var(--ink-soft);opacity:.85}
@@ -736,7 +737,7 @@ html body .rsvp-submit{letter-spacing:.34em}
         <p class="fmsg" id="nameMsg" aria-live="polite"></p>
         <label for="f-phone">Phone number</label>
         <input type="tel" id="f-phone" autocomplete="tel" inputmode="tel" enterkeyhint="done" placeholder="+91 98765 43210" maxlength="24">
-        <p class="hint" id="phoneNote" aria-live="polite">One RSVP per phone number. Indian numbers need no country code.</p>
+        <p class="hint" id="phoneNote" aria-live="polite">One reply per household. Add everyone joining you below. Indian numbers need no country code.</p>
         <div class="step"><i>2</i><span>Your reply</span></div>
         <div class="attend-row" id="attendRow" role="group" aria-label="Will you join us?">
           <button type="button" class="attend-chip on" data-v="Joyfully accepts" aria-pressed="true">Joyfully accepts</button>
@@ -1262,7 +1263,7 @@ $('#otherBtn').addEventListener('click', () => {
 });
 
 /* the note keeps a reserved 2-line slot so it never shifts the form under a tap */
-const PHONE_HINT = 'One RSVP per phone number. Indian numbers need no country code.';
+const PHONE_HINT = 'One reply per household. Add everyone joining you below. Indian numbers need no country code.';
 function setNote(t, kind){ f.pnote.textContent = t || PHONE_HINT; f.pnote.classList.toggle('ok', kind === 'ok'); f.pnote.classList.toggle('bad', kind === 'bad'); }
 /* if this phone already has an RSVP (for example after clearing the browser), say so before they submit */
 async function checkPhone(){

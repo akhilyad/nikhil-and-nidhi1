@@ -1,6 +1,6 @@
 /* Offline support for the invitation. Pages: network first, saved copy when there is no signal.
-   Pictures and fonts: saved copy first. RSVP submissions are never cached. Bump VERSION to force a refresh. */
-const VERSION = 'v1';
+   Pictures and fonts: saved copy first, refreshed in the background. RSVP submissions are never cached. */
+const VERSION = 'v2';
 const CORE = ['/groom/', '/bride/', '/qr.js',
   '/assets/door-closed.webp', '/assets/door-open.webp', '/assets/floral-corner_sm.webp', '/assets/ganesha_sm.webp', '/assets/lantern_sm.webp'];
 const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
@@ -21,8 +21,10 @@ self.addEventListener('fetch', e => {
       .catch(() => caches.match(req, { ignoreSearch: true }).then(r => r || caches.match(url.pathname.startsWith('/bride') ? '/bride/' : '/groom/'))));
     return;
   }
-  e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(res => {
+  const refresh = () => fetch(req).then(res => {
     if (res && (res.ok || res.type === 'opaque')) { const copy = res.clone(); caches.open(VERSION).then(c => c.put(req, copy)); }
     return res;
-  })));
+  });
+  /* saved copy at once, quietly refreshed in the background so changed pictures reach guests on their next visit */
+  e.respondWith(caches.match(req).then(hit => { if (hit) { refresh().catch(() => {}); return hit; } return refresh(); }));
 });
