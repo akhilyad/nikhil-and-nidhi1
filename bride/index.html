@@ -561,6 +561,8 @@ body.cue-on .dock.show{opacity:0;pointer-events:none}
 @media(hover:none){.map-veil{display:flex}}
 .contact-line{margin-top:.6rem;font-family:var(--sans);font-weight:300;font-size:.8rem;letter-spacing:.06em;color:var(--ink)}
 .contact-line a{color:var(--olive-deep)}
+.offline-bar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:50%;z-index:90;transform:translate(-50%,-160%);background:var(--olive-deep);color:var(--cream-2);font-family:var(--sans);font-size:max(.78rem,12.5px);letter-spacing:.08em;padding:.55em 1.1em;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.2);transition:transform .5s cubic-bezier(.22,.61,.36,1);pointer-events:none;white-space:nowrap}
+.offline-bar.show{transform:translate(-50%,0)}
 /* grandparents' blessings (groom's link): father's parents left, mother's parents right */
 
 /* grandparents: two aligned columns, father's side left */
@@ -1360,6 +1362,16 @@ setGuests(+f.guests.value || 2, true);   /* a refresh can make some browsers res
     p.innerHTML = 'Questions? Call or WhatsApp ' + (c.name ? esc(c.name) + ' on ' : '') + '<a href="tel:+' + digits + '">' + esc(c.phone) + '</a>';
     $('#rsvpNote').after(p);
   }
+})();
+
+/* offline: save the page for use with no signal, and say so politely when the signal drops */
+(function(){
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+  const bar = document.createElement('div');
+  bar.className = 'offline-bar'; bar.setAttribute('role', 'status'); bar.textContent = 'No signal. Showing the saved invitation.';
+  document.body.appendChild(bar);
+  const sync = () => bar.classList.toggle('show', !navigator.onLine);
+  addEventListener('online', sync); addEventListener('offline', sync); sync();
 })();
 
 </script>
