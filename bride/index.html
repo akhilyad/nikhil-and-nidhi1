@@ -229,9 +229,9 @@ body.opened .hero-art img{transform:scale(1.05)}
 @keyframes breathe{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.94)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
 /* clean cream panel under the painting: the mantra sits here, nothing behind it */
 .hero-mantra{
-  position:absolute;left:0;right:0;bottom:0;height:calc(var(--mantra-h) + 70px);z-index:2;
+  position:absolute;left:0;right:0;bottom:0;height:calc(var(--mantra-h) + 100px);z-index:2;
   display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  padding:0 1.1rem calc(3.2rem + env(safe-area-inset-bottom));text-align:center;
+  padding:0 1.1rem calc(5.4rem + env(safe-area-inset-bottom));text-align:center;
   background:linear-gradient(180deg,rgba(248,242,227,0) 0,rgba(248,242,227,.85) 26%,var(--cream) 42%);
 }
 .hero-mantra .deva{
@@ -246,15 +246,6 @@ body.opened .hero-mantra .deva{opacity:1;transform:none}
 body.opened .hero-mantra .rom{opacity:1}
 #home .lamp.l1{top:-6px;left:5vw}
 #home .lamp.l2{top:-10px;right:5vw;animation-delay:-2.6s}
-.scroll-cue{
-  position:absolute;left:50%;bottom:calc(3.2vh + env(safe-area-inset-bottom));transform:translateX(-50%);
-  z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem;
-  font-family:var(--sans);font-size:.58rem;letter-spacing:.5em;text-indent:.5em;text-transform:uppercase;color:var(--ink-soft);
-  opacity:0;transition:opacity 1s ease 1.8s;
-}
-body.opened .scroll-cue{opacity:1}
-.scroll-cue i{display:block;width:1px;height:26px;background:linear-gradient(180deg,var(--gold),transparent);animation:cue 2.2s ease-in-out infinite;transform-origin:top}
-@keyframes cue{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
 
 /* watercolour bridge between the painting and the page */
 #invitation{margin-top:-14vh;padding-top:14vh;--wa:rgba(223,163,146,.26);--wb:rgba(202,167,107,.2);--wx:25%;--wy:30%}
@@ -457,7 +448,7 @@ button.btn{font-family:var(--sans)}
 @media(max-width:640px){
   .eyebrow{font-size:.74rem;letter-spacing:.3em}
   .tap-hint,.arch-dow,.arch-city,.arch-events .when,.ev-time,.v-dates,.v-for,.qr-cap,.btn,
-  .banner-txt .n,.banner-txt .c,.inv-small,.foot-date,.foot-bless,.rsvp-card label,.attend-chip,.rsvp-rsvp-note,.tbc-note,.scroll-cue{font-size:.72rem}
+  .banner-txt .n,.banner-txt .c,.inv-small,.foot-date,.foot-bless,.rsvp-card label,.attend-chip,.rsvp-rsvp-note,.tbc-note{font-size:.72rem}
   .arch-events p,.ev-card p{font-size:.92rem}
   .rsvp-note{font-size:.78rem}
   .btn,.attend-chip,.rsvp-submit{min-height:46px;display:inline-flex;align-items:center;justify-content:center}
@@ -555,6 +546,13 @@ html{scroll-padding-top:12px}
 @keyframes arrowBob{0%,100%{transform:translateY(4px) rotate(45deg);opacity:.4}50%{transform:translateY(-4px) rotate(45deg);opacity:1}}
 @media(max-height:720px){.cv-names{font-size:2.3rem}.cover-top{margin-bottom:.4rem}.seal{width:72px;height:72px}}
 
+
+.scroll-cue{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));z-index:54;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:none;border:0;padding:.4rem .8rem;display:flex;flex-direction:column;align-items:center;gap:.15rem;cursor:pointer;font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--olive-deep);text-shadow:0 1px 8px rgba(253,250,241,.95);transition:opacity .6s ease,transform .6s ease}
+.scroll-cue i{display:block;width:16px;height:16px;border:solid var(--gold-ink);border-width:0 2px 2px 0;transform:rotate(45deg);animation:cueBob 1.5s ease-in-out infinite}
+body.cue-on .scroll-cue{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+@keyframes cueBob{0%,100%{transform:translateY(-3px) rotate(45deg);opacity:.45}50%{transform:translateY(5px) rotate(45deg);opacity:1}}
+@media(prefers-reduced-motion:reduce){.scroll-cue i{animation:none}}
+body.cue-on .dock.show{opacity:0;pointer-events:none}
 /* grandparents' blessings (groom's link): father's parents left, mother's parents right */
 
 /* grandparents: two aligned columns, father's side left */
@@ -628,6 +626,7 @@ html body .rsvp-submit{letter-spacing:.34em}
 <!-- falling petals layer -->
 <div id="petals" aria-hidden="true"></div>
 <div class="progress" aria-hidden="true"><i id="progBar"></i></div>
+<button type="button" class="scroll-cue" id="scrollCue" aria-label="Scroll down to see the celebrations"><span>Scroll down</span><i aria-hidden="true"></i></button>
 <nav class="dock" id="dock" aria-label="Jump to a section">
   <a href="#events" data-s="events">Celebrations</a><a href="#flow" data-s="flow">Timeline</a><a href="#venue" data-s="venue">Venue</a><a href="#rsvp" data-s="rsvp" class="go">RSVP</a>
 </nav>
@@ -643,7 +642,6 @@ html body .rsvp-submit{letter-spacing:.34em}
     <p class="deva">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
     <p class="rom">Vakratunda Mahakaya, Suryakoti Samaprabha<br>Nirvighnam Kuru Me Deva, Sarvakaryeshu Sarvada</p>
   </div>
-  <div class="scroll-cue" aria-hidden="true"><i></i></div>
 </section>
 
 <!-- ══════════ INVITATION ══════════ -->
@@ -713,17 +711,6 @@ html body .rsvp-submit{letter-spacing:.34em}
   </div>
 </section>
 
-<!-- ══════════ GOOD TO KNOW ══════════ -->
-<section id="info" class="band">
-  <div class="pad-section">
-    <div class="reveal">
-      <span class="eyebrow">Good to know</span>
-      <h2 class="section-title">Travel &amp; stay</h2>
-    </div>
-    <div class="good-cards" id="goodCards"></div>
-  </div>
-</section>
-
 <!-- ══════════ VENUES ══════════ -->
 <section id="venue" class="band">
   <div class="pad-section">
@@ -773,12 +760,6 @@ html body .rsvp-submit{letter-spacing:.34em}
           <p class="hint" style="margin:0 0 .4rem">Tick every celebration you plan to attend. Timings are shown on each.</p>
           <button type="button" class="ev-every" id="evEvery">Join every celebration</button>
           <div class="ev-grid" id="evGrid"></div>
-          <div class="ev-day"><div class="ev-head"><span><b>Travel help</b><small>Bangalore airport · optional</small></span></div>
-            <div class="ev-opts" id="trvGrid"></div></div>
-          <div id="flightWrap" class="collapse"><div class="cin">
-            <label for="f-flight">Flight number and time <em>(optional)</em></label>
-            <input type="text" id="f-flight" maxlength="120" autocomplete="off" placeholder="e.g. 6E 512, lands 11:40 AM">
-          </div></div>
         </div></div>
         <div class="step"><i id="stepLast">3</i><span>A note for the couple <em>(optional)</em></span></div>
         <textarea id="f-msg" rows="3" aria-label="A note for the couple" placeholder="Wishes, dietary needs, song requests…" maxlength="500"></textarea>
@@ -852,34 +833,19 @@ const CONFIG = {
 /* Events: one list feeds the timeline, the celebration cards and the RSVP tick-boxes (key:1 events only). Timings from the family itinerary. time:null shows a [time] placeholder. */
 const DAYS = [
   { n: "Day One", date: "9 December", dow: "Wednesday", city: "Bangalore", events: [
-    { time: "12:00 PM",         title: "Airport pick-up",                 line: "Courtesy bus from Bangalore airport to the venue" },
-    { time: "1:00 PM",          title: "Check-in at the resort",          line: "Settle into your room" },
-    { time: "2:00 PM",          title: "Lunch",                           line: "A meal after the journey" },
     { time: "3:00 PM",          title: "Haldi Ceremony",                  line: "The turmeric ceremony with family", key: 1 },
-    { time: "4:30 PM",          title: "High Tea",                        line: "Tea and snacks before the evening begins" },
-    { time: "5:00 PM",          title: "Var Pooja, Tilak & Ring Exchange", line: "Blessings, rituals and the exchange of rings", key: 1 },
+    { time: "5:00 PM",          title: "Var Pooja, Tilak & Engagement",   line: "Blessings, rituals and the exchange of rings", key: 1 },
     { time: "6:00 PM",          title: "Baraat",                          line: "The procession arrives with music and dance", key: 1 },
-    { time: "7:00 PM",          title: "Baraat Welcome",                  line: "The baraat is welcomed at the venue" },
-    { time: "7:30 – 9:30 PM",   title: "Dinner",                          line: "Served alongside the Sangeet", key: 1 },
-    { time: "8:00 PM",          title: "Sangeet",                         line: "An evening of music, dance and joy", key: 1 },
-    { time: "10:00 PM",         title: "Rest for the night",              line: "Retire to your rooms" }
+    { time: "6:30 PM",          title: "Sangeet",                         line: "An evening of music, dance and joy", key: 1 },
+    { time: "7:30 – 9:00 PM",   title: "Dinner",                          line: "Dinner for all our guests", key: 1 }
   ]},
   { n: "Day Two", date: "10 December", dow: "Thursday", city: "Bangalore", events: [
-    { time: "6:30 – 7:00 AM",   title: "Morning Tea",                     line: "" },
-    { time: "8:00 – 9:00 AM",   title: "Breakfast",                       line: "" },
-    { time: "8:15 AM",          title: "Gowri Pooja",                     line: "" },
-    { time: "8:45 AM",          title: "Muhurtam",                        line: "Sacred vows and traditional ceremonies until 11:00 AM", key: 1 },
-    { time: "12:00 PM",         title: "Reception & Lunch",               line: "Meet the bride and groom; lunch is served alongside (12:00 – 1:00 PM)", key: 1 },
-    { time: "12:00 PM",         title: "Room check-out",                  line: "" },
-    { time: "2:00 PM",          title: "Farewell from the venue",         line: "Please vacate the venue by 2:00 PM" }
+    { time: "8:45 AM",          title: "Muhurtham",                       line: "Sacred vows and traditional ceremonies until 11:00 AM", key: 1 },
+    { time: "12:00 PM",         title: "Reception & Lunch",               line: "Meet the bride and groom; lunch is served alongside", key: 1 }
   ]},
   { n: "Day Three", date: "15 December", dow: "Tuesday", city: "Lucknow", events: [
     { time: "6:00 PM onwards", title: "Reception", line: "Join us in Lucknow to celebrate with the couple", key: 1 }
   ]}
-];
-const TRAVEL = [
-  { value: "Airport pick-up, Wed 9 Dec", label: "Airport pick-up", sub: "Wed 9 Dec" },
-  { value: "Airport drop, Thu 10 Dec",   label: "Airport drop",    sub: "Thu 10 Dec" }
 ];
 /* ═══════════════════════════════════════════════════════ */
 
@@ -938,14 +904,6 @@ $('#stops').innerHTML = DAYS.map(d => `
     <div class="ev-card${e.key ? ' key' : ''}"><span class="ev-time">${e.time ? esc(e.time) : PH}${e.time && e.when ? ' · ' + esc(e.when) : ''}</span><h3>${esc(e.title)}</h3>${e.line ? `<p>${esc(e.line)}</p>` : ''}</div>
   </li>`).join('')).join('');
 
-/* ── good to know: travel, stay, departure ── */
-$('#goodCards').innerHTML = [
-  ['Getting there', `The venue is 9 km from Bangalore airport. A 12-seater bus makes two courtesy trips from the airport on Wednesday 9 December. Tick "Airport pick-up" in the RSVP and share your flight details, and we will plan the trips around you.`],
-  ['Where to stay', SIDE === 'groom'
-    ? `The hosts have reserved 15 double-occupancy rooms at the venue for the groom's family. Other guests are welcome to book a hotel close to the venue, which is also the best option for late arrivals.`
-    : `Rooms at the venue are arranged by the hosts for the families. Other guests, and anyone arriving late, can book a hotel close to the venue.`],
-  ['Leaving on Thursday', `Check out by 12:00 PM and please vacate the venue by 2:00 PM. Two rooms stay open for baggage and changing. A courtesy bus makes two trips back to the airport, starting at 3:00 PM.`]
-].map(([h, p], i) => `<div class="good-card rise" style="--i:${i}"><h3>${h}</h3><p>${p}</p></div>`).join('');
 $('#tbcNote').hidden = !DAYS.some(d => d.events.some(e => !e.time));
 
 /* ── the river: path through every dot, drawn as you scroll ── */
@@ -1075,6 +1033,7 @@ function openInvite(){
     document.body.classList.remove('locked');
     document.documentElement.classList.remove('locked');
     startPetals(); dockReady = true; updateDock();
+    document.body.classList.add('cue-on');
   }, 2100);
 }
 $('#openBtn').addEventListener('click', e => { e.stopPropagation(); openInvite(); });
@@ -1200,13 +1159,6 @@ $('#evGrid').innerHTML = DAYS.map((d,i) => `
     </div>
   </div>`).join('');
 
-$('#trvGrid').innerHTML = TRAVEL.map(t => `
-  <label class="ev-opt"><input type="checkbox" name="trv" value="${esc(t.value)}"><span class="box"></span><span class="t">${esc(t.label)}<small>${esc(t.sub)}</small></span></label>`).join('');
-const trvBoxes = () => [...document.querySelectorAll('#trvGrid input')];
-const syncFlight = () => setOpen(flightWrap, trvBoxes().some(x => x.checked));
-trvBoxes().forEach(x => x.addEventListener('change', syncFlight));
-
-const flightEl = $('#f-flight'), flightWrap = $('#flightWrap');
 const f = {
   form: $('#rsvpForm'), body: $('#rsvpFormBody'), done: $('#rsvpDone'),
   name: $('#f-name'), phone: $('#f-phone'), guests: $('#f-guests'), gnames: $('#f-gnames'), msg: $('#f-msg'),
@@ -1262,7 +1214,7 @@ document.querySelectorAll('.ev-all').forEach(b => b.addEventListener('click', ()
   syncEvButtons(); f.err.hidden = true;
 }));
 document.querySelectorAll('#evGrid input').forEach(x => x.addEventListener('change', () => { syncEvButtons(); f.err.hidden = true; }));
-syncEvButtons(); syncFlight();
+syncEvButtons();
 
 function showDone(d, msg, scroll){
   f.body.hidden = true; f.done.hidden = false;
@@ -1273,10 +1225,8 @@ function showDone(d, msg, scroll){
     : `Thank you for letting us know, ${first}. We will miss you.`);
   const ph = d.phone ? (/^91\d{10}$/.test(d.phone) ? `+91 ${d.phone.slice(2,7)} ${d.phone.slice(7)}` : '+' + d.phone) : '';
   const rows = [['Name', d.name], ['Phone', ph], ['Reply', d.attendance]];
-  if (yes){ rows.push(['Guests', String(d.guests)]); const evs = (d.events || []).filter(s => !/^Airport /.test(s)), trv = (d.events || []).filter(s => /^Airport /.test(s));
-    if (evs.length) rows.push(['Celebrations', evs.join('\n')]);
-    if (trv.length) rows.push(['Travel help', trv.join('\n')]);
-    const fl = (d.note || '').match(/(?:^|\n)Flight: (.*)$/); if (fl) rows.push(['Flight', fl[1]]); }
+  if (yes){ rows.push(['Guests', String(d.guests)]); const evs = d.events || [];
+    if (evs.length) rows.push(['Celebrations', evs.join('\n')]); }
   $('#doneSum').innerHTML = rows.filter(r => r[1]).map(r => `<li><span>${r[0]}</span>${esc(r[1]).replace(/\n/g, '<br>')}</li>`).join('');
   if (scroll) f.done.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
 }
@@ -1293,12 +1243,9 @@ function showForm(prefill){
     setOpen(f.yes, attending()); $('#stepLast').textContent = attending() ? '4' : '3';
     setGuests(+prefill.guests || 2, true);
     f.gnames.value = prefill.guestNames || '';
-    const fm = (prefill.note || '').match(/(?:^|\n)Flight: (.*)$/);
-    flightEl.value = fm ? fm[1] : '';
-    f.msg.value = (prefill.note || '').replace(/(?:^|\n)Flight: .*$/, '');
+    f.msg.value = prefill.note || '';
     evBoxes().forEach(x => x.checked = (prefill.events || []).some(s => s === x.value || s.startsWith(x.value + ' (')));
-    trvBoxes().forEach(x => x.checked = (prefill.events || []).includes(x.value));
-    syncFlight(); syncEvButtons();
+    syncEvButtons();
     f.btn.textContent = 'Update RSVP';
   }
 }
@@ -1310,7 +1257,7 @@ $('#otherBtn').addEventListener('click', () => {
   [f.name, f.phone].forEach(x => x.classList.remove('good', 'bad'));
   f.chips.forEach((c, i) => { c.classList.toggle('on', i === 0); c.setAttribute('aria-pressed', String(i === 0)); });
   setOpen(f.yes, true); $('#stepLast').textContent = '4';
-  evBoxes().forEach(x => x.checked = false); trvBoxes().forEach(x => x.checked = false); flightEl.value = ''; syncFlight();
+  evBoxes().forEach(x => x.checked = false);
   setGuests(2, true); syncEvButtons(); setNote('');
   f.err.hidden = true; f.btn.textContent = 'Send RSVP';
   f.done.hidden = true; f.body.hidden = false;
@@ -1380,15 +1327,14 @@ f.form.addEventListener('submit', async e => {
   if (f.trap.value) { showDone({ name: f.name.value, attendance: 'Joyfully accepts', guests: 1 }, null, true); return; } /* bots fill the hidden field */
   const name = f.name.value.trim(), key = normPhone(f.phone.value), yes = attending();
   const events = yes ? evBoxes().filter(x => x.checked).map(x => x.value + (x.dataset.t ? ` (${x.dataset.t})` : '')) : [];
-  const travel = yes ? trvBoxes().filter(x => x.checked).map(x => x.value) : [];
   if (!name){ f.name.classList.add('bad'); return fail('Please enter your name.', f.name); }
   if (!validPhone(key)){ f.phone.classList.add('bad'); return fail('Please enter a valid phone number. Add the country code if it is not an Indian number.', f.phone); }
   if (yes && !events.length) return fail('Please tick at least one celebration you will join.', $('#evGrid'));
   const data = {
     name, phone: key, attendance: document.querySelector('.attend-chip.on').dataset.v,
-    guests: yes ? guestsN() : 0, events: events.concat(travel),
+    guests: yes ? guestsN() : 0, events,
     guestNames: yes && guestsN() > 1 ? f.gnames.value.trim() : '',
-    note: [f.msg.value.trim(), travel.length && flightEl.value.trim() ? 'Flight: ' + flightEl.value.trim() : ''].filter(Boolean).join('\n')
+    note: f.msg.value.trim()
   };
   f.btn.disabled = true; f.btn.textContent = 'Sending…';
   const res = await sendToSheet({ ...data, events: data.events.join('; '), side: SIDE, website: '' });
@@ -1402,6 +1348,13 @@ f.form.addEventListener('submit', async e => {
 setGuests(+f.guests.value || 2, true);   /* a refresh can make some browsers restore stale field values; resync the display */
 /* already replied on this device: show the static "You're all set" screen */
 (function(){ const saved = lsGet(); if (saved && saved.phone) showDone(saved); })();
+
+/* scroll cue: shown after the door opens, gone as soon as the guest scrolls */
+(function(){
+  const hide = () => { if (scrollY > 40) document.body.classList.remove('cue-on'), removeEventListener('scroll', hide); };
+  addEventListener('scroll', hide, { passive: true });
+  document.getElementById('scrollCue').addEventListener('click', () => document.getElementById('events').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }));
+})();
 
 </script>
 </body>
