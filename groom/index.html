@@ -408,7 +408,8 @@ footer{text-align:center;padding:3.5rem 1.4rem calc(3rem + env(safe-area-inset-b
 .ev-day{margin-top:1.1rem;text-align:left}
 .ev-head{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem}
 .ev-head b{font-family:var(--serif);font-weight:500;font-size:1.22rem;color:var(--olive-deep)}
-.ev-head small{font-family:var(--sans);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-ink);margin-left:.7em}
+.ev-head b,.ev-head small{display:block}
+.ev-head small{font-family:var(--sans);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-ink);margin:.25rem 0 0}
 .ev-all{background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);text-decoration:underline;text-underline-offset:4px;padding:.5em 0;min-height:36px}
 .ev-opts{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
 .rsvp-card .ev-opt{position:relative;display:flex;align-items:center;gap:.8rem;margin:0;padding:.85rem 1rem;min-height:56px;border:1px solid var(--gold-pale);background:rgba(253,250,241,.7);cursor:pointer;transition:border-color .3s,background .3s;font-family:var(--serif);font-size:1.08rem;letter-spacing:.01em;text-transform:none;color:var(--ink);text-align:left}
@@ -539,7 +540,7 @@ html{scroll-padding-top:12px}
 .seal-wrap{position:relative;display:grid;place-items:center}
 .seal-wrap .seal::before{inset:-8px;border:2px solid rgba(122,47,42,.5)}
 .seal-wrap .ring2{position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(122,47,42,.4);animation:ring 2.6s ease-out 1.3s infinite;pointer-events:none}
-.tap-dot{position:absolute;left:58%;top:58%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(255,255,255,.55);border:2px solid rgba(255,255,255,.9);box-shadow:0 2px 10px rgba(0,0,0,.25);pointer-events:none;animation:tapDot 2.4s ease-in-out infinite}
+.tap-dot{position:absolute;left:70%;top:80%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(255,255,255,.55);border:2px solid rgba(255,255,255,.9);box-shadow:0 2px 10px rgba(0,0,0,.25);pointer-events:none;animation:tapDot 2.4s ease-in-out infinite}
 @keyframes tapDot{0%{transform:translate(26px,30px) scale(1);opacity:0}25%{opacity:1}55%{transform:translate(0,0) scale(1);opacity:1}70%{transform:translate(0,0) scale(.8);opacity:1}100%{transform:translate(0,0) scale(1.9);opacity:0}}
 .tap-hint{font-size:.74rem;letter-spacing:.3em;text-indent:.3em;color:var(--olive-deep);text-align:center;line-height:1.7}
 .tap-hint small{display:block;font-size:.6rem;letter-spacing:.24em;color:var(--ink-soft);margin-top:.2rem}
@@ -747,9 +748,9 @@ html body .rsvp-submit{letter-spacing:.34em}
           <label id="lbl-guests">How many of you are coming? <em>(including you)</em></label>
           <div class="stepper" role="group" aria-labelledby="lbl-guests">
             <button type="button" id="gMinus" aria-label="One fewer guest">&minus;</button>
-            <output id="gOut" aria-live="polite">2</output>
+            <output id="gOut" aria-live="polite">1</output>
             <button type="button" id="gPlus" aria-label="One more guest">+</button>
-            <input type="hidden" id="f-guests" value="2" autocomplete="off">
+            <input type="hidden" id="f-guests" value="1" autocomplete="off">
           </div>
           <div id="guestNamesWrap" class="collapse open"><div class="cin">
             <label for="f-gnames">Who is joining you? <em>(optional)</em></label>
@@ -1238,7 +1239,7 @@ function showForm(prefill){
     setNote('Your number identifies your RSVP, so it stays fixed. Changes update your entry.', 'ok');
     f.chips.forEach(c => { const on = c.dataset.v === prefill.attendance; c.classList.toggle('on', on); c.setAttribute('aria-pressed', String(on)); });
     setOpen(f.yes, attending()); $('#stepLast').textContent = attending() ? '4' : '3';
-    setGuests(+prefill.guests || 2, true);
+    setGuests(+prefill.guests || 1, true);
     f.gnames.value = prefill.guestNames || '';
     f.msg.value = prefill.note || '';
     evBoxes().forEach(x => x.checked = (prefill.events || []).some(s => s === x.value || s.startsWith(x.value + ' (')));
@@ -1255,7 +1256,7 @@ $('#otherBtn').addEventListener('click', () => {
   f.chips.forEach((c, i) => { c.classList.toggle('on', i === 0); c.setAttribute('aria-pressed', String(i === 0)); });
   setOpen(f.yes, true); $('#stepLast').textContent = '4';
   evBoxes().forEach(x => x.checked = false);
-  setGuests(2, true); syncEvButtons(); setNote('');
+  setGuests(1, true); syncEvButtons(); setNote('');
   f.err.hidden = true; f.btn.textContent = 'Send RSVP';
   f.done.hidden = true; f.body.hidden = false;
   f.form.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
@@ -1342,7 +1343,7 @@ f.form.addEventListener('submit', async e => {
   showDone(data, msg, true);
 });
 
-setGuests(+f.guests.value || 2, true);   /* a refresh can make some browsers restore stale field values; resync the display */
+setGuests(+f.guests.value || 1, true);   /* a refresh can make some browsers restore stale field values; resync the display */
 /* already replied on this device: show the static "You're all set" screen */
 (function(){ const saved = lsGet(); if (saved && saved.phone) showDone(saved); })();
 
