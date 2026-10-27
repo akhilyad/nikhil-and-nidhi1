@@ -430,6 +430,8 @@ footer{text-align:center;padding:3.5rem 1.4rem calc(3rem + env(safe-area-inset-b
 .done-sum{list-style:none;margin:1.5rem auto 0;max-width:440px;text-align:left}
 .done-sum li{padding:.7rem 0;border-bottom:1px dashed var(--gold-pale);font-size:1.08rem;line-height:1.45;word-break:break-word}
 .done-sum li span{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:.2rem}
+.saved-banner{margin:0 0 1rem;padding:.7rem .9rem;background:rgba(169,180,138,.16);border:1px solid rgba(169,180,138,.5);font-family:var(--sans);font-size:max(.78rem,12.5px);line-height:1.6;color:var(--ink);text-align:left}
+.saved-banner .link-btn{margin:0 0 0 .3rem;font-size:max(.78rem,12.5px)}
 .link-btn.alt{display:block;margin:.2rem auto 0;color:var(--ink-soft)}
 .link-btn{margin-top:1.6rem;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;color:var(--olive);text-decoration:underline;text-underline-offset:4px;padding:.6em;min-height:44px}
 
@@ -1321,7 +1323,7 @@ function fail(m, el){
 
 f.form.addEventListener('submit', async e => {
   e.preventDefault();
-  f.err.hidden = true;
+  f.err.hidden = true; const sb = document.getElementById('savedBanner'); if (sb) sb.remove();
   if (f.trap.value) { showDone({ name: f.name.value, attendance: 'Joyfully accepts', guests: 1 }, null, true); return; } /* bots fill the hidden field */
   const name = f.name.value.trim(), key = normPhone(f.phone.value), yes = attending();
   const events = yes ? evBoxes().filter(x => x.checked).map(x => x.value + (x.dataset.t ? ` (${x.dataset.t})` : '')) : [];
@@ -1345,7 +1347,16 @@ f.form.addEventListener('submit', async e => {
 
 setGuests(+f.guests.value || 1, true);   /* a refresh can make some browsers restore stale field values; resync the display */
 /* already replied on this device: show the static "You're all set" screen */
-(function(){ const saved = lsGet(); if (saved && saved.phone) showDone(saved); })();
+/* a refresh always gives a clean form; a reply saved on this device is offered as a small link instead of filling the page */
+f.form.reset(); setGuests(1, true); f.name.value = ''; f.phone.value = '';
+(function(){
+  const saved = lsGet(); if (!saved || !saved.phone) return;
+  const b = document.createElement('p'); b.className = 'saved-banner'; b.id = 'savedBanner';
+  const first = (saved.name || '').trim().split(/\s+/)[0] || 'you';
+  b.innerHTML = 'Already replied on this device as <b>' + esc(first) + '</b>. <button type="button" class="link-btn" id="seeReply">See or change my reply</button>';
+  f.body.prepend(b);
+  $('#seeReply').addEventListener('click', () => { b.remove(); showDone(saved); });
+})();
 
 /* scroll cue: shown after the door opens, gone as soon as the guest scrolls */
 (function(){
