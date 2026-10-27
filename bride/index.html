@@ -16,6 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" as="image" href="../assets/door-closed.webp" type="image/webp">
 <link rel="preload" as="image" href="../assets/door-open.webp" type="image/webp" fetchpriority="low">
+<link rel="preload" as="image" href="../assets/door-closed.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
@@ -239,7 +240,7 @@ body.opened .hero-art img{transform:scale(1.05)}
   opacity:0;transform:translateY(14px);transition:opacity 1.4s ease 1.2s,transform 1.4s ease 1.2s;
 }
 .hero-mantra .rom{
-  font-style:italic;color:var(--ink-soft);font-size:clamp(.82rem,3.3vw,1.02rem);line-height:1.6;margin-top:.45rem;
+  font-style:italic;color:#5f5338;font-size:clamp(.82rem,3.3vw,1.02rem);line-height:1.6;margin-top:.45rem;
   opacity:0;transition:opacity 1.4s ease 1.6s;
 }
 body.opened .hero-mantra .deva{opacity:1;transform:none}
@@ -259,7 +260,7 @@ body.opened .hero-mantra .rom{opacity:1}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .blessing{font-family:var(--deva);color:var(--olive);font-size:clamp(.95rem,3vw,1.15rem);line-height:2.2;margin-bottom:1.2rem}
 .inv{max-width:640px;margin:1.4rem auto 0}
-.inv-small{font-family:var(--sans);font-weight:300;font-size:.74rem;letter-spacing:.36em;text-indent:.36em;text-transform:uppercase;color:var(--ink-soft);margin:1.1rem 0 .6rem}
+.inv-small{font-family:var(--sans);font-weight:300;font-size:.74rem;letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;color:var(--ink);margin:1.1rem auto .6rem;max-width:30ch;text-wrap:balance;line-height:1.9}
 .inv-parents{text-wrap:balance;font-size:clamp(1.25rem,3.8vw,1.65rem);color:var(--olive-deep);letter-spacing:.04em;line-height:1.5}
 .inv-name{font-family:var(--script);font-size:clamp(3rem,10vw,4.8rem);color:var(--blush-deep);line-height:1.15}
 
@@ -553,6 +554,13 @@ body.cue-on .scroll-cue{opacity:1;transform:translate(-50%,0);pointer-events:aut
 @keyframes cueBob{0%,100%{transform:translateY(-3px) rotate(45deg);opacity:.45}50%{transform:translateY(5px) rotate(45deg);opacity:1}}
 @media(prefers-reduced-motion:reduce){.scroll-cue i{animation:none}}
 body.cue-on .dock.show{opacity:0;pointer-events:none}
+
+.v-map{position:relative}
+.map-veil{display:none;z-index:2;position:absolute;inset:6px;border:0;background:rgba(253,250,241,.01);cursor:pointer;align-items:flex-end;justify-content:center;padding:0 0 .7rem;font-family:var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--olive-deep)}
+.map-veil span{background:rgba(253,250,241,.94);border:1px solid var(--gold-soft);padding:.5em 1em;border-radius:999px;box-shadow:0 4px 14px rgba(91,78,56,.18)}
+@media(hover:none){.map-veil{display:flex}}
+.contact-line{margin-top:.6rem;font-family:var(--sans);font-weight:300;font-size:.8rem;letter-spacing:.06em;color:var(--ink)}
+.contact-line a{color:var(--olive-deep)}
 /* grandparents' blessings (groom's link): father's parents left, mother's parents right */
 
 /* grandparents: two aligned columns, father's side left */
@@ -568,7 +576,7 @@ body.cue-on .dock.show{opacity:0;pointer-events:none}
 @media(hover:none) and (pointer:coarse),(max-width:700px){a.qr-wrap,.qr-cap{display:none}}
 
 /* readability floor: nothing smaller than 12px on any screen */
-html body :is(.dock a,.btn,.btn.sm,.attend-chip,.ev-all,.ev-every,.link-btn,.rsvp-submit,.arch-dow,.arch-city,.arch-events .when,.banner-txt .c,.banner-txt .n,.cv-date,.cv-eye,.foot-bless,.foot-date,.v-dates,.v-for,.rsvp-card label,.inv-small,.ev-time,.eyebrow,.tap-hint,.tap-hint small,.ev-opt .t small,.ev-head small,.grands small,.step,.step em,.rsvp-card label em,.done-sum li span,.fmsg,.hint,.sum,.rsvp-note,.tbc-note,.qr-cap,.ph){font-size:max(.78rem,12.5px)}
+html body :is(.dock a,.btn,.btn.sm,.attend-chip,.ev-all,.ev-every,.link-btn,.rsvp-submit,.arch-dow,.arch-city,.arch-events .when,.banner-txt .c,.banner-txt .n,.cv-date,.cv-eye,.foot-bless,.foot-date,.v-dates,.v-for,.rsvp-card label,.inv-small,.ev-time,.eyebrow,.tap-hint,.tap-hint small,.ev-opt .t small,.ev-head small,.grands small,.step,.step em,.rsvp-card label em,.done-sum li span,.fmsg,.hint,.sum,.rsvp-note,.tbc-note,.qr-cap,.ph,.scroll-cue span,.map-veil){font-size:max(.78rem,12.5px)}
 html body .ev-opt .t small b,html body .arch-events .when b{font-size:inherit}
 html body .rsvp-submit{letter-spacing:.34em}
 @media (prefers-reduced-motion:reduce){
@@ -628,7 +636,7 @@ html body .rsvp-submit{letter-spacing:.34em}
 <div class="progress" aria-hidden="true"><i id="progBar"></i></div>
 <button type="button" class="scroll-cue" id="scrollCue" aria-label="Scroll down to see the celebrations"><span>Scroll down</span><i aria-hidden="true"></i></button>
 <nav class="dock" id="dock" aria-label="Jump to a section">
-  <a href="#events" data-s="events">Celebrations</a><a href="#flow" data-s="flow">Timeline</a><a href="#venue" data-s="venue">Venue</a><a href="#rsvp" data-s="rsvp" class="go">RSVP</a>
+  <a href="#flow" data-s="flow">Celebrations</a><a href="#venue" data-s="venue">Venue</a><a href="#rsvp" data-s="rsvp" class="go">RSVP</a>
 </nav>
 
 <!-- ══════════ HERO: the open doorway + the Ganesh mantra ══════════ -->
@@ -670,24 +678,12 @@ html body .rsvp-submit{letter-spacing:.34em}
 </section>
 
 <!-- ══════════ CELEBRATIONS ══════════ -->
-<section id="events" class="band">
-  <img loading="lazy" decoding="async" class="corner tl" src="../assets/floral-corner_sm.webp" alt="" aria-hidden="true">
-  <img loading="lazy" decoding="async" class="corner br" src="../assets/floral-corner_sm.webp" alt="" aria-hidden="true">
-  <div class="pad-section">
-    <div class="reveal">
-      <span class="eyebrow">The celebrations</span>
-      <h2 class="section-title">Three days of festivities</h2>
-    </div>
-    <div class="arches" id="arches"></div>
-  </div>
-</section>
-
 <!-- ══════════ EVENT FLOW: the river ══════════ -->
 <section id="flow" class="band">
   <div class="pad-section">
     <div class="reveal">
-      <span class="eyebrow">How the days unfold</span>
-      <h2 class="section-title">The flow of celebrations</h2>
+      <span class="eyebrow">The celebrations</span>
+      <h2 class="section-title">Three days of festivities</h2>
       <p class="tbc-note" id="tbcNote"><span class="ph">The Lucknow reception time will be shared soon</span></p>
     </div>
     <div class="river" id="river">
@@ -727,7 +723,7 @@ html body .rsvp-submit{letter-spacing:.34em}
   <img loading="lazy" decoding="async" class="corner tl" src="../assets/floral-corner_sm.webp" alt="" aria-hidden="true" style="top:-80px">
   <img loading="lazy" decoding="async" class="corner br" src="../assets/floral-corner_sm.webp" alt="" aria-hidden="true" style="bottom:-80px">
   <div class="pad-section reveal">
-    <span class="eyebrow">Répondez s'il vous plaît</span>
+    <span class="eyebrow">Kindly reply</span>
     <h2 class="section-title">Will you join us?</h2>
     <form class="rsvp-card" id="rsvpForm" novalidate>
       <div id="rsvpFormBody">
@@ -807,6 +803,10 @@ const CONFIG = {
   /* Google Apps Script web-app URL (ends in /exec). RSVPs are saved to the Google Sheet through it. */
   sheetUrl: "https://script.google.com/macros/s/AKfycbxmXzE0JZOAgvmwmuf1WXQr3qhHnvqifIFcy5EojUfwBjXreb-v3nZ7-98rF-NW5Cyz/exec",
 
+  /* Shown on the RSVP card only when filled in. rsvpBy e.g. "15 November 2026"; contact: who guests can call or WhatsApp. */
+  rsvpBy: "",
+  contact: { name: "", phone: "" },
+
   /* Parents' names: fill these in. The page names the family of the side it is on first. */
   bride: { name: "Nidhi",  role: "daughter", parents: "Shri. Ravi Kulkarni & Smt. Ruchi Kulkarni" },
   groom: { name: "Nikhil", role: "son",      parents: "Shri. Satyanarayan Yadav & Smt. Jayashree Yadav",
@@ -820,7 +820,7 @@ const CONFIG = {
       address: ["Devanahalli Road, Boyalahalli Village", "Bagalur, Bengaluru", "Karnataka 562149"],
       mapsUrl: "https://www.google.com/maps?cid=12798184235780506858",
       embed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.0363794978944!2d77.67787641052621!3d13.160105310664196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1c73badc4e39%3A0xb19c48c137b384ea!2sFiestaa%20Resort%20n%20Events%20Venue!5e0!3m2!1sen!2sde!4v1792859748342!5m2!1sen!2sde",
-      slots: [ { d: 0, start: "2026-12-09T15:00", end: "2026-12-09T22:00" }, { d: 1, start: "2026-12-10T08:00", end: "2026-12-10T14:00" } ] },
+      slots: [ { d: 0, start: "2026-12-09T15:00", end: "2026-12-09T21:30" }, { d: 1, start: "2026-12-10T08:00", end: "2026-12-10T14:00" } ] },
     { city: "Lucknow", dates: "15 December 2026", for: "The reception",
       name: "Holiday Inn Lucknow Airport by IHG",
       address: ["Kanpur Road, near Transport Nagar Metro Station", "Lucknow", "Uttar Pradesh 226008"],
@@ -873,7 +873,7 @@ document.documentElement.classList.add('locked');
   $('#inv').innerHTML =
     (known(FIRST.parents)
       ? `<p class="inv-parents">${esc(FIRST.parents)}</p>
-         <p class="inv-small">request the pleasure of your company<br>at the wedding of their ${FIRST.role}</p>`
+         <p class="inv-small">request the pleasure of your company at the wedding of their ${FIRST.role}</p>`
       : `<p class="inv-small">You are warmly invited<br>to the wedding of</p>`) +
     `<p class="inv-name">${esc(FIRST.name)}</p>
      <p class="inv-small">with</p>
@@ -881,18 +881,6 @@ document.documentElement.classList.add('locked');
     (known(SECOND.parents) ? `<p class="inv-small">${SECOND.role} of</p><p class="inv-parents">${esc(SECOND.parents)}</p>` : '');
   document.querySelectorAll('#inv > p').forEach((p,i)=>{ p.classList.add('w'); p.style.transitionDelay = (i*140)+'ms'; });
 })();
-
-/* ── celebrations: arches ── */
-$('#arches').innerHTML = DAYS.map((d,i) => `
-  <div class="arch rise" style="--i:${i}">
-    <svg class="lotus-div" aria-hidden="true"><use href="#lotus"/></svg>
-    <div class="arch-date">${esc(d.date)}</div>
-    <div class="arch-dow">${esc(d.dow)}</div>
-    <span class="arch-city">${esc(d.city)}</span>
-    <ul class="arch-events">${d.events.filter(e => e.key).map(e => `
-      <li>${slot(e) ? `<div class="when">${e.time ? `<b>${esc(e.time)}</b>${e.when ? ' · ' + esc(e.when) : ''}` : esc(e.when)}</div>` : ''}<h3>${esc(e.title)}</h3></li>`).join('')}
-    </ul>
-  </div>`).join('');
 
 /* ── the river: stops ── */
 let side = 0;
@@ -1001,7 +989,7 @@ $('#venues').innerHTML = CONFIG.venues.map((v,i) => `
     <div class="v-for">${esc(v.for)}</div>
     <h3 class="v-name"><a href="${v.mapsUrl}" target="_blank" rel="noopener">${esc(v.name)}</a></h3>
     <p class="v-addr"><a href="${v.mapsUrl}" target="_blank" rel="noopener">${v.address.map(esc).join('<br>')}</a></p>
-    <div class="v-map"><iframe src="${v.embed}" title="Map of ${esc(v.name)}" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <div class="v-map"><button type="button" class="map-veil" aria-label="Tap to explore the map"><span>Tap to explore the map</span></button><iframe src="${v.embed}" title="Map of ${esc(v.name)}" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
     <a class="qr-wrap" href="${v.mapsUrl}" target="_blank" rel="noopener" aria-label="Open ${esc(v.name)} in Google Maps">${qrSvg(v.mapsUrl)}</a>
     <p class="qr-cap">Scan or tap to navigate</p>
     <div class="v-btns">
@@ -1015,7 +1003,10 @@ $('#venues').innerHTML = CONFIG.venues.map((v,i) => `
       </details>
     </div>
   </div>`).join('');
-$('#venues').addEventListener('click', e => { const b = e.target.closest('[data-ics]'); if (b) downloadICS(+b.dataset.ics); });
+$('#venues').addEventListener('click', e => {
+  const mv = e.target.closest('.map-veil'); if (mv){ mv.remove(); return; }
+  const b = e.target.closest('[data-ics]'); if (b) downloadICS(+b.dataset.ics);
+});
 
 /* ── 1. Door opening sequence ── */
 const intro = $('#intro');
@@ -1080,7 +1071,7 @@ function makePetal(container){
 function startPetals(){
   if (reduce) return;
   const c = $('#petals');
-  const n = innerWidth < 640 ? 10 : 16;
+  const n = innerWidth < 640 ? 6 : 10;
   for (let k = 0; k < n; k++) makePetal(c);
 }
 
@@ -1097,15 +1088,18 @@ document.querySelectorAll('.reveal, .rise, .words, .band').forEach(el => io.obse
 
 /* ── 4b. Dock (jump links) + reading progress ── */
 const dock = $('#dock'), progBar = $('#progBar'), dockLinks = [...dock.querySelectorAll('a')];
-let dockReady = false, kbOpen = false, dockSeen = false;
-const dockIds = ['events', 'flow', 'venue', 'rsvp'].map(id => $('#' + id));
+let dockReady = false, kbOpen = false, dockSeen = false, dockHold = false, lastY = 0, holdT = 0;
+const dockIds = ['flow', 'venue', 'rsvp'].map(id => $('#' + id));
 function updateDock(){
   const max = document.documentElement.scrollHeight - innerHeight;
   progBar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
   if (!dockReady) return;
   const rs = $('#rsvp').getBoundingClientRect();
   const inRsvp = rs.top < innerHeight * .5 && rs.bottom > innerHeight * .25;
-  const show = scrollY > innerHeight * .5 && !inRsvp && !kbOpen;
+  const dy = scrollY - lastY; lastY = scrollY;
+  if (dy > 8){ dockHold = true; clearTimeout(holdT); holdT = setTimeout(() => { dockHold = false; updateDock(); }, 800); }
+  else if (dy < -8){ dockHold = false; }
+  const show = scrollY > innerHeight * .5 && !inRsvp && !kbOpen && !dockHold;
   dock.classList.toggle('show', show);
   if (show && !dockSeen){ dockSeen = true; dock.querySelector('.go').classList.add('pulse'); }
   let cur = '';
@@ -1353,7 +1347,19 @@ setGuests(+f.guests.value || 2, true);   /* a refresh can make some browsers res
 (function(){
   const hide = () => { if (scrollY > 40) document.body.classList.remove('cue-on'), removeEventListener('scroll', hide); };
   addEventListener('scroll', hide, { passive: true });
-  document.getElementById('scrollCue').addEventListener('click', () => document.getElementById('events').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }));
+  document.getElementById('scrollCue').addEventListener('click', () => document.getElementById('flow').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }));
+})();
+
+/* optional RSVP deadline and contact line: shown only once filled in CONFIG */
+(function(){
+  if (CONFIG.rsvpBy){ const l = document.querySelector('.form-lead'); if (l) l.textContent = 'Kindly reply by ' + CONFIG.rsvpBy + '. It takes under a minute.'; }
+  const c = CONFIG.contact || {};
+  if (c.phone){
+    const digits = c.phone.replace(/\D/g, '');
+    const p = document.createElement('p'); p.className = 'contact-line';
+    p.innerHTML = 'Questions? Call or WhatsApp ' + (c.name ? esc(c.name) + ' on ' : '') + '<a href="tel:+' + digits + '">' + esc(c.phone) + '</a>';
+    $('#rsvpNote').after(p);
+  }
 })();
 
 </script>
