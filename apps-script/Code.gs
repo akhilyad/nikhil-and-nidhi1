@@ -90,7 +90,7 @@ function doPost(e) {
     set('Guests', p.guests === undefined ? '' : Number(p.guests));
     set('Events', String(p.events || '').slice(0, 500));
     set('Guest names', String(p.guestNames || '').slice(0, 300));
-    set('Note', String(p.note || '').slice(0, 500));
+    set('Note', String(p.note || '').slice(0, 700));   // room for the optional Sangeet song line plus a 500-character note
     set('Side', p.side || '');
     set('Updated', now);
     set('Submissions', subs);
@@ -98,4 +98,32 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+/* ---------- Nightly backup ----------
+ * Run installNightlyBackup once from the editor (it asks for Drive permission the first time).
+ * After that a dated copy of the sheet lands in the Drive folder "Wedding RSVP backups" every night at about 2 AM India time.
+ * One copy per day; the newest 30 are kept and older ones go to the Drive bin. */
+var BACKUP_FOLDER = 'Wedding RSVP backups';
+var BACKUP_KEEP = 30;
+
+function backupSheet() {
+  var folders = DriveApp.getFoldersByName(BACKUP_FOLDER);
+  var folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(BACKUP_FOLDER);
+  var name = 'RSVP backup ' + Utilities.formatDate(new Date(), 'Asia/Kolkata', 'yyyy-MM-dd');
+  var same = folder.getFilesByName(name);
+  while (same.hasNext()) same.next().setTrashed(true);
+  DriveApp.getFileById(SHEET_ID).makeCopy(name, folder);
+  var all = [], it = folder.getFiles();
+  while (it.hasNext()) all.push(it.next());
+  all.sort(function (a, b) { return b.getDateCreated() - a.getDateCreated(); });
+  for (var i = BACKUP_KEEP; i < all.length; i++) all[i].setTrashed(true);
+}
+
+function installNightlyBackup() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'backupSheet') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('backupSheet').timeBased().everyDays(1).atHour(2).inTimezone('Asia/Kolkata').create();
+  backupSheet();   // first copy now, so you can see it work
 }
