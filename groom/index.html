@@ -88,6 +88,7 @@ body{
     linear-gradient(180deg,var(--silk-1) 0%,var(--silk-2) 55%,var(--silk-1) 100%);
 }
 html[data-side="bride"] body{background-image:var(--pattern),repeating-linear-gradient(115deg,rgba(255,255,255,.02) 0 2px,transparent 2px 7px),radial-gradient(ellipse 80% 40% at 50% 0%,rgba(155,27,72,.9),transparent 70%),linear-gradient(180deg,#6B0F24 0%,#9B1B48 45%,#6B0F24 100%)}
+html{scrollbar-gutter:stable}
 html.locked,body.locked{overflow:hidden;height:100%}
 ::selection{background:var(--g-1);color:var(--accent-deep)}
 img{max-width:100%;display:block}
@@ -145,7 +146,7 @@ html[data-side="bride"] .petal i.jas{border-radius:50% 50% 50% 0;box-shadow:inse
   position:fixed;inset:0;z-index:100;overflow:hidden;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   background:var(--pattern),radial-gradient(ellipse 70% 55% at 50% 45%,var(--silk-hi),transparent 70%),radial-gradient(circle at 50% 50%,var(--silk-1),#04130d 120%);
-  transition:opacity 1s ease;
+  transition:opacity .5s ease;
 }
 html[data-side="bride"] #intro{background:var(--pattern),radial-gradient(ellipse 70% 55% at 50% 45%,rgba(155,27,72,.95),transparent 72%),radial-gradient(circle at 50% 50%,#6B0F24,#2a0510 120%)}
 #intro.fade{opacity:0;pointer-events:none}
@@ -201,7 +202,10 @@ html[data-side="bride"] .gate .leaf.r{clip-path:url(#doorBR)}
   transition:opacity 1.2s ease .3s;animation:raysTurn 28s linear infinite}
 #intro.opening .door-rays{opacity:1}
 @keyframes raysTurn{to{transform:rotate(360deg)}}
-#intro.zoom .gate{transition:transform 1.5s cubic-bezier(.62,0,.24,1);transform:translate(var(--tx,0),var(--ty,0)) scale(var(--zoom,4))}
+#intro.zoom .gate{transition:transform 1s cubic-bezier(.6,0,.25,1);transform:translate(var(--tx,0),var(--ty,0)) scale(var(--zoom,4))}
+/* while we walk in, the glare and rays clear so the card lands crisp, exactly where the real card waits */
+#intro.zoom .gate .inside img{opacity:1;transition:opacity .4s ease}
+#intro.zoom .gate .inside::after,#intro.zoom .door-rays{opacity:0;transition:opacity .6s ease}
 #intro.zoom .gate::before,#intro.zoom .gate::after{opacity:0}
 #intro.zoom :is(.cover-top,.seal-row){opacity:0}
 .seal-row{position:relative;margin-top:1.6rem;display:flex;flex-direction:column;align-items:center;gap:.8rem;transition:opacity .5s ease}
@@ -1163,17 +1167,20 @@ function openInvite(){
   burstPetals();
   if (reduce){ document.body.classList.add('opened'); heroFx.go(); intro.classList.add('fade'); setTimeout(finishIntro, 300); return; }
   intro.classList.add('opening');
+  /* the real card starts settling now, hidden behind the gateway, so it is already in place when the gateway dissolves */
+  setTimeout(() => { document.body.classList.add('opened'); heroFx.go(); }, 450);
   setTimeout(() => {
-    const r = gate.getBoundingClientRect(), D = ART.door;
+    /* walk through: scale the gateway so the card seen through the door lands exactly on the real card, then dissolve */
+    const r = gate.getBoundingClientRect(), D = ART.door, t = $('#farmanWrap').getBoundingClientRect();
     const cx = r.left + D.x * r.width, cy = r.top + D.y * r.height;
-    const z = Math.max(innerWidth / (D.w * r.width), innerHeight / (D.h * r.height)) * 1.15;
+    const z = t.height / (D.h * r.height);
     gate.style.setProperty('--ox', D.x * 100 + '%'); gate.style.setProperty('--oy', D.y * 100 + '%');
-    gate.style.setProperty('--tx', (innerWidth / 2 - cx).toFixed(1) + 'px'); gate.style.setProperty('--ty', (innerHeight / 2 - cy).toFixed(1) + 'px');
+    gate.style.setProperty('--tx', (t.left + t.width / 2 - cx).toFixed(1) + 'px'); gate.style.setProperty('--ty', (t.top + t.height / 2 - cy).toFixed(1) + 'px');
     gate.style.setProperty('--zoom', z.toFixed(3));
     intro.classList.add('zoom');
-  }, 1150);
-  setTimeout(() => { document.body.classList.add('opened'); heroFx.go(); intro.classList.add('fade'); }, 2050);
-  setTimeout(finishIntro, 3050);
+  }, 700);
+  setTimeout(() => intro.classList.add('fade'), 1400);
+  setTimeout(finishIntro, 1950);
 }
 $('#openBtn').addEventListener('click', e => { e.stopPropagation(); openInvite(); });
 gate.addEventListener('click', openInvite);
