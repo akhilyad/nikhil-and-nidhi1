@@ -1,6 +1,6 @@
 /* Offline support for the invitation. Pages: network first, saved copy when there is no signal.
    Pictures and fonts: saved copy first, refreshed in the background. RSVP submissions are never cached. */
-const VERSION = 'v5';
+const VERSION = 'v6';
 const CORE = ['/groom/', '/bride/', '/qr.js', '/shared.js',
   '/assets/gate-groom.webp', '/assets/card-groom.webp', '/assets/events-groom.webp',
   '/assets/gate-bride.webp', '/assets/card-bride.webp', '/assets/events-bride.webp'];
