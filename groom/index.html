@@ -20,7 +20,7 @@
 <link rel="preload" as="image" href="../assets/door-closed.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&family=Tiro+Devanagari+Sanskrit&family=Noto+Serif+Kannada:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
 
 <!--
   PLACEHOLDERS (anything still to be provided is styled with class="ph" or lives in the CONFIG / DAYS blocks in the script):
@@ -589,15 +589,6 @@ html body .rsvp-submit{letter-spacing:.34em}
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
 }
 
-/* ---------- Hindi (groom link) and Kannada (bride link) second lines ---------- */
-.l2{font-family:var(--deva);font-style:normal;font-weight:400;font-size:1.3rem;color:var(--gold-ink);line-height:1.6;letter-spacing:0;text-transform:none;text-indent:0}
-.l2:empty{display:none}
-.l2[lang=kn],.hero-mantra .deva[lang=kn],.blessing[lang=kn]{font-family:'Noto Serif Kannada',var(--deva),serif;line-height:1.8}
-.cv-l2{margin:.1rem 0 .35rem;color:var(--olive)}
-.sec-l2{margin:-.15em 0 .9em}
-.ev-card .l2{display:block;font-size:1.1rem;margin:.1rem 0 .3rem}
-.done-title + .sec-l2{margin:.1rem 0 .6rem;color:var(--olive)}
-
 /* ---------- Sangeet song box ---------- */
 #songWrap .cin{padding-top:.2rem}
 #songWrap input{margin-top:.1rem}
@@ -650,7 +641,7 @@ body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:n
 <h1 class="sr-only" id="pageTitle">Wedding invitation</h1>
 <!-- ══════════ INTRO: closed door + seal ══════════ -->
 <div id="intro" role="dialog" aria-label="Wedding invitation opening">
-  <div class="cover-top"><span class="cv-eye">You are invited</span><div class="cv-names">Nikhil &amp; Nidhi</div><div class="l2 cv-l2" data-l2="cover"></div><div class="cv-date">9 · 10 · 15 December 2026</div></div>
+  <div class="cover-top"><span class="cv-eye">You are invited</span><div class="cv-names">Nikhil &amp; Nidhi</div><div class="cv-date">9 · 10 · 15 December 2026</div></div>
   <div class="door-stage" id="doorStage">
     <div class="door-frame">
       <div class="door-stack" id="doorStack">
@@ -708,7 +699,6 @@ body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:n
     <p class="blessing">॥ श्री गणेशाय नमः ॥</p>
     <span class="eyebrow">With the blessings of our families</span>
     <h2 class="section-title">You are cordially invited</h2>
-    <p class="l2 sec-l2" data-l2="invite"></p>
     <div class="grands" id="grands" hidden></div>
     <svg class="lotus-div" aria-hidden="true"><use href="#lotus"/></svg>
     <div class="inv words" id="inv"></div>
@@ -722,7 +712,6 @@ body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:n
     <div class="reveal">
       <span class="eyebrow">The celebrations</span>
       <h2 class="section-title">Three days of festivities</h2>
-      <p class="l2 sec-l2" data-l2="flow"></p>
       <p class="tbc-note" id="tbcNote"><span class="ph">The Lucknow reception time will be shared soon</span></p>
     </div>
     <div class="river" id="river">
@@ -752,7 +741,6 @@ body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:n
     <div class="reveal">
       <span class="eyebrow">Where</span>
       <h2 class="section-title">Where to find us</h2>
-      <p class="l2 sec-l2" data-l2="venue"></p>
     </div>
     <div class="venues" id="venues"></div>
   </div>
@@ -765,7 +753,6 @@ body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:n
   <div class="pad-section reveal">
     <span class="eyebrow">Kindly reply</span>
     <h2 class="section-title">Will you join us?</h2>
-    <p class="l2 sec-l2" data-l2="rsvp"></p>
     <form class="rsvp-card" id="rsvpForm" novalidate>
       <div id="rsvpFormBody">
         <p class="form-lead">It takes under a minute. We just need to know who is coming.</p>
@@ -813,7 +800,6 @@ body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:n
       <div class="rsvp-done" id="rsvpDone" hidden aria-live="polite">
         <svg class="lotus-div" aria-hidden="true"><use href="#lotus"/></svg>
         <div class="done-title">You're all set</div>
-        <p class="l2 sec-l2" data-l2="thanks"></p>
         <p class="done-msg" id="doneMsg"></p>
         <ul class="done-sum" id="doneSum"></ul>
         <button type="button" class="link-btn" id="editBtn">Need to change something? Update my RSVP</button>
@@ -828,7 +814,6 @@ body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:n
   <div class="pad-section reveal">
     <span class="eyebrow">With gratitude</span>
     <h2 class="section-title" id="thanksTitle">Thank you</h2>
-    <p class="l2 sec-l2" data-l2="thanks"></p>
     <svg class="lotus-div" aria-hidden="true"><use href="#lotus"/></svg>
     <p class="thanks-msg">Thank you for celebrating with us. Your blessings and your company made our wedding days complete.</p>
     <div class="v-btns thanks-btns" id="thanksBtns"></div>
@@ -916,15 +901,6 @@ const FIRST = CONFIG[SIDE], SECOND = CONFIG[SIDE === 'groom' ? 'bride' : 'groom'
 const NAMES = FIRST.name + ' & ' + SECOND.name;
 const PH = '<span class="ph">[time]</span>';
 $('#pageTitle').textContent = NAMES + ' wedding invitation, 9, 10 and 15 December 2026';
-/* Hindi on the groom link, Kannada on the bride link: wording lives in shared.js */
-const T = (typeof L2 !== 'undefined' && L2[SIDE]) || null;
-const evL2 = e => (T && T.ev && T.ev[e.title]) || '';
-if (T){
-  document.querySelectorAll('[data-l2]').forEach(el => { const t = T[el.dataset.l2]; if (t){ el.textContent = t; el.lang = T.lang; } });
-  const dv = document.querySelector('.hero-mantra .deva'), bl = document.querySelector('.blessing');
-  if (T.mantra && dv){ dv.innerHTML = T.mantra.map(esc).join('<br>'); dv.lang = T.lang; }
-  if (T.blessing && bl){ bl.textContent = T.blessing; bl.lang = T.lang; }
-}
 /* after the wedding the page turns itself into a thank-you page; add ?thanks=1 to preview it */
 const AFTER = (typeof THANKS !== 'undefined') && (Date.now() >= Date.parse(THANKS.from) || /[?&]thanks=1/.test(location.search));
 const slot = e => [e.when, e.time].filter(Boolean).join(' · ');   /* e.g. "Afternoon · 4:00 PM" */
@@ -968,7 +944,7 @@ $('#stops').innerHTML = DAYS.map(d => `
     <div class="banner-txt"><div class="n">${esc(d.n)}</div><div class="d">${esc(d.date)}</div><div class="c">${esc(d.dow)} · ${esc(d.city)}</div></div>
   </li>` + d.events.map(e => `
   <li class="stop ${side++ % 2 ? 'right' : 'left'} rise"><span class="dot"></span>
-    <div class="ev-card${e.key ? ' key' : ''}"><span class="ev-time">${e.time ? esc(e.time) : PH}${e.time && e.when ? ' · ' + esc(e.when) : ''}</span><h3>${esc(e.title)}</h3>${evL2(e) ? `<span class="l2" lang="${T.lang}">${esc(evL2(e))}</span>` : ''}${e.line ? `<p>${esc(e.line)}</p>` : ''}</div>
+    <div class="ev-card${e.key ? ' key' : ''}"><span class="ev-time">${e.time ? esc(e.time) : PH}${e.time && e.when ? ' · ' + esc(e.when) : ''}</span><h3>${esc(e.title)}</h3>${e.line ? `<p>${esc(e.line)}</p>` : ''}</div>
   </li>`).join('')).join('');
 
 $('#tbcNote').hidden = !DAYS.some(d => d.events.some(e => !e.time));
