@@ -29,6 +29,10 @@
   - WhatsApp number for RSVP
 -->
 
+<script>
+/* ?theme=royal previews the maroon and gold look; ?theme=classic returns to the original. The choice is kept for this browser tab. */
+(function(){try{var m=/[?&]theme=(royal|classic)/.exec(location.search);if(m)sessionStorage.setItem('theme',m[1]);var t=m?m[1]:sessionStorage.getItem('theme');if(t==='royal'){document.documentElement.dataset.theme='royal';var c=document.querySelector('meta[name=theme-color]');if(c)c.setAttribute('content','#4a0f1a')}}catch(e){}})();
+</script>
 <style>
 :root{
   --cream:#f8f2e3;
@@ -608,6 +612,61 @@ body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:n
 .ev-all{min-height:44px}
 .rsvp-card input[type=text],.rsvp-card input[type=tel]{min-height:48px}
 .v-name a,.v-addr a{display:inline-block;padding:.3em 0}
+
+/* ---------- Royal theme: maroon, gold and ivory (preview with ?theme=royal) ---------- */
+html[data-theme="royal"]{
+  --cream:#f8f0de;--cream-2:#fdf8ec;--cream-3:#f1e4c6;--paper:#f3e6c8;
+  --gold:#b8862b;--gold-soft:#c9a24b;--gold-pale:#e8d59b;--gold-ink:#7a5217;
+  --olive:#7a1f2b;--olive-deep:#561220;--sage:#b8862b;
+  --blush:#c9a24b;--blush-deep:#8f1d2e;--marigold:#d9981e;--marigold-ink:#8a4a10;
+  --ink:#4a2a24;--ink-soft:#6e4b42;--wax:#6b1522;
+  --roy:#4a0f1a;--roy-2:#6b1522;--roy-gold:#f3dfa6;--roy-gold-2:#e8d59b;
+}
+html[data-theme="royal"] ::selection{background:var(--gold-pale);color:var(--olive-deep)}
+/* cover: deep maroon with gold type; the wax seal turns gold */
+html[data-theme="royal"] #intro{background:radial-gradient(ellipse 90% 55% at 50% 0%,rgba(168,52,66,.55),transparent 65%),var(--roy)}
+html[data-theme="royal"] :is(.cv-eye,.cv-date,.tap-hint){color:var(--roy-gold-2)}
+html[data-theme="royal"] .cv-names{color:var(--roy-gold)}
+html[data-theme="royal"] .tap-hint small{color:#d9c58a}
+html[data-theme="royal"] .seal{background:radial-gradient(circle at 34% 30%,#f0d58a,#c9a24b 55%,#8a5f17);color:var(--roy);box-shadow:0 10px 22px rgba(0,0,0,.4),inset 0 2px 4px rgba(255,245,210,.5),inset 0 -4px 8px rgba(90,60,10,.45)}
+html[data-theme="royal"] .seal::after{border-color:rgba(74,15,26,.5)}
+html[data-theme="royal"] .seal::before,html[data-theme="royal"] .seal-wrap .seal::before,html[data-theme="royal"] .seal-wrap .ring2{border-color:rgba(232,213,155,.6)}
+html[data-theme="royal"] .tap-dot{background:rgba(255,255,255,.35)}
+/* hero: maroon behind the painting, mantra in gold */
+html[data-theme="royal"] .scroll-cue span{color:var(--roy-gold-2)}
+html[data-theme="royal"] .scroll-cue i{border-color:var(--roy-gold-2)}
+html[data-theme="royal"] #home{background:var(--roy);box-shadow:inset 0 -4px 0 var(--gold-soft)}
+html[data-theme="royal"] .hero-bokeh img{opacity:.28}
+html[data-theme="royal"] .hero-mantra{background:linear-gradient(180deg,rgba(74,15,26,0) 0,rgba(74,15,26,.9) 26%,var(--roy) 42%)}
+html[data-theme="royal"] .hero-mantra .deva{color:var(--roy-gold)}
+html[data-theme="royal"] .hero-mantra .rom{color:var(--roy-gold-2)}
+html[data-theme="royal"] #invitation{margin-top:0;padding-top:0}
+html[data-theme="royal"] .bridge{display:none}
+/* washes on the cream sections: faint maroon and gold */
+html[data-theme="royal"] :is(#invitation,#flow,#venue,#rsvp,#thanks,#events){--wa:rgba(143,29,46,.08);--wb:rgba(184,134,43,.16)}
+/* the river and ticks */
+html[data-theme="royal"] #rg stop:nth-child(1){stop-color:#8f1d2e}
+html[data-theme="royal"] #rg stop:nth-child(2){stop-color:#b8862b}
+html[data-theme="royal"] #rg stop:nth-child(3){stop-color:#c9a24b}
+html[data-theme="royal"] #rg stop:nth-child(4){stop-color:#8f1d2e}
+html[data-theme="royal"] #riverBase{stroke:rgba(184,134,43,.3)}
+html[data-theme="royal"] .stop .dot{box-shadow:0 0 0 6px rgba(143,29,46,.1)}
+html[data-theme="royal"] .stop .dot.lit{background:var(--marigold);border-color:var(--olive-deep)}
+html[data-theme="royal"] .rsvp-card .ev-opt:has(input:checked){background:rgba(143,29,46,.07)}
+html[data-theme="royal"] .dock a.on{background:rgba(143,29,46,.12)}
+html[data-theme="royal"] .stepper button:active{background:rgba(143,29,46,.12)}
+html[data-theme="royal"] .ev-every:hover,html[data-theme="royal"] .ev-every.on{background:rgba(143,29,46,.1)}
+html[data-theme="royal"] .saved-banner{background:rgba(143,29,46,.06);border-color:rgba(143,29,46,.3)}
+html[data-theme="royal"] .attend-chip.on{background:var(--olive-deep);border-color:var(--olive-deep)}
+html[data-theme="royal"] .rsvp-submit{background:var(--olive-deep)}
+/* closing blessing and footer: maroon band, gold type */
+html[data-theme="royal"] :is(#mantra,footer){background:var(--roy)}
+html[data-theme="royal"] #mantra{box-shadow:inset 0 4px 0 var(--gold-soft)}
+html[data-theme="royal"] .mantra-mean{color:var(--roy-gold-2)}
+html[data-theme="royal"] .foot-mono{color:var(--roy-gold-2)}
+html[data-theme="royal"] .foot-names{color:var(--roy-gold)}
+html[data-theme="royal"] .foot-date{color:var(--roy-gold-2)}
+html[data-theme="royal"] .foot-bless{color:#d9c58a}
 </style>
 </head>
 <body class="locked">
@@ -904,6 +963,7 @@ $('#pageTitle').textContent = NAMES + ' wedding invitation, 9, 10 and 15 Decembe
 /* after the wedding the page turns itself into a thank-you page; add ?thanks=1 to preview it */
 const AFTER = (typeof THANKS !== 'undefined') && (Date.now() >= Date.parse(THANKS.from) || /[?&]thanks=1/.test(location.search));
 const slot = e => [e.when, e.time].filter(Boolean).join(' · ');   /* e.g. "Afternoon · 4:00 PM" */
+const ROYAL = document.documentElement.dataset.theme === 'royal';
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 history.scrollRestoration = 'manual'; window.scrollTo(0, 0);
 if (AFTER){
@@ -1089,7 +1149,7 @@ setTimeout(() => { if (!opened) $('#tapHint').classList.add('nudge'); }, 5000);
 function burstPetals(){
   const rect = document.querySelector('.door-stack').getBoundingClientRect();
   const cx = rect.left + rect.width / 2, cy = rect.top + rect.height * .45;
-  const colors = ['#dfa392','#e8b7ab','#e0932f','#caa76b','#e9a3b0'];
+  const colors = ROYAL ? ['#c9a24b','#e8d59b','#d9981e','#a8344a','#f3dfa6'] : ['#dfa392','#e8b7ab','#e0932f','#caa76b','#e9a3b0'];
   for (let i = 0; i < 28; i++){
     const p = document.createElement('i');
     p.className = 'burst';
@@ -1110,7 +1170,7 @@ function makePetal(container){
   const p = document.createElement('div');
   p.className = 'petal';
   const s = 8 + Math.random() * 12;
-  const colors = ['#dfa392','#eec3b8','#e0932f','#d8b788','#e9a3b0','#c97f6c'];
+  const colors = ROYAL ? ['#8f1d2e','#c9a24b','#d9981e','#b8862b','#a8344a','#e8d59b'] : ['#dfa392','#eec3b8','#e0932f','#d8b788','#e9a3b0','#c97f6c'];
   p.style.left = Math.random() * 100 + 'vw';
   p.style.animationDuration = (3.4 + Math.random() * 3.2) + 's';
   p.style.animationDelay = -(Math.random() * 6) + 's';
