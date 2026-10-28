@@ -31,7 +31,7 @@
 
 <script>
 /* ?theme=royal previews the maroon and gold look; ?theme=classic returns to the original. The choice is kept for this browser tab. */
-(function(){try{var m=/[?&]theme=(royal|classic)/.exec(location.search);if(m)sessionStorage.setItem('theme',m[1]);var t=m?m[1]:sessionStorage.getItem('theme');if(t==='royal'){document.documentElement.dataset.theme='royal';var c=document.querySelector('meta[name=theme-color]');if(c)c.setAttribute('content','#4a0f1a')}}catch(e){}})();
+(function(){try{var m=/[?&]theme=(royal|classic)/.exec(location.search);if(m)sessionStorage.setItem('theme',m[1]);var t=m?m[1]:(sessionStorage.getItem('theme')||'royal');if(t==='royal'){document.documentElement.dataset.theme='royal';var c=document.querySelector('meta[name=theme-color]');if(c)c.setAttribute('content','#4a0f1a')}}catch(e){}})();
 </script>
 <style>
 :root{
@@ -667,6 +667,37 @@ html[data-theme="royal"] .foot-mono{color:var(--roy-gold-2)}
 html[data-theme="royal"] .foot-names{color:var(--roy-gold)}
 html[data-theme="royal"] .foot-date{color:var(--roy-gold-2)}
 html[data-theme="royal"] .foot-bless{color:#d9c58a}
+
+/* ---------- Royal: arch (mehrab) and elephants ---------- */
+.arch-frame,.eleph,.mantra-elephants{display:none}
+html[data-theme="royal"] #home{--mantra-h:206px}
+html[data-theme="royal"] .hero-art{
+  width:min(88vw,430px);aspect-ratio:auto;top:26px;height:calc(100% - var(--mantra-h) - 34px);
+  -webkit-mask-image:none;mask-image:none;clip-path:url(#archClip);
+}
+html[data-theme="royal"] .hero-art img{transform:scale(1.04);object-position:50% 38%}
+html[data-theme="royal"] body.opened .hero-art img{transform:scale(1)}
+html[data-theme="royal"] .hero-breathe{top:calc((100% - var(--mantra-h)) * .5)}
+html[data-theme="royal"] .arch-frame{
+  display:block;position:absolute;left:50%;transform:translateX(-50%);top:26px;
+  width:min(88vw,430px);height:calc(100% - var(--mantra-h) - 34px);pointer-events:none;z-index:1;
+  filter:drop-shadow(0 0 10px rgba(232,213,155,.35));
+}
+html[data-theme="royal"] .eleph{
+  display:block;position:absolute;z-index:3;pointer-events:none;
+  width:min(36vw,190px);bottom:calc(var(--mantra-h) + 26px);
+  filter:drop-shadow(0 8px 10px rgba(0,0,0,.45));
+  opacity:0;transition:opacity 1.4s ease 1.4s,transform 1.6s cubic-bezier(.22,.61,.36,1) 1.4s;
+}
+html[data-theme="royal"] .eleph.el{left:max(-3vw,calc(50% - 292px));transform:translateX(-40px)}
+html[data-theme="royal"] .eleph.er{right:max(-3vw,calc(50% - 292px));transform:translateX(40px) scaleX(-1)}
+html[data-theme="royal"] body.opened .eleph.el{opacity:1;transform:none}
+html[data-theme="royal"] body.opened .eleph.er{opacity:1;transform:scaleX(-1)}
+html[data-theme="royal"] #home .lamp{z-index:4}
+html[data-theme="royal"] .mantra-elephants{display:flex;justify-content:center;gap:min(30vw,170px);margin:0 auto 1.2rem;position:relative;z-index:1}
+html[data-theme="royal"] .mantra-elephants img{width:min(32vw,150px);height:auto;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+html[data-theme="royal"] .mantra-elephants img.flip{transform:scaleX(-1)}
+@media(prefers-reduced-motion:reduce){html[data-theme="royal"] .eleph{transition:none}}
 </style>
 </head>
 <body class="locked">
@@ -731,6 +762,10 @@ html[data-theme="royal"] .foot-bless{color:#d9c58a}
   <div class="hero-bokeh" aria-hidden="true"><img src="../assets/door-open.webp" alt=""></div>
   <div class="hero-art" id="heroArt"><img src="../assets/door-open.webp" alt="Watercolour illustration of Lord Ganesha seated in an open wedding doorway, with flowers, diyas and lanterns"></div>
   <div class="hero-breathe" aria-hidden="true"></div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><clipPath id="archClip" clipPathUnits="objectBoundingBox"><path d="M0,1 L0,.36 C0,.22 .12,.15 .26,.11 C.38,.08 .46,.05 .5,0 C.54,.05 .62,.08 .74,.11 C.88,.15 1,.22 1,.36 L1,1 Z"/></clipPath></defs></svg>
+  <svg class="arch-frame" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true"><path d="M0,1 L0,.36 C0,.22 .12,.15 .26,.11 C.38,.08 .46,.05 .5,0 C.54,.05 .62,.08 .74,.11 C.88,.15 1,.22 1,.36 L1,1" fill="none" stroke="#e8d59b" stroke-width="6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><path d="M0,1 L0,.36 C0,.22 .12,.15 .26,.11 C.38,.08 .46,.05 .5,0 C.54,.05 .62,.08 .74,.11 C.88,.15 1,.22 1,.36 L1,1" fill="none" stroke="#7a1f2b" stroke-width="1.4" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>
+  <img class="eleph el" src="../assets/elephant.webp" alt="" aria-hidden="true">
+  <img class="eleph er" src="../assets/elephant.webp" alt="" aria-hidden="true">
   <div class="lamp l1" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt=""></div></div>
   <div class="lamp l2" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt=""></div></div>
   <div class="hero-mantra">
@@ -883,6 +918,7 @@ html[data-theme="royal"] .foot-bless{color:#d9c58a}
 <section id="mantra" aria-label="Closing blessing">
   <div class="lamp ml" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt=""></div></div>
   <div class="lamp mr" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt=""></div></div>
+  <div class="mantra-elephants" aria-hidden="true"><img src="../assets/elephant.webp" alt=""><img class="flip" src="../assets/elephant.webp" alt=""></div>
   <div class="mantra-inner">
     <p class="mantra-mean">O Lord of the curved trunk and mighty form, whose radiance equals a million suns, remove all obstacles from our path, always.</p>
   </div>

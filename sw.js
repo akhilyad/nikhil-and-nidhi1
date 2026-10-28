@@ -1,8 +1,8 @@
 /* Offline support for the invitation. Pages: network first, saved copy when there is no signal.
    Pictures and fonts: saved copy first, refreshed in the background. RSVP submissions are never cached. */
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CORE = ['/groom/', '/bride/', '/qr.js', '/shared.js',
-  '/assets/door-closed.webp', '/assets/door-open.webp', '/assets/floral-corner_sm.webp', '/assets/ganesha_sm.webp', '/assets/lantern_sm.webp'];
+  '/assets/door-closed.webp', '/assets/door-open.webp', '/assets/floral-corner_sm.webp', '/assets/ganesha_sm.webp', '/assets/lantern_sm.webp', '/assets/elephant.webp'];
 const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 
 self.addEventListener('install', e => {
