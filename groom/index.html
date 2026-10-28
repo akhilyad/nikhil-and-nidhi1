@@ -698,6 +698,116 @@ html[data-theme="royal"] .mantra-elephants{display:flex;justify-content:center;g
 html[data-theme="royal"] .mantra-elephants img{width:min(32vw,150px);height:auto;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
 html[data-theme="royal"] .mantra-elephants img.flip{transform:scaleX(-1)}
 @media(prefers-reduced-motion:reduce){html[data-theme="royal"] .eleph{transition:none}}
+
+/* ═══════════ Royal polish: cover frame, gold foil, light spill, hero life, swipe days ═══════════ */
+
+/* cover: gold-framed maroon painting instead of a cream mat */
+html[data-theme="royal"] .door-frame{background:#3a0b14;border-color:var(--gold-soft);outline-color:rgba(232,213,155,.45);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 46px rgba(201,162,75,.16)}
+html[data-theme="royal"] .door-frame::after{border-color:rgba(232,213,155,.32)}
+html[data-theme="royal"] .door-stack{background:#3a0b14}
+html[data-theme="royal"] .door-stack .glow{background:radial-gradient(circle at 50% 44%,rgba(255,226,150,.95),rgba(255,184,80,.38) 40%,transparent 70%)}
+
+/* light spilling out of the doorway while the doors swing open */
+.door-stack .rays{display:none}
+html[data-theme="royal"] .door-stack .rays{
+  display:block;position:absolute;inset:0;opacity:0;pointer-events:none;mix-blend-mode:screen;transform-origin:50% 44%;
+  background:repeating-conic-gradient(from 0deg at 50% 44%,rgba(255,222,150,0) 0 6deg,rgba(255,226,160,.26) 6deg 8.2deg,rgba(255,222,150,0) 8.2deg 16deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 44%,#000 0,rgba(0,0,0,.55) 38%,transparent 72%);
+  mask-image:radial-gradient(circle at 50% 44%,#000 0,rgba(0,0,0,.55) 38%,transparent 72%);
+  transition:opacity 1.3s ease .45s;animation:raysTurn 28s linear infinite;
+}
+html[data-theme="royal"] #intro.opening .rays{opacity:1}
+@keyframes raysTurn{to{transform:rotate(360deg)}}
+
+/* gold foil: the names write themselves in, then a highlight keeps sliding across the gold */
+@keyframes foil{0%{background-position:130% 0}100%{background-position:-130% 0}}
+@keyframes writeOn{from{clip-path:inset(-30% 100% -30% -4%)}to{clip-path:inset(-30% -4% -30% -4%)}}
+html[data-theme="royal"] .cv-names{width:fit-content;margin:.15rem auto;animation:writeOn 2.3s cubic-bezier(.45,0,.2,1) .35s both}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  html[data-theme="royal"] :is(.cv-names,.foot-names){
+    background-image:linear-gradient(100deg,#b88a2e 0%,#e6c777 26%,#fff3c4 45%,#e6c777 58%,#b88a2e 100%);
+    background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+    animation:foil 7s linear infinite;
+  }
+  html[data-theme="royal"] .cv-names{animation:writeOn 2.3s cubic-bezier(.45,0,.2,1) .35s both,foil 7s linear 2.6s infinite}
+}
+
+/* hero: the painting lives (flickering diyas, drifting gold dust, a slow shaft of light) */
+.hero-media{position:absolute;inset:0}
+.hero-media canvas{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+html[data-theme="royal"] .hero-media{transform:scale(1.04);transition:transform 2.8s cubic-bezier(.22,.61,.36,1);will-change:transform}
+html[data-theme="royal"] body.opened .hero-media{transform:scale(1)}
+html[data-theme="royal"] .hero-art img,html[data-theme="royal"] body.opened .hero-art img{transform:none;transition:none}
+html[data-theme="royal"] .hero-media canvas{display:block;opacity:0;transition:opacity 2.4s ease 1.1s}
+html[data-theme="royal"] body.opened .hero-media canvas{opacity:1}
+
+/* ---------- Celebrations: one swipe row per day ---------- */
+#days{
+  margin-top:2.4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:3.4rem;--cw:min(76vw,290px);
+  --card-bg:linear-gradient(165deg,#fdf8ec,#f3e6c8);--card-line:var(--gold-soft);--card-ink:var(--olive-deep);--card-soft:var(--ink-soft);
+  --ico:var(--gold-ink);--ico-fill:rgba(184,137,74,.16);--ico-bg:rgba(184,137,74,.07);--ico-line:rgba(184,137,74,.45);
+  --pill-bg:rgba(224,147,47,.1);--pill-ink:var(--marigold-ink);--pill-line:rgba(224,147,47,.35);
+}
+html[data-theme="royal"] #days{
+  --card-bg:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(168,52,66,.55),transparent 70%),linear-gradient(170deg,#5d1220,#3f0b16);
+  --card-line:#c9a24b;--card-ink:#f3dfa6;--card-soft:#ead9b8;
+  --ico:#f3dfa6;--ico-fill:rgba(243,223,166,.14);--ico-bg:rgba(243,223,166,.05);--ico-line:rgba(243,223,166,.4);
+  --pill-bg:rgba(243,223,166,.08);--pill-ink:#f3dfa6;--pill-line:rgba(243,223,166,.4);
+}
+.day{min-width:0}
+.day-head{margin-bottom:1rem}
+.day-n{display:block;font-family:var(--sans);font-size:.8rem;letter-spacing:.5em;text-indent:.5em;text-transform:uppercase;color:var(--gold-ink)}
+.day-d{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,7vw,2.5rem);color:var(--olive-deep);line-height:1.1;margin:.3rem 0 .2rem}
+.day-c{font-family:var(--sans);font-weight:300;font-size:.8rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--ink-soft)}
+.swipe-hint{display:inline-flex;align-items:center;gap:.6em;margin-top:.7rem;font-family:var(--sans);font-size:.78rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--gold-ink);transition:opacity .5s ease}
+.swipe-hint i{display:block;width:30px;height:1px;background:currentColor;position:relative;animation:nudgeX 1.8s ease-in-out infinite}
+.swipe-hint i::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border:solid currentColor;border-width:1px 1px 0 0;transform:rotate(45deg)}
+@keyframes nudgeX{0%,100%{transform:translateX(-4px)}50%{transform:translateX(5px)}}
+.day.swiped .swipe-hint{opacity:0}
+.track-wrap{position:relative;margin:0 -1.4rem}
+.track{
+  position:relative;display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;text-align:center;
+  padding:22px max(1.4rem,calc((100% - var(--cw))/2)) 38px;margin:-14px 0 -18px;
+}
+.track::-webkit-scrollbar{display:none}
+.track:focus-visible{outline:2px solid var(--gold-ink);outline-offset:-2px}
+.card{
+  flex:0 0 var(--cw);scroll-snap-align:center;position:relative;min-height:310px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.65rem;padding:1.6rem 1.3rem 1.5rem;
+  border:1px solid var(--card-line);background:var(--card-bg);box-shadow:0 10px 22px rgba(60,10,20,.2);
+}
+.card::after{content:"";position:absolute;inset:6px;border:1px solid rgba(201,162,75,.3);pointer-events:none}
+.card .ev-ico{width:96px;height:96px;flex:none;margin-bottom:.1rem}
+.ev-ico .ring{fill:var(--ico-bg);stroke:var(--ico-line);stroke-width:1}
+.ev-ico .ring2{fill:none;stroke:var(--ico-line);stroke-width:.8;stroke-dasharray:1.5 3.5}
+.ev-ico .g{fill:none;stroke:var(--ico);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ev-ico .f{fill:var(--ico-fill);stroke:var(--ico);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card .t{display:inline-block;font-family:var(--sans);font-size:.78rem;letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;color:var(--pill-ink);background:var(--pill-bg);border:1px solid var(--pill-line);padding:.45em .95em}
+.card h4{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.2;color:var(--card-ink);margin-top:.15rem;text-wrap:balance}
+.card p{font-family:var(--sans);font-weight:300;font-size:.88rem;line-height:1.6;letter-spacing:.03em;color:var(--card-soft);text-wrap:balance}
+.tr-btn{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2;display:none;place-items:center;
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--gold-soft);background:rgba(253,248,236,.94);color:var(--olive-deep);
+  cursor:pointer;box-shadow:0 8px 20px rgba(60,10,20,.25);transition:opacity .3s ease,background .3s ease;
+}
+.tr-btn.prev{left:1.6rem}.tr-btn.next{right:1.6rem}
+.tr-btn::before{content:"";width:11px;height:11px;border:solid currentColor;border-width:0 2px 2px 0}
+.tr-btn.prev::before{transform:rotate(135deg);margin-left:4px}
+.tr-btn.next::before{transform:rotate(-45deg);margin-right:4px}
+.tr-btn:disabled{opacity:.25;cursor:default}
+@media (hover:hover){.tr-btn{display:grid}.swipe-hint{display:none}}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:.1rem}
+.dots i{width:7px;height:7px;border-radius:5px;background:var(--gold-pale);border:1px solid var(--gold-soft);transition:width .35s ease,background .35s ease}
+.dots i.on{width:22px;background:var(--olive);border-color:var(--olive)}
+@media (prefers-reduced-motion:reduce){
+  .swipe-hint i{animation:none}
+  html[data-theme="royal"] .cv-names{animation:none;clip-path:none}
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    html[data-theme="royal"] :is(.cv-names,.foot-names){animation:none;background-position:40% 0}
+  }
+  html[data-theme="royal"] .door-stack .rays{animation:none}
+}
 </style>
 </head>
 <body class="locked">
@@ -737,7 +847,8 @@ html[data-theme="royal"] .mantra-elephants img.flip{transform:scaleX(-1)}
       <div class="door-stack" id="doorStack">
         <img class="door-open-img" src="../assets/door-open.webp" alt="" aria-hidden="true">
         <div class="glow" aria-hidden="true"></div>
-        <div class="leaf l"><img src="../assets/door-closed.webp" alt="Watercolour illustration of an ornate carved wedding doorway decorated with flowers and lanterns"></div>
+        <div class="rays" aria-hidden="true"></div>
+        <div class="leaf l"><img src="../assets/door-closed.webp" alt="Painting of an ornate carved wedding doorway decorated with flowers and lanterns"></div>
         <div class="leaf r"><img src="../assets/door-closed.webp" alt="" aria-hidden="true"></div>
       </div>
     </div>
@@ -760,7 +871,7 @@ html[data-theme="royal"] .mantra-elephants img.flip{transform:scaleX(-1)}
 <!-- ══════════ HERO: the open doorway + the Ganesh mantra ══════════ -->
 <section id="home">
   <div class="hero-bokeh" aria-hidden="true"><img src="../assets/door-open.webp" alt=""></div>
-  <div class="hero-art" id="heroArt"><img src="../assets/door-open.webp" alt="Watercolour illustration of Lord Ganesha seated in an open wedding doorway, with flowers, diyas and lanterns"></div>
+  <div class="hero-art" id="heroArt"><div class="hero-media"><img src="../assets/door-open.webp" alt="Painting of Lord Ganesha seated in an open wedding doorway, with flowers, diyas and lanterns"><canvas id="heroFx" aria-hidden="true"></canvas></div></div>
   <div class="hero-breathe" aria-hidden="true"></div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><clipPath id="archClip" clipPathUnits="objectBoundingBox"><path d="M0,1 L0,.36 C0,.22 .12,.15 .26,.11 C.38,.08 .46,.05 .5,0 C.54,.05 .62,.08 .74,.11 C.88,.15 1,.22 1,.36 L1,1 Z"/></clipPath></defs></svg>
   <svg class="arch-frame" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true"><path d="M0,1 L0,.36 C0,.22 .12,.15 .26,.11 C.38,.08 .46,.05 .5,0 C.54,.05 .62,.08 .74,.11 C.88,.15 1,.22 1,.36 L1,1" fill="none" stroke="#e8d59b" stroke-width="6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><path d="M0,1 L0,.36 C0,.22 .12,.15 .26,.11 C.38,.08 .46,.05 .5,0 C.54,.05 .62,.08 .74,.11 C.88,.15 1,.22 1,.36 L1,1" fill="none" stroke="#7a1f2b" stroke-width="1.4" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>
@@ -808,24 +919,7 @@ html[data-theme="royal"] .mantra-elephants img.flip{transform:scaleX(-1)}
       <h2 class="section-title">Three days of festivities</h2>
       <p class="tbc-note" id="tbcNote"><span class="ph">The Lucknow reception time will be shared soon</span></p>
     </div>
-    <div class="river" id="river">
-      <svg class="river-svg" id="riverSvg" aria-hidden="true">
-        <defs><linearGradient id="rg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
-          <stop offset="0" stop-color="#dfa392"/><stop offset=".35" stop-color="#caa76b"/><stop offset=".7" stop-color="#a9b48a"/><stop offset="1" stop-color="#e9a3b0"/>
-        </linearGradient></defs>
-        <path id="riverBase" fill="none" stroke="rgba(202,167,107,.28)" stroke-width="14" stroke-linecap="round" filter="url(#wobble)"/>
-        <path id="riverWater" class="water" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2" stroke-linecap="round"/>
-        <path id="riverFlow" fill="none" stroke="url(#rg)" stroke-width="12" stroke-linecap="round" filter="url(#wobble)" opacity=".85"/>
-        <g id="bloom">
-          <g fill="#e0932f" stroke="#c97f12" stroke-width=".6">
-            <ellipse cx="0" cy="-9" rx="4.2" ry="7.5"/><ellipse cx="0" cy="-9" rx="4.2" ry="7.5" transform="rotate(60)"/><ellipse cx="0" cy="-9" rx="4.2" ry="7.5" transform="rotate(120)"/>
-            <ellipse cx="0" cy="-9" rx="4.2" ry="7.5" transform="rotate(180)"/><ellipse cx="0" cy="-9" rx="4.2" ry="7.5" transform="rotate(240)"/><ellipse cx="0" cy="-9" rx="4.2" ry="7.5" transform="rotate(300)"/>
-          </g>
-          <circle r="4.5" fill="#f6c25a"/>
-        </g>
-      </svg>
-      <ol class="stops" id="stops"></ol>
-    </div>
+    <div class="days" id="days"></div>
   </div>
 </section>
 
@@ -1033,52 +1127,46 @@ if (AFTER){
   document.querySelectorAll('#inv > p').forEach((p,i)=>{ p.classList.add('w'); p.style.transitionDelay = (i*140)+'ms'; });
 })();
 
-/* ── the river: stops ── */
-let side = 0;
-$('#stops').innerHTML = DAYS.map(d => `
-  <li class="stop banner"><span class="dot"></span>
-    <div class="banner-txt"><div class="n">${esc(d.n)}</div><div class="d">${esc(d.date)}</div><div class="c">${esc(d.dow)} · ${esc(d.city)}</div></div>
-  </li>` + d.events.map(e => `
-  <li class="stop ${side++ % 2 ? 'right' : 'left'} rise"><span class="dot"></span>
-    <div class="ev-card${e.key ? ' key' : ''}"><span class="ev-time">${e.time ? esc(e.time) : PH}${e.time && e.when ? ' · ' + esc(e.when) : ''}</span><h3>${esc(e.title)}</h3>${e.line ? `<p>${esc(e.line)}</p>` : ''}</div>
-  </li>`).join('')).join('');
+/* ── the celebrations: one swipe row per day, each card with its own small illustration ── */
+const ICO = (g) => `<svg class="ev-ico" viewBox="0 0 96 96" aria-hidden="true" focusable="false"><circle class="ring" cx="48" cy="48" r="45"/><circle class="ring2" cx="48" cy="48" r="39"/>${g}</svg>`;
+const petals = (cx, cy, r, n, rx, ry) => Array.from({ length: n }, (_, i) => `<ellipse class="f" cx="${cx}" cy="${cy - r}" rx="${rx}" ry="${ry}" transform="rotate(${i * 360 / n} ${cx} ${cy})"/>`).join('');
+const GLYPHS = {
+  haldi: petals(48, 33, 8, 8, 3.4, 7) + `<circle class="f" cx="48" cy="33" r="3.6"/><path class="f" d="M26 52H70C70 66 60 75 48 75C36 75 26 66 26 52Z"/><path class="g" d="M31 52C35 44 61 44 65 52"/><path class="g" d="M40 80H56"/>`,
+  rings: `<circle class="g" cx="38" cy="54" r="15"/><circle class="g" cx="58" cy="54" r="15"/><path class="f" d="M38 33L44 27H32Z"/><path class="g" d="M32 27L38 33L44 27"/><path class="g" d="M48 15V19M41 18L43 21M55 18L53 21"/>`,
+  dhol: `<path class="f" d="M24 40Q48 32 72 40L68 62Q48 72 28 62Z"/><ellipse class="g" cx="48" cy="38" rx="24" ry="6"/><path class="g" d="M30 46L36 60M40 48L44 62M52 49L52 63M62 48L58 62M70 46L64 60"/><path class="g" d="M62 22L40 36M74 28L56 38"/>`,
+  music: `<path class="g" d="M40 64V32L66 25V57"/><path class="f" d="M40 32L66 25V33L40 40Z"/><ellipse class="f" cx="34" cy="65" rx="7.5" ry="5.5"/><ellipse class="f" cx="60" cy="58" rx="7.5" ry="5.5"/><path class="g" d="M20 30L22 26L24 30L28 32L24 34L22 38L20 34L16 32Z"/>`,
+  thali: `<circle class="f" cx="48" cy="52" r="24"/><circle class="g" cx="48" cy="52" r="17"/><circle class="g" cx="48" cy="40" r="4.5"/><circle class="g" cx="59" cy="48" r="4.5"/><circle class="g" cx="55" cy="61" r="4.5"/><circle class="g" cx="41" cy="61" r="4.5"/><circle class="g" cx="37" cy="48" r="4.5"/><path class="g" d="M40 22C37 18 41 15 40 11M50 22C47 18 51 15 50 11M60 22C57 18 61 15 60 11"/>`,
+  fire: `<path class="f" d="M48 18C58 32 65 40 65 52C65 63 58 71 48 71C38 71 31 63 31 52C31 44 38 39 42 30C44 35 46 37 48 39C51 33 50 25 48 18Z"/><path class="g" d="M48 40C53 47 56 51 56 57C56 63 52 66 48 66C44 66 40 63 40 57C40 52 44 49 48 40Z"/><path class="g" d="M28 78L68 72M28 72L68 78"/>`,
+  toast: `<g transform="translate(37 52) rotate(-16)"><path class="f" d="M-7 -24L7 -24L5 2Q0 9 -5 2Z"/><path class="g" d="M0 7V24M-8 24H8"/></g><g transform="translate(59 52) rotate(16)"><path class="f" d="M-7 -24L7 -24L5 2Q0 9 -5 2Z"/><path class="g" d="M0 7V24M-8 24H8"/></g><path class="g" d="M48 18V23M40 21L42 25M56 21L54 25"/>`,
+  arch: `<path class="f" d="M24 76V46C24 32 38 26 48 14C58 26 72 32 72 46V76Z"/><path class="g" d="M34 76V50C34 41 42 37 48 29C54 37 62 41 62 50V76"/><path class="g" d="M20 76H76"/><path class="g" d="M48 56C45 60 45 64 48 66C51 64 51 60 48 56Z"/>`,
+  lotus: `<path class="f" d="M48 26C40 36 40 52 48 62C56 52 56 36 48 26Z"/><path class="f" d="M48 62C36 60 28 52 26 42C37 43 45 50 48 62Z"/><path class="f" d="M48 62C60 60 68 52 70 42C59 43 51 50 48 62Z"/>`
+};
+const iconFor = t => ICO(GLYPHS[/haldi/i.test(t) ? 'haldi' : /pooja|tilak|engagement/i.test(t) ? 'rings' : /baraat/i.test(t) ? 'dhol' : /sangeet/i.test(t) ? 'music' : /dinner/i.test(t) ? 'thali' : /muhurtham/i.test(t) ? 'fire' : /lunch/i.test(t) ? 'toast' : /reception/i.test(t) ? 'arch' : 'lotus']);
+$('#days').innerHTML = DAYS.map((d, di) => {
+  const many = d.events.length > 1;
+  return `<section class="day reveal" aria-label="${esc(d.n)}, ${esc(d.date)}">
+    <header class="day-head"><span class="day-n">${esc(d.n)}</span><h3 class="day-d">${esc(d.date)}</h3><p class="day-c">${esc(d.dow)} · ${esc(d.city)}</p>${many ? '<span class="swipe-hint" aria-hidden="true">Swipe<i></i></span>' : ''}</header>
+    <div class="track-wrap">
+      <div class="track" tabindex="0" role="group" aria-label="${esc(d.n)} celebrations${many ? ', scroll sideways to see all' : ''}">
+        ${d.events.map(e => `<article class="card${e.key ? ' key' : ''}">${iconFor(e.title)}<span class="t">${e.time ? esc(e.time) : PH}${e.time && e.when ? ' · ' + esc(e.when) : ''}</span><h4>${esc(e.title)}</h4>${e.line ? `<p>${esc(e.line)}</p>` : ''}</article>`).join('')}
+      </div>
+      ${many ? '<button type="button" class="tr-btn prev" aria-label="Previous celebration" data-dir="-1"></button><button type="button" class="tr-btn next" aria-label="Next celebration" data-dir="1"></button>' : ''}
+    </div>
+    ${many ? `<div class="dots" aria-hidden="true">${d.events.map(() => '<i></i>').join('')}</div>` : ''}
+  </section>`;
+}).join('');
+document.querySelectorAll('#days .track').forEach(tr => {
+  const day = tr.closest('.day'), cards = [...tr.children], dots = [...day.querySelectorAll('.dots i')];
+  const prev = day.querySelector('.prev'), next = day.querySelector('.next');
+  const idx = () => { const mid = tr.scrollLeft + tr.clientWidth / 2; let best = 0, bd = 1e9; cards.forEach((k, i) => { const dd = Math.abs(k.offsetLeft + k.offsetWidth / 2 - mid); if (dd < bd){ bd = dd; best = i; } }); return best; };
+  const sync = () => { const i = idx(); dots.forEach((d, k) => d.classList.toggle('on', k === i)); if (prev) prev.disabled = i === 0; if (next) next.disabled = i === cards.length - 1; };
+  const go = i => { const k = cards[Math.max(0, Math.min(cards.length - 1, i))]; tr.scrollTo({ left: k.offsetLeft - (tr.clientWidth - k.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' }); };
+  tr.addEventListener('scroll', () => { requestAnimationFrame(sync); if (tr.scrollLeft > 8) day.classList.add('swiped'); }, { passive: true });
+  [prev, next].forEach(b => b && b.addEventListener('click', () => go(idx() + (+b.dataset.dir))));
+  addEventListener('resize', sync); sync();
+});
 
 $('#tbcNote').hidden = !DAYS.some(d => d.events.some(e => !e.time));
-
-/* ── the river: path through every dot, drawn as you scroll ── */
-const river = $('#river'), rsvg = $('#riverSvg');
-const base = $('#riverBase'), flow = $('#riverFlow'), water = $('#riverWater'), bloom = $('#bloom');
-let pts = [], dotEls = [], dotLen = [], total = 1, rH = 1;
-
-function buildRiver(){
-  const wr = river.getBoundingClientRect(), W = river.offsetWidth; rH = river.offsetHeight;
-  dotEls = [...river.querySelectorAll('.dot')];
-  const raw = dotEls.map(d => { const r = d.getBoundingClientRect(); return { x: r.left - wr.left + r.width/2, y: r.top - wr.top + r.height/2 }; });
-  pts = [{ x: raw[0].x, y: 0 }, ...raw, { x: raw[raw.length-1].x, y: rH }];
-  const A = W < 720 ? 14 : Math.min(54, W * .06);
-  let d = `M${pts[0].x} ${pts[0].y}`;
-  for (let i = 0; i < pts.length - 1; i++){
-    const p = pts[i], q = pts[i+1], dir = i % 2 ? 1 : -1, dy = q.y - p.y;
-    d += ` C${p.x + dir*A} ${p.y + dy*.35} ${q.x + dir*A} ${q.y - dy*.35} ${q.x} ${q.y}`;
-  }
-  rsvg.setAttribute('viewBox', `0 0 ${W} ${rH}`); rsvg.style.height = rH + 'px';
-  $('#rg').setAttribute('y2', rH);
-  [base, flow, water].forEach(p => p.setAttribute('d', d));
-  total = base.getTotalLength();
-  flow.style.strokeDasharray = total;
-  dotLen = raw.map(r => { let lo = 0, hi = total; for (let k = 0; k < 18; k++){ const m = (lo+hi)/2; base.getPointAtLength(m).y < r.y ? lo = m : hi = m; } return lo; });
-  updateRiver();
-}
-function updateRiver(){
-  const r = river.getBoundingClientRect(), vh = innerHeight;
-  let p = reduce ? 1 : Math.min(1, Math.max(0, (vh * .6 - r.top) / r.height));
-  const L = total * p;
-  flow.style.strokeDashoffset = total - L;
-  const pt = base.getPointAtLength(L);
-  bloom.setAttribute('transform', `translate(${pt.x},${pt.y}) rotate(${p*220})`);
-  bloom.style.opacity = p > 0 ? 1 : 0;
-  dotEls.forEach((d,i) => d.classList.toggle('lit', L >= dotLen[i]));
-}
 
 /* ── venues: tap-through maps, embedded map, QR, calendar ── */
 function qrSvg(text){
@@ -1159,6 +1247,56 @@ $('#venues').addEventListener('click', e => {
   const b = e.target.closest('[data-ics]'); if (b) downloadICS(+b.dataset.ics);
 });
 
+/* ── 3. Hero life: flickering diyas, drifting gold dust and a slow shaft of light (royal look only; paused when off-screen) ── */
+const heroFx = (function(){
+  const cv = document.getElementById('heroFx'), none = { go(){} };
+  if (!cv || !ROYAL || reduce || AFTER || !cv.getContext) return none;
+  const ctx = cv.getContext('2d'), box = cv.parentElement;
+  const IW = 1000, IH = 1333, OPY = .38;                       /* painting size, and the object-position used by the page */
+  const FLAMES = [[.393,.660,.075],[.525,.668,.110],[.633,.713,.060],[.595,.746,.050],[.367,.885,.095],[.683,.897,.095]];   /* x, y, glow size as fractions of the painting */
+  let W = 0, H = 0, dpr = 1, sc = 1, ox = 0, oy = 0, raf = 0, last = 0, armed = false, seen = true, dust = [];
+  const flick = (t, p) => .86 + .08 * Math.sin(t * 7.3 + p) + .06 * Math.sin(t * 12.1 + p * 2.3) + .04 * Math.sin(t * 3.1 + p * .7);
+  function size(){
+    W = box.offsetWidth; H = box.offsetHeight; if (!W || !H) return;
+    dpr = Math.min(2, devicePixelRatio || 1);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    sc = Math.max(W / IW, H / IH); ox = (W - IW * sc) * .5; oy = (H - IH * sc) * OPY;
+    const n = W < 500 ? 22 : 34;
+    dust = Array.from({ length: n }, () => ({ x: Math.random(), y: Math.random(), r: .6 + Math.random() * 1.5, v: .012 + Math.random() * .022, p: Math.random() * 6.28, s: .004 + Math.random() * .012 }));
+  }
+  function frame(now){
+    raf = requestAnimationFrame(frame);
+    const t = now / 1000, dt = Math.min(.05, (now - last) / 1000 || .016); last = now;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'screen';
+    const cyc = (t % 12) / 12, a = Math.sin(cyc * Math.PI);          /* a slow shaft of light crossing the doorway every 12 seconds */
+    if (a > .02){
+      ctx.save(); ctx.translate(W * (.1 + cyc * .8), H * .5); ctx.rotate(-.32);
+      const g = ctx.createLinearGradient(-W * .16, 0, W * .16, 0);
+      g.addColorStop(0, 'rgba(255,226,160,0)'); g.addColorStop(.5, `rgba(255,226,160,${.11 * a})`); g.addColorStop(1, 'rgba(255,226,160,0)');
+      ctx.fillStyle = g; ctx.fillRect(-W * .16, -H, W * .32, H * 2); ctx.restore();
+    }
+    FLAMES.forEach((f, i) => {
+      const x = ox + f[0] * IW * sc, y = oy + f[1] * IH * sc, k = flick(t, i * 1.7), r = f[2] * IW * sc * (.9 + .2 * k);
+      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, `rgba(255,232,160,${.62 * k})`); g.addColorStop(.3, `rgba(255,178,70,${.26 * k})`); g.addColorStop(1, 'rgba(255,140,40,0)');
+      ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2);
+    });
+    dust.forEach(d => {
+      d.y -= d.v * dt; d.x += Math.sin(t * .6 + d.p) * d.s * dt; if (d.y < -.03){ d.y = 1.03; d.x = Math.random(); }
+      const tw = .35 + .65 * Math.abs(Math.sin(t * 1.4 + d.p)), x = d.x * W, y = d.y * H;
+      const g = ctx.createRadialGradient(x, y, 0, x, y, d.r * 3.2);
+      g.addColorStop(0, `rgba(255,236,170,${.85 * tw})`); g.addColorStop(1, 'rgba(255,220,130,0)');
+      ctx.fillStyle = g; ctx.fillRect(x - d.r * 3.2, y - d.r * 3.2, d.r * 6.4, d.r * 6.4);
+    });
+  }
+  const sync = () => { const on = armed && seen && !document.hidden; if (on && !raf){ last = 0; raf = requestAnimationFrame(frame); } else if (!on && raf){ cancelAnimationFrame(raf); raf = 0; } };
+  size(); new ResizeObserver(size).observe(box);
+  new IntersectionObserver(es => { seen = es[0].isIntersecting; sync(); }).observe(document.getElementById('home'));
+  document.addEventListener('visibilitychange', sync);
+  return { go(){ armed = true; sync(); } };
+})();
+
 /* ── 1. Door opening sequence ── */
 const intro = $('#intro');
 let opened = false;
@@ -1169,7 +1307,7 @@ function openInvite(){
   intro.style.setProperty('--zoom', Math.max(1.3, innerHeight / frame.height * 1.02).toFixed(3));
   burstPetals();
   intro.classList.add('opening');
-  setTimeout(() => document.body.classList.add('opened'), 900);
+  setTimeout(() => { document.body.classList.add('opened'); heroFx.go(); }, 900);
   setTimeout(() => {
     intro.style.display = 'none';
     document.body.classList.remove('locked');
@@ -1260,23 +1398,19 @@ function updateDock(){
 addEventListener('focusin', e => { if (e.target.matches('input,textarea,select')){ kbOpen = true; updateDock(); } });
 addEventListener('focusout', () => { kbOpen = false; setTimeout(updateDock, 120); });
 
-/* ── 5. Scroll-linked bits: hero drift + river ── */
+/* ── 5. Scroll-linked bits: hero drift ── */
 let ticking = false;
 function onScroll(){
   if (ticking) return; ticking = true;
   requestAnimationFrame(() => {
     const y = scrollY, art = $('#heroArt');
     if (!reduce && y < innerHeight * 1.2) art.style.translate = `0 ${y * .1}px`;
-    updateRiver(); updateDock();
+    updateDock();
     ticking = false;
   });
 }
 addEventListener('scroll', onScroll, { passive: true });
 if (AFTER) startPetals();
-addEventListener('resize', () => buildRiver());
-window.addEventListener('load', buildRiver);
-document.fonts && document.fonts.ready.then(buildRiver);
-buildRiver();
 
 /* ═══════════ 6. RSVP: one entry per phone number ═══════════ */
 const LS_KEY = 'wedding-rsvp-v1';
