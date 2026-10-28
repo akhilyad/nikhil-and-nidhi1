@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%237a2f2a%27/%3E%3Ctext x=%2732%27 y=%2741%27 font-size=%2726%27 font-family=%27Georgia,serif%27 fill=%27%23fdfaf1%27 text-anchor=%27middle%27%3ENN%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#f8f2e3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%236B0F24%27 stroke=%27%23d4af37%27 stroke-width=%273%27/%3E%3Ctext x=%2732%27 y=%2741%27 font-size=%2724%27 font-family=%27Georgia,serif%27 fill=%27%23f3dfa6%27 text-anchor=%27middle%27%3ENN%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#6B0F24">
 <title>Nidhi &amp; Nikhil · Wedding Celebrations · 9, 10 &amp; 15 December 2026</title>
 <meta name="description" content="Nidhi &amp; Nikhil invite you to celebrate their wedding. Bangalore, 9 &amp; 10 December 2026. Reception in Lucknow, 15 December 2026.">
 <meta name="robots" content="noindex, nofollow">
@@ -15,782 +15,359 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="../assets/door-closed.webp" type="image/webp">
-<link rel="preload" as="image" href="../assets/door-open.webp" type="image/webp" fetchpriority="low">
-<link rel="preload" as="image" href="../assets/door-closed.webp" type="image/webp">
+<link rel="preload" as="image" href="../assets/gate-bride.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="../assets/card-bride.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&family=Pinyon+Script&family=Rozha+One&display=swap" rel="stylesheet">
 
 <!--
-  PLACEHOLDERS (anything still to be provided is styled with class="ph" or lives in the CONFIG / DAYS blocks in the script):
-  - parents' names, venue names, addresses, Google Maps links (QR codes rebuild themselves from the link)
-  - event timings and the short lines under the newer events
-  - WhatsApp number for RSVP
+  Heritage suite. One file per side; data-side on <html> picks the palette and artwork:
+    groom = Lucknow / Awadhi: imperial emerald and sapphire silk, zardozi gold, Rumi mehrab, chikankari jaali
+    bride = Bangalore / Mysore: kumkum crimson and rani pink velvet, Kanjeevaram zari, cusped jharokha, mallige garlands
+  Artwork: assets/gate-*.webp (the gateway), card-*.webp (the main card), events-*.webp (the schedule card).
+  Text, events, venues and the RSVP live in the CONFIG / DAYS blocks in the script below.
 -->
 
-<script>
-/* ?theme=royal previews the maroon and gold look; ?theme=classic returns to the original. The choice is kept for this browser tab. */
-(function(){try{var m=/[?&]theme=(royal|classic)/.exec(location.search);if(m)sessionStorage.setItem('theme',m[1]);var t=m?m[1]:(sessionStorage.getItem('theme')||'royal');if(t==='royal'){document.documentElement.dataset.theme='royal';var c=document.querySelector('meta[name=theme-color]');if(c)c.setAttribute('content','#4a0f1a')}}catch(e){}})();
-</script>
 <style>
+/* ═══════════ palette: groom (default) and bride ═══════════ */
 :root{
-  --cream:#f8f2e3;
-  --cream-2:#fdfaf1;
-  --cream-3:#f3ead4;
-  --paper:#f5ecdd;
-  --gold:#b8894a;
-  --gold-soft:#caa76b;
-  --gold-pale:#e6d3ac;
-  --olive:#5f6d3f;
-  --olive-deep:#48552f;
-  --sage:#a9b48a;
-  --blush:#dfa392;
-  --blush-deep:#c97f6c;
-  --marigold:#e0932f;
-  --marigold-ink:#98591a;
-  --gold-ink:#86602d;
-  --ink:#5b4e38;
-  --ink-soft:#7c6f56;
-  --wax:#7a2f2a;
-  --serif:'Cormorant Garamond', Georgia, serif;
-  --script:'Great Vibes', cursive;
-  --sans:'Jost', 'Segoe UI', sans-serif;
-  --deva:'Tiro Devanagari Sanskrit', serif;
+  --silk-1:#082B1E; --silk-2:#0B1B3D; --silk-hi:#123d2e;
+  --plate:#F8F5EC; --plate-2:#efe6cf;
+  --g-1:#D4AF37; --g-2:#AA771C; --g-hi:#fff4c2;
+  --foil:linear-gradient(135deg,#d4af37 0%,#fff4c2 30%,#b38728 65%,#fbf5b7 100%);
+  --foil-run:linear-gradient(100deg,#b38728 0%,#e6c777 24%,#fff4c2 44%,#e6c777 58%,#b38728 100%);
+  --foil-border:linear-gradient(135deg,#bf953f,#fcf6ba,#b38728,#fbf5b7,#aa771c);
+  --on-dark:#f3e6c0; --on-dark-soft:#cdbf96;
+  --accent:#0f5a3c; --accent-deep:#082B1E; --script-ink:#0f5a3c;
+  --ink:#2f2a1e; --ink-soft:#5f573f; --gold-ink:#86601a; --warn:#8f1d2e;
+  --card-ar:1.5697; --gate-ar:1.5502; --sched-ar:1.5662;
+  --petal-a:#e0932f; --petal-b:#f2b632;
+  --pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='none' stroke='%23d4af37' stroke-width='.8' opacity='.11'%3E%3Cpath d='M22 2L42 22L22 42L2 22Z'/%3E%3Cpath d='M22 12L32 22L22 32L12 22Z'/%3E%3Ccircle cx='22' cy='22' r='2.6'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Ccircle cx='44' cy='0' r='5'/%3E%3Ccircle cx='0' cy='44' r='5'/%3E%3Ccircle cx='44' cy='44' r='5'/%3E%3C/g%3E%3C/svg%3E");
+  /* chikankari jaali band for the parchment plates */
+  --band:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Crect width='14' height='14' fill='%23efe0b4'/%3E%3Cg fill='none' stroke='%23a9802a' stroke-width='.8'%3E%3Cpath d='M7 0L14 7L7 14L0 7Z'/%3E%3C/g%3E%3Ccircle cx='7' cy='7' r='1.6' fill='%23a9802a'/%3E%3Ccircle cx='0' cy='0' r='1.1' fill='%230f5a3c'/%3E%3Ccircle cx='14' cy='0' r='1.1' fill='%230f5a3c'/%3E%3Ccircle cx='0' cy='14' r='1.1' fill='%230f5a3c'/%3E%3Ccircle cx='14' cy='14' r='1.1' fill='%230f5a3c'/%3E%3C/svg%3E");
+  --display:'Cinzel Decorative','Cormorant Garamond',serif;
+  --caps:'Cinzel','Cormorant Garamond',serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --script:'Pinyon Script',cursive;
+  --sans:'Marcellus','Montserrat',Georgia,serif;
+  --deva:'Rozha One',serif;
+  /* names kept from the earlier stylesheet so the RSVP and venue rules keep working */
+  --cream:var(--plate); --cream-2:#fdfbf4; --cream-3:var(--plate-2);
+  --gold:var(--g-2); --gold-soft:#c9a24b; --gold-pale:#e8d9ad;
+  --olive:var(--accent); --olive-deep:var(--accent-deep); --blush-deep:var(--script-ink);
+  --marigold:#d9981e; --marigold-ink:#7a4c0e; --wax:var(--warn);
 }
+html[data-side="bride"]{
+  --silk-1:#6B0F24; --silk-2:#9B1B48; --silk-hi:#9b1b48;
+  --plate:#FAF7F0; --plate-2:#f3e9d6;
+  --g-1:#E5B842; --g-2:#B38728; --g-hi:#ffe699;
+  --foil:linear-gradient(135deg,#f3cf7a 0%,#ffffff 30%,#d4af37 60%,#aa771c 100%);
+  --foil-run:linear-gradient(100deg,#b38728 0%,#f3cf7a 24%,#fff6dc 44%,#f3cf7a 58%,#b38728 100%);
+  --foil-border:linear-gradient(135deg,#d4af37,#ffe699,#b38728,#fbf5b7,#996515);
+  --on-dark:#f7e7b4; --on-dark-soft:#ecc9b8;
+  --accent:#7a1430; --accent-deep:#5a0c1f; --script-ink:#9B1B48;
+  --ink:#3a1e1c; --ink-soft:#6e4b45; --gold-ink:#83591a; --warn:#8f1d2e;
+  --card-ar:1.5865; --gate-ar:1.5911; --sched-ar:1.5897;
+  --petal-a:#fffaf0; --petal-b:#e86a9a;
+  --pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cg fill='%23E5B842' opacity='.13'%3E%3Ccircle cx='20' cy='20' r='1.6'/%3E%3Ccircle cx='0' cy='0' r='1.6'/%3E%3Ccircle cx='40' cy='0' r='1.6'/%3E%3Ccircle cx='0' cy='40' r='1.6'/%3E%3Ccircle cx='40' cy='40' r='1.6'/%3E%3C/g%3E%3Cg fill='none' stroke='%23E5B842' stroke-width='.7' opacity='.1'%3E%3Cpath d='M20 8C24 14 24 26 20 32C16 26 16 14 20 8Z'/%3E%3Cpath d='M8 20C14 16 26 16 32 20C26 24 14 24 8 20Z'/%3E%3C/g%3E%3C/svg%3E");
+  /* Kanjeevaram kaddi border with temple-spire (gopuram) teeth */
+  --band:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='14'%3E%3Crect width='16' height='14' fill='%23f3e1b0'/%3E%3Cpath d='M0 14L4 4L8 14Z M8 14L12 4L16 14Z' fill='%23c9a24b'/%3E%3Cpath d='M4 4V1 M12 4V1' stroke='%23b38728' stroke-width='.9'/%3E%3Ccircle cx='8' cy='3' r='1.2' fill='%239B1B48'/%3E%3C/svg%3E");
+}
+
+/* ═══════════ base ═══════════ */
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:12px}
 body{
-  font-family:var(--serif);
-  color:var(--ink);
-  background-color:var(--cream);
+  font-family:var(--serif);color:var(--on-dark);overflow-x:hidden;
+  background-color:var(--silk-1);
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.47 0 0 0 0 0.34 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
-  overflow-x:hidden;
+    var(--pattern),
+    repeating-linear-gradient(115deg,rgba(255,255,255,.018) 0 2px,transparent 2px 7px),
+    radial-gradient(ellipse 80% 40% at 50% 0%,var(--silk-hi),transparent 70%),
+    linear-gradient(180deg,var(--silk-1) 0%,var(--silk-2) 55%,var(--silk-1) 100%);
 }
+html[data-side="bride"] body{background-image:var(--pattern),repeating-linear-gradient(115deg,rgba(255,255,255,.02) 0 2px,transparent 2px 7px),radial-gradient(ellipse 80% 40% at 50% 0%,rgba(155,27,72,.9),transparent 70%),linear-gradient(180deg,#6B0F24 0%,#9B1B48 45%,#6B0F24 100%)}
 html.locked,body.locked{overflow:hidden;height:100%}
-::selection{background:var(--gold-pale);color:var(--olive-deep)}
+::selection{background:var(--g-1);color:var(--accent-deep)}
 img{max-width:100%;display:block}
-h1,h2,h3{font-weight:500}
-
-/* placeholder marker: anything dotted-underlined is waiting for real text */
-.ph{
-  color:var(--blush-deep);
-  background:rgba(224,147,47,.08);
-  border-bottom:1px dashed rgba(201,127,108,.7);
-  padding:0 .15em;
-  font-style:normal;
-}
-
-/* ---------- shared bits ---------- */
+h1,h2,h3,h4{font-weight:500}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.ph{color:var(--warn);background:rgba(217,152,30,.1);border-bottom:1px dashed rgba(143,29,46,.6);padding:0 .15em;font-style:normal}
 .script{font-family:var(--script);font-weight:400}
-.eyebrow{
-  font-family:var(--sans);font-weight:400;font-size:.68rem;
-  letter-spacing:.42em;text-transform:uppercase;color:var(--gold-ink);
-  display:inline-flex;align-items:center;gap:.9em;
-}
-.eyebrow::before,.eyebrow::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-soft))}
-.eyebrow::after{background:linear-gradient(90deg,var(--gold-soft),transparent)}
-.section-title{
-  font-size:clamp(2rem,6vw,3.2rem);color:var(--olive-deep);
-  letter-spacing:.02em;line-height:1.1;margin:.35em 0 .5em;
-}
-.lotus-div{display:block;width:74px;height:auto;margin:1.1rem auto;color:var(--gold-ink)}
+
+/* 24K gold foil */
+.gold-text,.royal-heading,.bride-royal-heading{background:var(--foil);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.gold-border{border:2px solid transparent;border-image:var(--foil-border) 1}
+@keyframes foil{0%{background-position:130% 0}100%{background-position:-130% 0}}
+@keyframes writeOn{from{clip-path:inset(-30% 100% -30% -4%)}to{clip-path:inset(-30% -4% -30% -4%)}}
+.foil-run{background-image:var(--foil-run);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:foil 7s linear infinite}
+
+/* headings on the silk */
+.eyebrow{font-family:var(--caps);font-weight:500;font-size:.72rem;letter-spacing:.38em;text-indent:.38em;text-transform:uppercase;color:var(--g-1);display:inline-flex;align-items:center;gap:.9em}
+.eyebrow::before,.eyebrow::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--g-1))}
+.eyebrow::after{background:linear-gradient(90deg,var(--g-1),transparent)}
+.royal-heading{font-family:var(--caps);letter-spacing:.18em;text-transform:uppercase}
+.bride-royal-heading{font-family:var(--display);letter-spacing:.16em;text-transform:uppercase}
+.section-title{font-weight:600;font-size:clamp(1.45rem,5.6vw,2.5rem);line-height:1.25;margin:.4em auto .5em;text-wrap:balance;max-width:22ch;text-indent:.16em}
+.section-title.royal-heading,.section-title.bride-royal-heading{background-image:var(--foil-run);background-size:260% 100%;animation:foil 9s linear infinite}
+html[data-side="bride"] .section-title{font-weight:700}
+.lotus-div{display:block;width:74px;height:auto;margin:1.1rem auto;color:var(--g-2)}
+.on-dark .lotus-div{color:var(--g-1)}
 .reveal{opacity:0;transform:translateY(34px);transition:opacity 1.1s cubic-bezier(.22,.61,.36,1),transform 1.1s cubic-bezier(.22,.61,.36,1)}
 .reveal.in{opacity:1;transform:none}
 .rise{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.22,.61,.36,1) calc(var(--i,0)*140ms),transform 1s cubic-bezier(.22,.61,.36,1) calc(var(--i,0)*140ms)}
 .rise.in{opacity:1;transform:none}
-
-/* every section is a full-width band with its own watercolour wash behind it */
-.band{position:relative;overflow:hidden}
-.band::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 55% 30% at var(--wx,18%) var(--wy,28%), var(--wa,rgba(223,163,146,.20)), transparent 70%),
-    radial-gradient(ellipse 50% 28% at var(--wx2,85%) var(--wy2,72%), var(--wb,rgba(202,167,107,.16)), transparent 70%);
-}
-.pad-section{padding:clamp(4.5rem,10vw,8rem) 1.4rem;position:relative;max-width:1060px;margin:0 auto;text-align:center}
-
-/* word-by-word reveal */
+.band{position:relative}
+.pad-section{padding:clamp(4rem,9vw,7rem) 1.2rem;position:relative;max-width:1060px;margin:0 auto;text-align:center}
 .words .w{opacity:.14;transition:opacity .7s ease}
 .words.in .w{opacity:1}
 
-/* floral corner dressing - softened so it sits in the painted pastel world */
-.corner{
-  position:absolute;width:clamp(120px,21vw,230px);pointer-events:none;
-  opacity:.9;filter:saturate(.6) sepia(.12) brightness(1.04) drop-shadow(0 10px 18px rgba(91,78,56,.12));
-  transition:opacity 1.6s ease,transform 1.6s cubic-bezier(.22,.61,.36,1);
-}
-.corner.tl{top:-6px;left:-10px}
-.corner.br{bottom:-6px;right:-10px;transform:rotate(180deg)}
-.corner.tr{top:-6px;right:-10px;transform:scaleX(-1)}
-.corner.bl{bottom:-6px;left:-10px;transform:scaleX(-1) rotate(180deg)}
-.band:not(.seen) .corner{opacity:0}
+/* parchment plate with a jaali / zari band and gold foil rules */
+.plate,.venue-card,#rsvp .rsvp-card,.good-card{position:relative;color:var(--ink);background:var(--plate);box-shadow:0 26px 60px rgba(0,0,0,.45),inset 0 0 60px rgba(170,119,28,.12)}
+.plate{border:12px solid transparent;background:linear-gradient(var(--plate),var(--plate)) padding-box,var(--band) border-box}
+.plate::before{content:"";position:absolute;inset:-12px;border:2px solid transparent;border-image:var(--foil-border) 1;pointer-events:none}
+.plate::after{content:"";position:absolute;inset:5px;border:1px solid rgba(170,119,28,.45);pointer-events:none}
+.venue-card,#rsvp .rsvp-card,.good-card{border:2px solid transparent;border-image:var(--foil-border) 1}
+.venue-card::after,#rsvp .rsvp-card::after,.good-card::after{content:"";position:absolute;inset:6px;border:1px solid rgba(170,119,28,.38);pointer-events:none}
 
-/* hanging lantern */
-.lamp{position:absolute;display:flex;flex-direction:column;align-items:center;transform-origin:50% 0;animation:sway 5.5s ease-in-out infinite;pointer-events:none;z-index:3}
-.lamp .chain{width:1px;height:clamp(28px,9vh,86px);background:repeating-linear-gradient(180deg,var(--gold) 0 3px,transparent 3px 6px);opacity:.75}
-.lamp .body{position:relative;width:clamp(58px,9vw,100px)}
-.lamp .body::before{
-  content:"";position:absolute;inset:-38%;border-radius:50%;z-index:-1;
-  background:radial-gradient(circle,rgba(255,196,92,.5),rgba(255,196,92,0) 65%);
-  animation:flicker 2.8s ease-in-out infinite;
-}
-@keyframes sway{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(2.4deg)}}
-@keyframes flicker{0%,100%{opacity:.75}50%{opacity:1}}
-
-/* ---------- petals ---------- */
+/* ═══════════ falling petals ═══════════ */
 #petals{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
 .petal{position:absolute;top:-6vh;will-change:transform;animation:sway-x linear infinite}
-.petal i{
-  display:block;border-radius:80% 0 80% 0;
-  box-shadow:inset -3px -4px 6px rgba(91,78,56,.14);
-  opacity:.85;will-change:transform;
-  animation:petal-fall linear infinite;
-}
+.petal i{display:block;border-radius:80% 0 80% 0;box-shadow:inset -3px -4px 6px rgba(60,30,10,.18);opacity:.9;will-change:transform;animation:petal-fall linear infinite}
+html[data-side="bride"] .petal i.jas{border-radius:50% 50% 50% 0;box-shadow:inset -2px -2px 4px rgba(120,90,60,.2)}
 @keyframes petal-fall{from{transform:translateY(0) rotate(0deg)}to{transform:translateY(118vh) rotate(340deg)}}
 @keyframes sway-x{0%,100%{transform:translateX(-24px)}50%{transform:translateX(24px)}}
-
-/* ---------- intro: closed door + seal, nothing else ---------- */
-#intro{
-  position:fixed;inset:0;z-index:100;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:
-    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(230,211,172,.5), transparent 65%),
-    var(--cream);
-  transition:opacity 1.1s ease .95s;
-}
-#intro.opening{opacity:0;pointer-events:none}
-.door-stage{
-  position:relative;perspective:1500px;
-  transition:transform 1.9s cubic-bezier(.55,.06,.35,.95);
-}
-#intro.opening .door-stage{transform:scale(var(--zoom,1.65))}
-.door-frame{
-  position:relative;
-  height:max(250px,min(64vh,600px,calc(100vh - 372px),calc(100svh - 372px),calc((100vw - 56px) * 1.333)));
-  aspect-ratio:1536/2048;
-  padding:clamp(8px,1.4vw,14px);
-  background:var(--cream-2);
-  border:1px solid var(--gold-soft);
-  outline:1px solid var(--gold-pale);
-  outline-offset:5px;
-  box-shadow:0 24px 60px rgba(91,78,56,.22);
-  transition:box-shadow 1s ease,background .6s ease .5s,border-color .8s ease,outline-color .8s ease;
-}
-#intro.opening .door-frame{box-shadow:none;background:transparent;border-color:transparent;outline-color:transparent}
-.door-frame::after{
-  content:"";position:absolute;inset:6px;border:1px solid rgba(184,137,74,.4);pointer-events:none;transition:opacity .6s ease;
-}
-#intro.opening .door-frame::after{opacity:0}
-.door-stack{position:relative;width:100%;height:100%;background:var(--cream-3);transform-style:preserve-3d}
-.door-stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.door-stack .glow{
-  position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease .3s;
-  background:radial-gradient(circle at 50% 46%, rgba(255,214,130,.9), rgba(255,190,90,.3) 42%, transparent 68%);
-  mix-blend-mode:screen;
-}
-#intro.opening .glow{opacity:1}
-/* the painting parts down the middle like double doors */
-.leaf{position:absolute;inset:0;transition:transform 1.5s cubic-bezier(.62,.02,.28,1),filter 1.5s ease;backface-visibility:hidden}
-.leaf.l{clip-path:inset(0 50% 0 0);transform-origin:0 50%}
-.leaf.r{clip-path:inset(0 0 0 50%);transform-origin:100% 50%}
-#intro.opening .leaf.l{transform:rotateY(-104deg);filter:brightness(.82)}
-#intro.opening .leaf.r{transform:rotateY(104deg);filter:brightness(.82)}
-.seal-row{margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:.9rem;transition:opacity .6s ease}
-#intro.opening .seal-row{opacity:0}
-.seal{
-  width:86px;height:86px;border-radius:50%;border:none;cursor:pointer;position:relative;
-  background:radial-gradient(circle at 34% 30%, #9c4a41, var(--wax) 55%, #5f201d);
-  color:#f6e7c8;font-family:var(--serif);font-size:1.35rem;letter-spacing:.06em;
-  box-shadow:0 10px 22px rgba(91,32,26,.4), inset 0 2px 4px rgba(255,235,200,.35), inset 0 -4px 8px rgba(60,18,14,.5);
-  transition:transform .35s ease;
-}
-.seal::after{content:"";position:absolute;inset:7px;border-radius:50%;border:1px dashed rgba(246,231,200,.55)}
-.seal::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(122,47,42,.45);animation:ring 2.6s ease-out infinite}
-@keyframes ring{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.5);opacity:0}}
-.seal:hover{transform:scale(1.07)}
-.seal:active{transform:scale(.96)}
-.tap-hint{font-family:var(--sans);font-size:.66rem;letter-spacing:.4em;text-indent:.4em;text-transform:uppercase;color:var(--gold-ink)}
 .burst{position:fixed;width:12px;height:12px;border-radius:80% 0 80% 0;pointer-events:none;z-index:120}
 
-/* ---------- hero: the open doorway, Ganesha, falling petals; no text ---------- */
-#home{--mantra-h:196px;position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden;background:var(--paper)}
-.hero-bokeh{position:absolute;inset:-6%;overflow:hidden}
-.hero-bokeh img{width:100%;height:100%;object-fit:cover;filter:blur(38px) saturate(.7) brightness(1.06);opacity:.7;transform:scale(1.15)}
-.hero-art{
-  position:absolute;left:50%;top:0;height:calc(100% - var(--mantra-h));aspect-ratio:3/4;
-  transform:translateX(-50%);
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 4%,#000 66%,transparent 100%),linear-gradient(to right,transparent 0,#000 9%,#000 91%,transparent 100%);
-  -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(to bottom,transparent 0,#000 4%,#000 66%,transparent 100%),linear-gradient(to right,transparent 0,#000 9%,#000 91%,transparent 100%);
-  mask-composite:intersect;
+/* ═══════════ 1 · THE ROYAL GATEWAY ═══════════ */
+#intro{
+  position:fixed;inset:0;z-index:100;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--pattern),radial-gradient(ellipse 70% 55% at 50% 45%,var(--silk-hi),transparent 70%),radial-gradient(circle at 50% 50%,var(--silk-1),#04130d 120%);
+  transition:opacity 1s ease;
 }
-.hero-art img{width:100%;height:100%;object-fit:cover;transform:scale(1.14);transition:transform 2.8s cubic-bezier(.22,.61,.36,1);will-change:transform}
-body.opened .hero-art img{transform:scale(1.05)}
-.hero-breathe{
-  position:absolute;left:50%;top:calc((100% - var(--mantra-h)) * .52);width:min(70vw,420px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
-  background:radial-gradient(circle,rgba(255,214,130,.38),transparent 62%);mix-blend-mode:screen;animation:breathe 6s ease-in-out infinite;
+html[data-side="bride"] #intro{background:var(--pattern),radial-gradient(ellipse 70% 55% at 50% 45%,rgba(155,27,72,.95),transparent 72%),radial-gradient(circle at 50% 50%,#6B0F24,#2a0510 120%)}
+#intro.fade{opacity:0;pointer-events:none}
+#introFx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.cover-top{position:relative;text-align:center;margin-bottom:1rem;padding:0 1rem;animation:swapIn 1.2s cubic-bezier(.22,.61,.36,1) both;transition:opacity .6s ease}
+.cv-eye{display:block;font-family:var(--caps);font-size:.7rem;font-weight:500;letter-spacing:.46em;text-indent:.46em;text-transform:uppercase;color:var(--g-1)}
+.cv-names{font-family:var(--script);font-size:clamp(2.5rem,11vw,3.6rem);line-height:1.2;margin:.1rem auto;width:fit-content;padding:0 .2em;animation:writeOn 2.3s cubic-bezier(.45,0,.2,1) .35s both}
+.cv-date{font-family:var(--sans);font-size:.72rem;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase;color:var(--on-dark-soft)}
+.gate-wrap{position:relative;transition:opacity .5s ease}
+.gate{
+  position:relative;
+  height:max(240px,min(62vh,620px,calc(100vh - 350px),calc(100svh - 350px),calc((100vw - 48px) * var(--gate-ar))));
+  aspect-ratio:1/var(--gate-ar);
+  cursor:pointer;transform-origin:var(--ox,50%) var(--oy,57%);
+  box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1px rgba(212,175,55,.5);
+  will-change:transform;
 }
-@keyframes breathe{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.94)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
-/* clean cream panel under the painting: the mantra sits here, nothing behind it */
-.hero-mantra{
-  position:absolute;left:0;right:0;bottom:0;height:calc(var(--mantra-h) + 100px);z-index:2;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  padding:0 1.1rem calc(5.4rem + env(safe-area-inset-bottom));text-align:center;
-  background:linear-gradient(180deg,rgba(248,242,227,0) 0,rgba(248,242,227,.85) 26%,var(--cream) 42%);
+.gate::before{content:"";position:absolute;inset:-9px;border:2px solid transparent;border-image:var(--foil-border) 1;pointer-events:none;transition:opacity .5s ease}
+.gate::after{content:"";position:absolute;inset:-9px;pointer-events:none;animation:gateGlow 3.2s ease-in-out infinite}
+@keyframes gateGlow{0%,100%{box-shadow:0 0 0 0 rgba(229,184,66,0)}50%{box-shadow:0 0 44px 6px rgba(229,184,66,.32)}}
+.gate > *{position:absolute;inset:0;width:100%;height:100%}
+.gate .base{object-fit:cover}
+/* the doorway behind the leaves: warm light and the card waiting inside */
+.gate .inside{clip-path:url(#doorG);background:radial-gradient(ellipse 60% 55% at 50% 58%,#fff1c4,#f2b84b 38%,#7a3b0c 85%)}
+html[data-side="bride"] .gate .inside{clip-path:url(#doorB)}
+.gate .inside img{position:absolute;left:var(--dl);top:var(--dt);width:var(--dw);height:var(--dh);object-fit:cover;opacity:.0;transform:scale(.9);transition:opacity 1.2s ease .5s,transform 2s cubic-bezier(.22,.61,.36,1) .4s}
+.gate .inside::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 34% 30% at 50% 58%,rgba(255,250,225,1),rgba(255,214,120,.55) 45%,transparent 75%);mix-blend-mode:screen;opacity:.75;transition:opacity 1.4s ease}
+#intro.opening .gate .inside img{opacity:.92;transform:none}
+#intro.opening .gate .inside::after{opacity:1}
+:root{--dl:21.5%;--dt:18.2%;--dw:57%;--dh:78.3%;--hl:21.5%;--hr:78.5%}
+html[data-side="bride"]{--dl:40.5%;--dt:47.4%;--dw:19%;--dh:19.4%;--hl:40.5%;--hr:59.5%}
+/* the two leaves: copies of the painting cut along the door, hinged at the jambs */
+.gate .leaf{backface-visibility:hidden;transition:transform 1.4s cubic-bezier(.25,1,.5,1),filter 1.4s ease}
+.gate .leaf img{width:100%;height:100%;object-fit:cover}
+.gate .leaf.l{clip-path:url(#doorGL);transform-origin:var(--hl) 50%}
+.gate .leaf.r{clip-path:url(#doorGR);transform-origin:var(--hr) 50%}
+html[data-side="bride"] .gate .leaf.l{clip-path:url(#doorBL)}
+html[data-side="bride"] .gate .leaf.r{clip-path:url(#doorBR)}
+#intro.opening .gate .leaf.l{transform:perspective(1000px) rotateY(-85deg);filter:brightness(.7)}
+#intro.opening .gate .leaf.r{transform:perspective(1000px) rotateY(85deg);filter:brightness(.7)}
+/* a thread of light at the seam before the doors open */
+.gate .seam{left:calc(50% - 1px);width:2px;top:var(--dt);height:var(--dh);background:linear-gradient(180deg,transparent,rgba(255,226,150,.95) 20%,rgba(255,240,200,1) 60%,transparent);box-shadow:0 0 12px 3px rgba(255,200,90,.55);animation:seam 2.6s ease-in-out infinite;mix-blend-mode:screen}
+@keyframes seam{0%,100%{opacity:.35}50%{opacity:1}}
+#intro.opening .gate .seam{opacity:0;animation:none;transition:opacity .3s}
+/* lamp flames (bride) and a slow gilded sheen */
+.gate .flame{position:absolute;inset:auto;left:var(--x);top:var(--y);width:var(--s,8%);height:auto;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(circle,rgba(255,236,170,.95),rgba(255,170,60,.45) 40%,transparent 70%);animation:flick 1.7s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes flick{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(.92)}35%{opacity:1;transform:translate(-50%,-52%) scale(1.06)}70%{opacity:.85;transform:translate(-50%,-49%) scale(.98)}}
+.sheen{pointer-events:none;mix-blend-mode:overlay;background:linear-gradient(115deg,transparent 38%,rgba(255,248,220,.55) 50%,transparent 62%);background-size:300% 100%;animation:sheen 7.5s ease-in-out infinite}
+@keyframes sheen{0%{background-position:120% 0}55%,100%{background-position:-60% 0}}
+.door-rays{opacity:0;mix-blend-mode:screen;transform-origin:50% 57%;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg at 50% 57%,rgba(255,222,150,0) 0 6deg,rgba(255,230,170,.3) 6deg 8.4deg,rgba(255,222,150,0) 8.4deg 16deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 57%,#000 0,rgba(0,0,0,.5) 36%,transparent 70%);mask-image:radial-gradient(circle at 50% 57%,#000 0,rgba(0,0,0,.5) 36%,transparent 70%);
+  transition:opacity 1.2s ease .3s;animation:raysTurn 28s linear infinite}
+#intro.opening .door-rays{opacity:1}
+@keyframes raysTurn{to{transform:rotate(360deg)}}
+#intro.zoom .gate{transition:transform 1.5s cubic-bezier(.62,0,.24,1);transform:translate(var(--tx,0),var(--ty,0)) scale(var(--zoom,4))}
+#intro.zoom .gate::before,#intro.zoom .gate::after{opacity:0}
+#intro.zoom :is(.cover-top,.seal-row){opacity:0}
+.seal-row{position:relative;margin-top:1.6rem;display:flex;flex-direction:column;align-items:center;gap:.8rem;transition:opacity .5s ease}
+#intro.opening .seal-row{opacity:0}
+.seal-wrap{position:relative;display:grid;place-items:center}
+.seal{width:84px;height:84px;border-radius:50%;border:none;cursor:pointer;position:relative;
+  background:radial-gradient(circle at 34% 30%,#fff4c2,#e2bd5a 30%,#b38728 62%,#7d5711);
+  color:var(--accent-deep);font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.06em;
+  box-shadow:0 10px 24px rgba(0,0,0,.45),inset 0 2px 4px rgba(255,250,220,.6),inset 0 -4px 8px rgba(90,60,10,.45);transition:transform .35s ease}
+.seal::after{content:"";position:absolute;inset:7px;border-radius:50%;border:1px dashed rgba(60,40,5,.45)}
+.seal::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(232,213,155,.6);animation:ring 2.6s ease-out infinite}
+.seal-wrap .ring2{position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(232,213,155,.45);animation:ring 2.6s ease-out 1.3s infinite;pointer-events:none}
+@keyframes ring{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+.seal:hover{transform:scale(1.07)}.seal:active{transform:scale(.96)}
+.tap-dot{position:absolute;left:70%;top:80%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(255,255,255,.35);border:2px solid rgba(255,255,255,.9);box-shadow:0 2px 10px rgba(0,0,0,.25);pointer-events:none;animation:tapDot 2.4s ease-in-out infinite}
+@keyframes tapDot{0%{transform:translate(26px,30px) scale(1);opacity:0}25%{opacity:1}55%{transform:translate(0,0) scale(1);opacity:1}70%{transform:translate(0,0) scale(.8);opacity:1}100%{transform:translate(0,0) scale(1.9);opacity:0}}
+.tap-hint{font-family:var(--sans);font-size:.74rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--on-dark);text-align:center;line-height:1.7}
+.tap-hint small{display:block;font-size:.62rem;letter-spacing:.22em;color:var(--on-dark-soft);margin-top:.15rem}
+.tap-hint.nudge{animation:nudge .6s ease 2}
+.tap-arrow{display:block;margin:0 auto -.2rem;width:14px;height:14px;border:solid var(--g-1);border-width:2px 0 0 2px;transform:rotate(45deg);animation:arrowBob 1.4s ease-in-out infinite}
+@keyframes arrowBob{0%,100%{transform:translateY(4px) rotate(45deg);opacity:.4}50%{transform:translateY(-4px) rotate(45deg);opacity:1}}
+@media(max-height:720px){.cv-names{font-size:2.3rem}.cover-top{margin-bottom:.5rem}.seal{width:70px;height:70px;font-size:1rem}.seal-row{margin-top:1.1rem}}
+
+/* ═══════════ 2 · THE ROYAL FARMAN (main card) ═══════════ */
+#home{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(18px,4vh,40px) 12px calc(4.8rem + env(safe-area-inset-bottom));overflow:hidden}
+.farman-wrap{perspective:1100px;width:min(92vw,460px,calc((100svh - 220px) / var(--card-ar)));min-width:280px;animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -6px}}
+.farman{
+  position:relative;width:100%;aspect-ratio:1/var(--card-ar);container-type:inline-size;
+  transform:scale(.96);opacity:0;filter:brightness(1.35);
+  transition:transform 1.8s cubic-bezier(.22,.61,.36,1),opacity 1.2s ease,filter 2.2s ease,box-shadow 2.4s ease;
+  transform-style:preserve-3d;
 }
-.hero-mantra .deva{
-  font-family:var(--deva);color:var(--olive-deep);font-size:clamp(1.02rem,4.5vw,1.55rem);line-height:2;text-wrap:balance;
-  opacity:0;transform:translateY(14px);transition:opacity 1.4s ease 1.2s,transform 1.4s ease 1.2s;
-}
-.hero-mantra .rom{
-  font-style:italic;color:#5f5338;font-size:clamp(.82rem,3.3vw,1.02rem);line-height:1.6;margin-top:.45rem;
-  opacity:0;transition:opacity 1.4s ease 1.6s;
-}
+/* the spec'd card containers: imperial emerald (groom), rani pink velvet (bride) */
+.royal-card-groom{background:radial-gradient(circle at 50% 20%,#123d2e 0%,#081d15 100%);border:2px solid transparent;border-image:linear-gradient(135deg,#bf953f,#fcf6ba,#b38728,#fbf5b7,#aa771c) 1;box-shadow:0 25px 60px rgba(0,0,0,.6),inset 0 0 40px rgba(0,0,0,.5),0 0 90px 20px rgba(212,175,55,.45);overflow:hidden}
+.royal-card-bride{background:radial-gradient(circle at 50% 20%,#9b1b48 0%,#4a091d 100%);border:2px solid transparent;border-image:linear-gradient(135deg,#d4af37,#ffe699,#b38728,#fbf5b7,#996515) 1;box-shadow:0 25px 60px rgba(0,0,0,.65),inset 0 0 50px rgba(0,0,0,.45),0 0 90px 20px rgba(229,184,66,.45);overflow:hidden}
+body.opened .farman{transform:scale(1) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));opacity:1;filter:none}
+body.opened .royal-card-groom{box-shadow:0 25px 60px rgba(0,0,0,.6),inset 0 0 40px rgba(0,0,0,.5),0 0 0 0 rgba(212,175,55,0)}
+body.opened .royal-card-bride{box-shadow:0 25px 60px rgba(0,0,0,.65),inset 0 0 50px rgba(0,0,0,.45),0 0 0 0 rgba(229,184,66,0)}
+body.tilting .farman{transition:transform .25s ease-out,opacity 1.2s ease,filter 2.2s ease,box-shadow 2.4s ease}
+.farman > img,.farman > canvas,.farman > .sheen,.farman > .halo,.farman > .glare{position:absolute;inset:0;width:100%;height:100%}
+.farman > .halo{position:absolute}
+.farman > img{object-fit:cover}
+.farman > canvas{pointer-events:none}
+.farman > .halo{inset:auto;left:var(--hx,50%);top:var(--hy,20%);width:44%;height:auto;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(circle,rgba(255,232,160,.55),rgba(255,200,90,.18) 45%,transparent 70%);animation:breathe 5.5s ease-in-out infinite}
+html[data-side="groom"]{--hx:49.5%;--hy:19.5%}
+html[data-side="bride"]{--hx:50%;--hy:14.5%}
+@keyframes breathe{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.92)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+.glare{pointer-events:none;mix-blend-mode:soft-light;opacity:0;transition:opacity .4s ease;background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),rgba(255,250,230,.8),transparent 45%)}
+body.tilting .glare{opacity:1}
+/* words written into the cartouche */
+.f-txt{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+html[data-side="groom"] .f-txt{left:23%;right:23%;top:55%;bottom:22.6%}
+html[data-side="bride"] .f-txt{left:22%;right:22%;top:41.6%;bottom:27.2%}
+html[data-side="bride"] .f-eye{font-size:2.9cqw;letter-spacing:.24em;text-indent:.24em;max-width:60%;overflow:hidden;text-align:center}
+.f-eye{font-family:var(--caps);font-weight:600;font-size:3.3cqw;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase;white-space:nowrap}
+.f-name{font-family:var(--script);font-size:10.6cqw;line-height:1.08;padding:0 .12em;white-space:nowrap}
+.f-amp{font-family:var(--serif);font-style:italic;font-size:4.2cqw;line-height:1.1}
+.f-line{font-family:var(--sans);font-size:3.7cqw;letter-spacing:.06em;white-space:nowrap;line-height:1.35}
+.f-city{font-family:var(--caps);font-size:3.1cqw;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;white-space:nowrap;line-height:1.4}
+html[data-side="groom"] .f-txt :is(.f-name,.f-line,.f-city){background:var(--foil-run);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:foil 7s linear infinite;filter:drop-shadow(0 1px 1px rgba(0,0,0,.55))}
+html[data-side="groom"] .f-txt :is(.f-eye,.f-rule){display:none}
+html[data-side="groom"] .f-name{font-size:10cqw}
+html[data-side="groom"] .f-line{margin-top:1.4cqw}
+html[data-side="groom"] .f-amp{-webkit-text-fill-color:#e9d9a0;color:#e9d9a0;background:none;animation:none}
+/* bride: calligraphy in crimson on the ivory, gold rules */
+html[data-side="bride"] .f-eye{color:var(--g-2)}
+html[data-side="bride"] .f-name{color:#8a1235;text-shadow:0 1px 0 rgba(255,255,255,.6)}
+html[data-side="bride"] .f-amp{color:#7a5a1f}
+html[data-side="bride"] .f-line{color:#5a0c1f;font-size:3.9cqw}
+html[data-side="bride"] .f-city{color:var(--g-2)}
+.f-rule{width:34%;height:1px;margin:2.2cqw auto 1.6cqw;background:linear-gradient(90deg,transparent,var(--g-2),transparent)}
+html[data-side="groom"] .f-rule{display:none}
+.f-txt > *{opacity:0;transform:translateY(8px);transition:opacity 1.1s ease,transform 1.1s ease;transition-delay:calc(1.4s + var(--k,0) * .22s)}
+body.opened .f-txt > *{opacity:1;transform:none}
+body.opened .f-name{animation:writeOn 1.8s cubic-bezier(.45,0,.2,1) calc(1.5s + var(--k,0) * .22s) both,foil 7s linear 3.5s infinite}
+html[data-side="bride"] body.opened .f-name{animation:writeOn 1.8s cubic-bezier(.45,0,.2,1) calc(1.5s + var(--k,0) * .22s) both}
+.hero-mantra{text-align:center;margin-top:1.4rem;padding:0 .6rem;max-width:620px}
+.hero-mantra .deva{font-family:var(--deva);font-size:clamp(1rem,4.4vw,1.45rem);line-height:1.9;text-wrap:balance;opacity:0;transform:translateY(14px);transition:opacity 1.4s ease 2s,transform 1.4s ease 2s}
+.hero-mantra .rom{font-style:italic;color:var(--on-dark-soft);font-size:clamp(.9rem,3.3vw,1.05rem);line-height:1.6;margin-top:.3rem;opacity:0;transition:opacity 1.4s ease 2.4s}
 body.opened .hero-mantra .deva{opacity:1;transform:none}
 body.opened .hero-mantra .rom{opacity:1}
-#home .lamp.l1{top:-6px;left:5vw}
-#home .lamp.l2{top:-10px;right:5vw;animation-delay:-2.6s}
+@media(max-height:800px){.hero-mantra .rom{display:none}}
 
-/* watercolour bridge between the painting and the page */
-#invitation{margin-top:-14vh;padding-top:14vh;--wa:rgba(223,163,146,.26);--wb:rgba(202,167,107,.2);--wx:25%;--wy:30%}
-.bridge{position:absolute;left:0;right:0;top:0;height:60vh;pointer-events:none;z-index:0}
-.bridge svg{width:100%;height:100%}
-#invitation .pad-section{z-index:1}
-
-
-/* ---------- invitation / blessing ---------- */
-.ganesha-img{width:clamp(170px,34vw,240px);margin:0 auto 1.4rem;animation:floaty 6s ease-in-out infinite;filter:drop-shadow(0 14px 22px rgba(91,78,56,.18))}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.blessing{font-family:var(--deva);color:var(--olive);font-size:clamp(.95rem,3vw,1.15rem);line-height:2.2;margin-bottom:1.2rem}
-.inv{max-width:640px;margin:1.4rem auto 0}
-.inv-small{font-family:var(--sans);font-weight:300;font-size:.74rem;letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;color:var(--ink);margin:1.1rem auto .6rem;max-width:30ch;text-wrap:balance;line-height:1.9}
-.inv-parents{text-wrap:balance;font-size:clamp(1.25rem,3.8vw,1.65rem);color:var(--olive-deep);letter-spacing:.04em;line-height:1.5}
-.inv-name{font-family:var(--script);font-size:clamp(3rem,10vw,4.8rem);color:var(--blush-deep);line-height:1.15}
-
-/* ---------- celebrations: three arched doorways ---------- */
-#events{--wa:rgba(169,180,138,.2);--wb:rgba(223,163,146,.18);--wx:15%;--wy:75%}
-.arches{display:grid;gap:2.4rem;margin-top:3.2rem;align-items:start}
-@media(min-width:900px){.arches{grid-template-columns:1fr 1fr 1fr;gap:1.6rem}}
-@media(min-width:900px){.arch:nth-child(2){margin-top:2.6rem}}
-.arch{
-  position:relative;padding:2.8rem 1.3rem 2.4rem;background:rgba(253,250,241,.78);
-  border:1px solid var(--gold-soft);border-radius:999px 999px 6px 6px / 170px 170px 6px 6px;
-  box-shadow:0 18px 40px rgba(91,78,56,.1);
-}
-.arch::after{content:"";position:absolute;inset:7px;border:1px solid rgba(184,137,74,.3);border-radius:inherit;pointer-events:none}
-.arch .lotus-div{width:46px;margin:.2rem auto .5rem}
-.arch-date{font-family:var(--script);font-size:2.4rem;color:var(--blush-deep);line-height:1.15}
-.arch-dow{font-family:var(--sans);font-size:.62rem;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:var(--gold-ink);margin-top:.3rem}
-.arch-city{display:inline-block;margin-top:.9rem;font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--olive);border:1px solid rgba(95,109,63,.4);padding:.4em 1em;border-radius:99px}
-.arch-events{margin-top:1.6rem;list-style:none}
-.arch-events li{padding:1rem 0;position:relative}
-.arch-events li+li::before{content:"";display:block;width:7px;height:7px;background:var(--gold-soft);transform:rotate(45deg);margin:-1.35rem auto .95rem}
-.arch-events .when{font-family:var(--sans);font-size:.58rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:var(--marigold-ink)}
-.arch-events h3{font-size:1.4rem;color:var(--olive-deep);margin-top:.35rem;letter-spacing:.02em;line-height:1.25}
-.arch-events p{font-family:var(--sans);font-weight:300;font-size:.82rem;color:var(--ink-soft);margin-top:.3rem;letter-spacing:.04em;line-height:1.55}
-
-/* ---------- the river of events ---------- */
-#flow{--wa:rgba(223,163,146,.18);--wb:rgba(169,180,138,.2);--wx:80%;--wy:15%}
-.tbc-note{margin-top:.6rem;font-family:var(--sans);font-weight:300;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink)}
-.river{position:relative;margin-top:3.2rem;text-align:left}
-.river-svg{position:absolute;left:0;top:0;width:100%;pointer-events:none;overflow:visible;z-index:0}
-.river-svg .water{stroke-dasharray:2 16;animation:flow 2.4s linear infinite}
-@keyframes flow{to{stroke-dashoffset:-18}}
-.stops{list-style:none;position:relative;z-index:1}
-.stop{display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;padding:1.1rem 0}
-.stop .dot{grid-column:2;grid-row:1;justify-self:center;width:20px;height:20px;border-radius:50%;background:var(--cream-2);border:2px solid var(--gold-soft);box-shadow:0 0 0 6px rgba(184,137,74,.12);transition:background .6s ease,border-color .6s ease,box-shadow .6s ease}
-.stop .dot.lit{background:var(--marigold);border-color:var(--gold-ink);box-shadow:0 0 0 7px rgba(224,147,47,.2),0 0 22px rgba(224,147,47,.5)}
-.ev-card{grid-row:1;position:relative;padding:1.3rem 1.5rem;background:rgba(253,250,241,.88);border:1px solid var(--gold-pale);box-shadow:0 12px 30px rgba(91,78,56,.08)}
-.ev-card::after{content:"";position:absolute;inset:4px;border:1px solid rgba(184,137,74,.22);pointer-events:none}
-.stop.left .ev-card{grid-column:1;text-align:right;margin-right:6px}
-.stop.right .ev-card{grid-column:3;text-align:left;margin-left:6px}
-.stop.left .ev-card::before,.stop.right .ev-card::before{content:"";position:absolute;top:50%;width:26px;height:1px;background:var(--gold-soft)}
-.stop.left .ev-card::before{right:-27px}
-.stop.right .ev-card::before{left:-27px}
-.ev-time{display:inline-block;font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--marigold-ink);background:rgba(224,147,47,.1);border:1px solid rgba(224,147,47,.3);padding:.4em .9em}
-.ev-card h3{font-size:1.5rem;color:var(--olive-deep);margin-top:.6rem;line-height:1.25}
-.ev-card p{font-family:var(--sans);font-weight:300;font-size:.82rem;color:var(--ink-soft);margin-top:.3rem;letter-spacing:.04em;line-height:1.55}
-.stop.banner{display:grid;grid-template-columns:1fr 70px 1fr;padding:2.4rem 0 1.2rem}
-.stop.banner .dot{width:34px;height:34px;box-shadow:0 0 0 9px rgba(184,137,74,.14)}
-.banner-txt{grid-column:1 / -1;grid-row:2;text-align:center;margin-top:1rem}
-.banner-txt .n{font-family:var(--sans);font-size:.62rem;letter-spacing:.44em;text-indent:.44em;text-transform:uppercase;color:var(--gold-ink)}
-.banner-txt .d{font-family:var(--script);font-size:clamp(2.2rem,6vw,3rem);color:var(--blush-deep);line-height:1.2}
-.banner-txt .c{font-family:var(--sans);font-size:.62rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--olive)}
-.banner-txt{background:radial-gradient(ellipse at center,var(--cream) 40%,transparent 72%);padding:.6rem 2rem}
-@media(max-width:720px){
-  .stop,.stop.banner{grid-template-columns:44px 1fr}
-  .stop .dot{grid-column:1;justify-self:center}
-  .stop.left .ev-card,.stop.right .ev-card{grid-column:2;text-align:left;margin:0 0 0 6px}
-  .stop.left .ev-card::before{right:auto;left:-27px}
-  .stop .ev-card::before{width:20px;left:-21px !important}
-  .stop.banner .dot{grid-row:1}
-  .banner-txt{grid-column:2;grid-row:1;text-align:left;margin:0;padding:0 0 0 .6rem;background:none}
-}
-
-/* ---------- venues ---------- */
-#venue{--wa:rgba(202,167,107,.2);--wb:rgba(223,163,146,.16);--wx:20%;--wy:25%}
-.venues{display:grid;gap:2rem;margin-top:3rem}
-@media(min-width:860px){.venues{grid-template-columns:1fr 1fr;gap:2.4rem}}
-.venue-card{position:relative;padding:3rem 1.5rem 2.4rem;background:rgba(253,250,241,.82);border:1px solid var(--gold-pale)}
-.venue-card::after{content:"";position:absolute;inset:6px;border:1px solid rgba(184,137,74,.28);pointer-events:none}
-.venue-card .lamp{top:-20px}
-.venue-card .lamp.a{left:14px}
-.venue-card .lamp.b{right:14px;animation-delay:-2.2s}
-.venue-card .lamp .chain{height:22px}
-.venue-card .lamp .body{width:44px}
-.v-city{font-family:var(--script);font-size:clamp(2.6rem,7vw,3.4rem);color:var(--blush-deep);line-height:1.1}
-.v-dates{font-family:var(--sans);font-size:.62rem;letter-spacing:.4em;text-indent:.4em;text-transform:uppercase;color:var(--gold-ink);margin-top:.3rem}
-.v-for{font-family:var(--sans);font-weight:300;font-size:.8rem;letter-spacing:.14em;color:var(--ink-soft);margin-top:.5rem}
-.v-name{font-size:1.5rem;color:var(--olive-deep);margin-top:1.4rem}
-.v-addr{font-size:1.1rem;line-height:1.7;color:var(--ink);margin-top:.4rem}
-.qr-wrap{margin:1.8rem auto 0;width:min(210px,62%);position:relative;padding:14px;background:var(--cream-2);border:1px solid var(--gold-soft)}
-.qr-wrap::before,.qr-wrap::after{content:"";position:absolute;width:16px;height:16px;border:2px solid var(--gold)}
-.qr-wrap::before{top:-5px;left:-5px;border-right:none;border-bottom:none}
-.qr-wrap::after{bottom:-5px;right:-5px;border-left:none;border-top:none}
-.qr-wrap svg{display:block;width:100%;height:auto;fill:var(--olive-deep)}
-.qr-cap{font-family:var(--sans);font-size:.6rem;letter-spacing:.36em;text-indent:.36em;text-transform:uppercase;color:var(--ink-soft);margin-top:1.1rem}
-.v-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem}
-.btn{
-  display:inline-block;font-family:var(--sans);font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
-  color:var(--olive-deep);text-decoration:none;border:1px solid var(--gold);padding:1em 1.6em;transition:all .4s ease;background:transparent;
-}
-.btn:hover{background:var(--gold);color:var(--cream-2)}
-
-/* ---------- rsvp (unchanged) ---------- */
-#rsvp{--wa:rgba(223,163,146,.2);--wb:rgba(202,167,107,.16);--wx:70%;--wy:30%}
-#rsvp .rsvp-card{
-  max-width:600px;margin:2.8rem auto 0;position:relative;text-align:center;
-  background:rgba(253,250,241,.85);border:1px solid var(--gold-pale);padding:clamp(2rem,5vw,3.2rem);
-}
-#rsvp .rsvp-card::after{content:"";position:absolute;inset:6px;border:1px solid rgba(184,137,74,.28);pointer-events:none}
-.rsvp-card label{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-ink);margin:1.6rem 0 .5rem;text-align:left}
-.rsvp-card input[type=text],.rsvp-card input[type=tel],.rsvp-card textarea,.rsvp-card select{
-  width:100%;background:transparent;border:none;border-bottom:1px solid var(--gold-soft);
-  font-family:var(--serif);font-size:1.15rem;color:var(--ink);padding:.5em .2em;outline:none;transition:border-color .3s;
-}
-.rsvp-card input:focus,.rsvp-card textarea:focus,.rsvp-card select:focus{border-color:var(--olive)}
-.rsvp-card textarea{resize:vertical;min-height:70px}
-.rsvp-submit{
-  margin-top:2.2rem;font-family:var(--sans);font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;cursor:pointer;
-  color:var(--cream-2);background:var(--olive);border:1px solid var(--olive);padding:1.1em 2.6em;transition:all .4s ease;
-}
-.rsvp-submit:hover{background:transparent;color:var(--olive)}
-.attend-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:.4rem}
-.attend-chip{font-family:var(--sans);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--gold-soft);padding:.8em 1.4em;cursor:pointer;transition:all .35s;background:transparent}
-.attend-chip.on{background:var(--gold);border-color:var(--gold-ink);color:var(--cream-2)}
-.rsvp-note{margin-top:1.4rem;font-family:var(--sans);font-weight:400;font-size:.72rem;letter-spacing:.14em;color:var(--ink)}
-
-/* ---------- closing mantra: plain cream, nothing behind it ---------- */
-#mantra{text-align:center;padding:clamp(4rem,9vw,7rem) 1.4rem 1rem;position:relative}
-.mantra-inner{position:relative;max-width:760px;margin:0 auto}
-.mantra-deva{font-family:var(--deva);color:var(--olive-deep);font-size:clamp(1.1rem,4.3vw,1.85rem);line-height:2.1;text-wrap:balance}
-.mantra-rom{font-style:italic;color:var(--ink-soft);font-size:clamp(1rem,2.8vw,1.2rem);line-height:1.8;margin-top:1.4rem;text-wrap:balance}
-.mantra-mean{font-family:var(--sans);font-weight:300;font-size:.78rem;letter-spacing:.1em;line-height:1.9;color:var(--ink-soft);margin-top:1rem;text-wrap:balance}
-#mantra .lamp.ml{top:-30px;left:clamp(0px,4vw,60px)}
-#mantra .lamp.mr{top:-30px;right:clamp(0px,4vw,60px);animation-delay:-2.6s}
-@media(max-width:640px){#mantra .lamp{display:none}}
-
-/* ---------- footer ---------- */
-footer{text-align:center;padding:3.5rem 1.4rem calc(3rem + env(safe-area-inset-bottom));position:relative}
-.foot-mono{font-family:var(--serif);font-size:1.3rem;letter-spacing:.3em;color:var(--gold-ink)}
-.foot-names{font-family:var(--script);font-size:2.6rem;color:var(--olive);margin:.6rem 0}
-.foot-date{font-family:var(--sans);font-size:.62rem;letter-spacing:.5em;color:var(--ink-soft);text-transform:uppercase}
-.foot-bless{font-family:var(--sans);font-size:.6rem;letter-spacing:.4em;color:var(--gold-ink);text-transform:uppercase;margin-top:.8rem}
-
-
-/* ---------- rsvp v2: phone key, event tick-boxes, done screen ---------- */
-#rsvp .rsvp-card{max-width:660px}
-.rsvp-card .trap{position:absolute !important;left:-9999px !important;width:1px !important;height:1px !important;opacity:0 !important}
-.hint{font-family:var(--sans);font-weight:400;font-size:.76rem;letter-spacing:.05em;color:var(--ink);text-align:left;margin-top:.55rem;line-height:1.55}
-.hint.ok{color:var(--olive)}
-#phoneNote{min-height:2.4em}#phoneNote.bad{color:var(--wax)}
-.rsvp-err{margin-top:1.1rem;color:var(--wax);font-family:var(--sans);font-size:.84rem;letter-spacing:.03em;line-height:1.5}
-.rsvp-done[hidden],#rsvpFormBody[hidden],.hint[hidden],.rsvp-err[hidden]{display:none}
-.rsvp-card input[readonly]{opacity:.7}
-.ev-day{margin-top:1.1rem;text-align:left}
-.ev-head{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem}
-.ev-head b{font-family:var(--serif);font-weight:500;font-size:1.22rem;color:var(--olive-deep)}
-.ev-head b,.ev-head small{display:block}
-.ev-head small{font-family:var(--sans);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-ink);margin:.25rem 0 0}
-.ev-all{background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);text-decoration:underline;text-underline-offset:4px;padding:.5em 0;min-height:36px}
-.ev-opts{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-.rsvp-card .ev-opt{position:relative;display:flex;align-items:center;gap:.8rem;margin:0;padding:.85rem 1rem;min-height:56px;border:1px solid var(--gold-pale);background:rgba(253,250,241,.7);cursor:pointer;transition:border-color .3s,background .3s;font-family:var(--serif);font-size:1.08rem;letter-spacing:.01em;text-transform:none;color:var(--ink);text-align:left}
-.ev-opt input{position:absolute;opacity:0;pointer-events:none}
-.ev-opt .box{flex:none;width:22px;height:22px;border:1.5px solid var(--gold-soft);background:var(--cream-2);display:grid;place-items:center;transition:background .25s,border-color .25s}
-.ev-opt .box::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) scale(0);transition:transform .2s;margin-top:-2px}
-.ev-opt input:checked ~ .box{background:var(--olive);border-color:var(--olive)}
-.ev-opt input:checked ~ .box::after{transform:rotate(45deg) scale(1)}
-.rsvp-card .ev-opt:has(input:checked){border-color:var(--olive);background:rgba(169,180,138,.2)}
-.ev-opt input:focus-visible ~ .box{outline:2px solid var(--gold);outline-offset:2px}
-.ev-opt .t{line-height:1.25;display:block}
-.ev-opt .t small{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--marigold-ink);margin-top:.25rem}
-@media(max-width:560px){.ev-opts{grid-template-columns:1fr}}
-.rsvp-done{text-align:center;padding:.4rem 0}
-.rsvp-done .lotus-div{width:60px;margin:0 auto .4rem}
-.done-title{font-family:var(--script);font-size:clamp(2.7rem,9vw,3.7rem);color:var(--blush-deep);line-height:1.2}
-.done-msg{font-size:1.2rem;color:var(--ink);margin-top:.6rem;line-height:1.6}
-.done-sum{list-style:none;margin:1.5rem auto 0;max-width:440px;text-align:left}
-.done-sum li{padding:.7rem 0;border-bottom:1px dashed var(--gold-pale);font-size:1.08rem;line-height:1.45;word-break:break-word}
-.done-sum li span{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:.2rem}
-.saved-banner{margin:0 0 1rem;padding:.7rem .9rem;background:rgba(169,180,138,.16);border:1px solid rgba(169,180,138,.5);font-family:var(--sans);font-size:max(.78rem,12.5px);line-height:1.6;color:var(--ink);text-align:left}
-.saved-banner .link-btn{margin:0 0 0 .3rem;font-size:max(.78rem,12.5px)}
-.link-btn.alt{display:block;margin:.2rem auto 0;color:var(--ink-soft)}
-.link-btn{margin-top:1.6rem;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;color:var(--olive);text-decoration:underline;text-underline-offset:4px;padding:.6em;min-height:44px}
-
-/* ---------- venues v2: tap-through links, embedded map, calendar menu ---------- */
-.v-name a,.v-addr a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
-.v-name a:hover,.v-addr a:hover,.v-name a:focus-visible,.v-addr a:focus-visible{border-color:var(--gold-ink)}
-.v-map{margin:1.5rem auto 0;border:1px solid var(--gold-soft);padding:6px;background:var(--cream-2)}
-.v-map iframe{display:block;width:100%;height:230px;border:0;filter:saturate(.85) sepia(.08)}
-a.qr-wrap{display:block;text-decoration:none}
-.v-btns{align-items:flex-start}
-.cal{position:relative}
-.cal summary{list-style:none;cursor:pointer}
-.cal summary::-webkit-details-marker{display:none}
-.cal[open] summary{background:var(--gold);color:var(--cream-2)}
-.cal-opts{display:flex;flex-direction:column;gap:.5rem;margin-top:.6rem;min-width:200px}
-.btn.sm{padding:.9em 1.2em;font-size:.58rem;cursor:pointer;background:var(--cream-2);text-align:center}
-button.btn{font-family:var(--sans)}
-@media(max-width:640px){.btn.sm{font-size:.7rem}.v-map iframe{height:210px}}
-@media(max-width:640px){
-  .eyebrow{font-size:.74rem;letter-spacing:.3em}
-  .tap-hint,.arch-dow,.arch-city,.arch-events .when,.ev-time,.v-dates,.v-for,.qr-cap,.btn,
-  .banner-txt .n,.banner-txt .c,.inv-small,.foot-date,.foot-bless,.rsvp-card label,.attend-chip,.rsvp-rsvp-note,.tbc-note{font-size:.72rem}
-  .arch-events p,.ev-card p{font-size:.92rem}
-  .rsvp-note{font-size:.78rem}
-  .btn,.attend-chip,.rsvp-submit{min-height:46px;display:inline-flex;align-items:center;justify-content:center}
-  .rsvp-card input[type=text],.rsvp-card input[type=tel],.rsvp-card textarea,.rsvp-card select{font-size:16px}
-  .ev-card h3{font-size:1.4rem}
-  .pad-section{padding-left:1.1rem;padding-right:1.1rem}
-}
-@media(max-height:700px){#home{--mantra-h:170px}.hero-mantra .rom{display:none}}
-
-/* ---------- ux v3: dock, progress, steps, stepper, smooth collapse ---------- */
-html{scroll-padding-top:12px}
-.progress{position:fixed;left:0;right:0;top:0;height:3px;z-index:60;pointer-events:none}
-.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--gold-soft),var(--gold));transform-origin:0 50%;transform:scaleX(0);transition:transform .15s linear}
-.dock{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));z-index:55;display:flex;gap:.2rem;padding:.35rem;border-radius:999px;background:rgba(253,250,241,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--gold-pale);box-shadow:0 10px 30px rgba(91,78,56,.18);transform:translate(-50%,140%);opacity:0;pointer-events:none;transition:transform .6s cubic-bezier(.22,.61,.36,1),opacity .45s ease;max-width:calc(100vw - 20px)}
-.dock.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
-.dock a{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);padding:.8em 1em;border-radius:999px;min-height:40px;display:inline-flex;align-items:center;white-space:nowrap;transition:background .35s,color .35s}
-.dock a.on{background:rgba(169,180,138,.28);color:var(--olive-deep)}
-.dock a.go{background:var(--olive);color:var(--cream-2)}
-.dock a.go.pulse{animation:dockpulse 1.6s ease-out 2}
-@keyframes dockpulse{0%{box-shadow:0 0 0 0 rgba(122,138,76,.5)}100%{box-shadow:0 0 0 14px rgba(122,138,76,0)}}
-@media(max-width:380px){.dock a{padding:.8em .7em;font-size:.62rem;letter-spacing:.08em}}
-.form-lead{font-size:1.15rem;color:var(--ink);margin-bottom:.4rem}
-.step{display:flex;align-items:center;gap:.7rem;margin:1.7rem 0 .2rem;font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--olive-deep);text-align:left}
-.step i{font-style:normal;flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:.95rem;letter-spacing:0;color:var(--gold-ink)}
-.step em,.rsvp-card label em{font-style:normal;text-transform:none;letter-spacing:.04em;color:var(--ink-soft);opacity:.85}
-.rsvp-card label{margin-top:1.2rem}
-.rsvp-card input.good{border-color:var(--olive)}
-.rsvp-card input.bad,.rsvp-card textarea.bad{border-color:var(--wax)}
-.fmsg{font-family:var(--sans);font-size:.76rem;letter-spacing:.04em;color:var(--wax);margin-top:.45rem;text-align:left;min-height:0}
-.fmsg:empty{display:none}
-.collapse{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .55s cubic-bezier(.22,.61,.36,1),opacity .4s ease,visibility 0s linear .55s}
-.collapse.open{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .55s cubic-bezier(.22,.61,.36,1),opacity .5s ease .08s,visibility 0s}
-.collapse>.cin{min-height:0;overflow:hidden}
-.collapse.open>.cin{overflow:visible}
-.stepper{display:flex;align-items:center;gap:1.2rem;margin-top:.3rem}
-.stepper button{width:48px;height:48px;border-radius:50%;border:1px solid var(--gold-soft);background:var(--cream-2);color:var(--olive-deep);font-family:var(--serif);font-size:1.7rem;line-height:1;cursor:pointer;transition:background .25s,transform .15s,border-color .25s}
-.stepper button:hover{border-color:var(--olive)}
-.stepper button:active{transform:scale(.92);background:rgba(169,180,138,.25)}
-.stepper button:disabled{opacity:.35;cursor:default}
-.stepper output{min-width:2ch;text-align:center;font-family:var(--serif);font-size:2rem;color:var(--olive-deep);font-variant-numeric:tabular-nums}
-.stepper output.bump{animation:bump .3s ease}
-@keyframes bump{40%{transform:scale(1.25)}}
-.ev-every{display:block;width:100%;margin:.2rem 0 .2rem;background:none;border:1px solid var(--gold-soft);color:var(--olive-deep);font-family:var(--sans);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;padding:.9em 1.3em;min-height:44px;cursor:pointer;transition:background .3s,border-color .3s}
-.ev-every:hover,.ev-every.on{background:rgba(169,180,138,.22);border-color:var(--olive)}
-.ev-opt .t small b{font-weight:500;color:var(--olive-deep);letter-spacing:.14em}
-.sum{margin-top:1.8rem;font-family:var(--sans);font-size:.8rem;letter-spacing:.06em;color:var(--olive-deep);min-height:1.4em;transition:opacity .3s}
-.sum:empty{visibility:hidden}
-.sum + .rsvp-submit{margin-top:.8rem}
-.nudge{animation:nudge .5s ease}
-@keyframes nudge{20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
-.rsvp-done:not([hidden]),#rsvpFormBody:not([hidden]){animation:swapIn .7s cubic-bezier(.22,.61,.36,1) both}
-@keyframes swapIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.rsvp-done:not([hidden]) .lotus-div{animation:bloomIn 1s cubic-bezier(.22,.61,.36,1) .1s both}
-@keyframes bloomIn{from{opacity:0;transform:scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
-.done-sum li{animation:swapIn .6s ease both}
-.done-sum li:nth-child(2){animation-delay:.08s}.done-sum li:nth-child(3){animation-delay:.16s}.done-sum li:nth-child(4){animation-delay:.24s}.done-sum li:nth-child(5){animation-delay:.32s}
-.rsvp-submit:active,.attend-chip:active,.btn:active{transform:scale(.97)}
-.rsvp-submit:disabled{opacity:.7;cursor:progress}
-.attend-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-.attend-chip{padding:.95em .6em;letter-spacing:.14em;line-height:1.35;text-align:center}
-@media(max-width:380px){.attend-row{grid-template-columns:1fr}}
-.btn,.attend-chip,.ev-opt,.rsvp-submit{-webkit-tap-highlight-color:transparent}
-:where(a,button,input,textarea,summary):focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-@media (hover:hover){.ev-opt:hover{border-color:var(--gold-ink)}.ev-card{transition:transform .5s cubic-bezier(.22,.61,.36,1),box-shadow .5s}.ev-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(91,78,56,.1)}}
-.arch-events .when b{font-weight:500;color:var(--olive-deep)}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-
-/* ---------- good to know cards ---------- */
-.good-cards{display:grid;gap:1rem;max-width:760px;margin:2.4rem auto 0;text-align:left}
-.good-card{background:rgba(253,250,241,.85);border:1px solid var(--gold-pale);padding:1.4rem 1.5rem;position:relative}
-.good-card::after{content:"";position:absolute;inset:5px;border:1px solid rgba(184,137,74,.2);pointer-events:none}
-.good-card h3{font-weight:500;font-size:1.35rem;color:var(--olive-deep);margin-bottom:.4rem}
-.good-card p{font-family:var(--sans);font-weight:300;font-size:.9rem;letter-spacing:.02em;line-height:1.75;color:var(--ink)}
-@media(min-width:900px){.good-cards{grid-template-columns:repeat(3,1fr);max-width:1040px}}
-.ev-card.key h3{color:var(--olive-deep)}
-.ev-card:not(.key){opacity:.92}
-.ev-card:not(.key) h3{font-size:1.25rem}
-/* ---------- cover: clear "tap here" cues ---------- */
-.cover-top{text-align:center;margin-bottom:1.1rem;padding:0 1rem;animation:swapIn 1.2s cubic-bezier(.22,.61,.36,1) both}
-.cv-eye{display:block;font-family:var(--sans);font-size:.66rem;letter-spacing:.5em;text-indent:.5em;text-transform:uppercase;color:var(--gold-ink)}
-.cv-names{font-family:var(--script);font-size:clamp(2.6rem,11vw,3.6rem);color:var(--olive-deep);line-height:1.15;margin:.15rem 0}
-.cv-date{font-family:var(--sans);font-size:.64rem;letter-spacing:.36em;text-indent:.36em;text-transform:uppercase;color:var(--ink-soft)}
-.door-stage{cursor:pointer}
-.door-stage::after{content:"";position:absolute;inset:0;border-radius:2px;box-shadow:0 0 0 0 rgba(224,147,47,.0);animation:doorGlow 3.2s ease-in-out infinite;pointer-events:none}
-@keyframes doorGlow{0%,100%{box-shadow:0 0 0 0 rgba(224,147,47,0)}50%{box-shadow:0 0 38px 4px rgba(224,147,47,.28)}}
-.seal-wrap{position:relative;display:grid;place-items:center}
-.seal-wrap .seal::before{inset:-8px;border:2px solid rgba(122,47,42,.5)}
-.seal-wrap .ring2{position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(122,47,42,.4);animation:ring 2.6s ease-out 1.3s infinite;pointer-events:none}
-.tap-dot{position:absolute;left:70%;top:80%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(255,255,255,.55);border:2px solid rgba(255,255,255,.9);box-shadow:0 2px 10px rgba(0,0,0,.25);pointer-events:none;animation:tapDot 2.4s ease-in-out infinite}
-@keyframes tapDot{0%{transform:translate(26px,30px) scale(1);opacity:0}25%{opacity:1}55%{transform:translate(0,0) scale(1);opacity:1}70%{transform:translate(0,0) scale(.8);opacity:1}100%{transform:translate(0,0) scale(1.9);opacity:0}}
-.tap-hint{font-size:.74rem;letter-spacing:.3em;text-indent:.3em;color:var(--olive-deep);text-align:center;line-height:1.7}
-.tap-hint small{display:block;font-size:.6rem;letter-spacing:.24em;color:var(--ink-soft);margin-top:.2rem}
-.tap-hint.nudge{animation:nudge .6s ease 2}
-.tap-arrow{display:block;margin:0 auto -.2rem;width:14px;height:14px;border:solid var(--gold);border-width:2px 0 0 2px;transform:rotate(45deg);animation:arrowBob 1.4s ease-in-out infinite}
-@keyframes arrowBob{0%,100%{transform:translateY(4px) rotate(45deg);opacity:.4}50%{transform:translateY(-4px) rotate(45deg);opacity:1}}
-@media(max-height:720px){.cv-names{font-size:2.3rem}.cover-top{margin-bottom:.4rem}.seal{width:72px;height:72px}}
-
-
-.scroll-cue{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));z-index:54;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:none;border:0;padding:.4rem .8rem;display:flex;flex-direction:column;align-items:center;gap:.15rem;cursor:pointer;font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--olive-deep);text-shadow:0 1px 8px rgba(253,250,241,.95);transition:opacity .6s ease,transform .6s ease}
-.scroll-cue i{display:block;width:16px;height:16px;border:solid var(--gold-ink);border-width:0 2px 2px 0;transform:rotate(45deg);animation:cueBob 1.5s ease-in-out infinite}
-body.cue-on .scroll-cue{opacity:1;transform:translate(-50%,0);pointer-events:auto}
-@keyframes cueBob{0%,100%{transform:translateY(-3px) rotate(45deg);opacity:.45}50%{transform:translateY(5px) rotate(45deg);opacity:1}}
-@media(prefers-reduced-motion:reduce){.scroll-cue i{animation:none}}
-body.cue-on .dock.show{opacity:0;pointer-events:none}
-
-.v-map{position:relative}
-.map-veil{display:none;z-index:2;position:absolute;inset:6px;border:0;background:rgba(253,250,241,.01);cursor:pointer;align-items:flex-end;justify-content:center;padding:0 0 .7rem;font-family:var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--olive-deep)}
-.map-veil span{background:rgba(253,250,241,.94);border:1px solid var(--gold-soft);padding:.5em 1em;border-radius:999px;box-shadow:0 4px 14px rgba(91,78,56,.18)}
-@media(hover:none){.map-veil{display:flex}}
-.contact-line{margin-top:.6rem;font-family:var(--sans);font-weight:300;font-size:.8rem;letter-spacing:.06em;color:var(--ink)}
-.contact-line a{color:var(--olive-deep)}
-.offline-bar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:50%;z-index:90;transform:translate(-50%,-160%);background:var(--olive-deep);color:var(--cream-2);font-family:var(--sans);font-size:max(.78rem,12.5px);letter-spacing:.08em;padding:.55em 1.1em;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.2);transition:transform .5s cubic-bezier(.22,.61,.36,1);pointer-events:none;white-space:nowrap}
-.offline-bar.show{transform:translate(-50%,0)}
-/* grandparents' blessings (groom's link): father's parents left, mother's parents right */
-
-/* grandparents: two aligned columns, father's side left */
-.grands{display:grid;grid-template-columns:1fr 1fr;max-width:560px;margin:1.6rem auto 0;row-gap:.2rem}
+/* ═══════════ invitation plate under a mehrab ═══════════ */
+#invitation .pad-section{padding-top:clamp(7rem,16vw,10rem)}
+.inv-plate{max-width:680px;margin:0 auto;padding:clamp(2rem,6vw,3.4rem) clamp(1.1rem,5vw,3rem) clamp(2.2rem,6vw,3.2rem)}
+.crest{position:absolute;left:-14px;right:-14px;bottom:calc(100% + 10px);pointer-events:none}
+.crest svg{display:block;width:100%;height:auto;overflow:visible}
+.crest .face{fill:var(--plate)}
+.crest .rule{fill:none;stroke:url(#foilStroke);stroke-width:2.4;vector-effect:non-scaling-stroke}
+.crest .rule2{fill:none;stroke:#b38728;stroke-width:1;opacity:.6;vector-effect:non-scaling-stroke}
+.crest .inner{fill:url(#crestJaali)}
+.crest .jasmine{filter:drop-shadow(0 1px 1px rgba(110,70,40,.35))}
+.crest .jasmine circle{fill:#fffdf6;stroke:#cdbb92;stroke-width:.6}
+.crest .bud{fill:url(#budGrad);stroke:#b23a6a;stroke-width:.6}
+html[data-side="groom"] .crest .jasmine{display:none}
+.medal{position:absolute;left:50%;top:0;transform:translate(-50%,-62%);width:clamp(62px,15vw,86px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;z-index:2;
+  background:radial-gradient(circle at 34% 30%,#fff4c2,#e2bd5a 30%,#b38728 62%,#7d5711);box-shadow:0 8px 20px rgba(0,0,0,.35),inset 0 2px 3px rgba(255,250,220,.7),inset 0 -3px 6px rgba(90,60,10,.5)}
+.medal::after{content:"";position:absolute;inset:5px;border-radius:50%;border:1px solid rgba(90,60,10,.45)}
+.medal span{font-family:var(--deva);font-size:clamp(1.9rem,6vw,2.6rem);line-height:1;color:#6b4a0c;text-shadow:0 1px 0 rgba(255,245,200,.8),0 -1px 0 rgba(80,50,5,.5);transform:translateY(6%)}
+.blessing{font-family:var(--deva);color:var(--accent);font-size:clamp(1.05rem,3.6vw,1.3rem);line-height:2;margin:.6rem 0 .8rem}
+.inv-plate .eyebrow{color:var(--gold-ink)}
+.inv-plate .eyebrow::before{background:linear-gradient(90deg,transparent,var(--g-2))}
+.inv-plate .eyebrow::after{background:linear-gradient(90deg,var(--g-2),transparent)}
+.inv-title{font-family:var(--display);font-weight:700;font-size:clamp(1.35rem,5vw,2.1rem);color:var(--accent-deep);line-height:1.3;margin:.5em auto .3em;text-wrap:balance;letter-spacing:.04em}
+.inv{max-width:640px;margin:1rem auto 0}
+.inv-small{font-family:var(--sans);font-size:.78rem;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:var(--ink);margin:1rem auto .55rem;max-width:30ch;text-wrap:balance;line-height:1.9}
+.inv-parents{text-wrap:balance;font-size:clamp(1.25rem,3.9vw,1.6rem);font-weight:600;color:var(--accent-deep);letter-spacing:.03em;line-height:1.45}
+.inv-name{font-family:var(--script);font-size:clamp(3rem,11vw,4.6rem);color:var(--script-ink);line-height:1.2}
+.grands{display:grid;grid-template-columns:1fr 1fr;max-width:560px;margin:1.4rem auto 0;row-gap:.2rem}
 .grands[hidden]{display:none}
-.grands p{font-size:clamp(1.05rem,3.7vw,1.35rem);color:var(--olive-deep);letter-spacing:.02em;line-height:1.35;padding:.35rem .8rem;text-wrap:balance}
-.grands p:nth-child(odd){border-right:1px solid rgba(202,167,107,.55)}
+.grands p{font-size:clamp(1.05rem,3.7vw,1.3rem);font-weight:500;color:var(--accent-deep);letter-spacing:.02em;line-height:1.35;padding:.35rem .8rem;text-wrap:balance}
+.grands p:nth-child(odd){border-right:1px solid rgba(170,119,28,.5)}
 .grands small{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
-/* closing blessing: the meaning of the mantra, one clear line */
-.mantra-mean{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,3.6vw,1.4rem);letter-spacing:.01em;line-height:1.8;color:var(--ink-soft);margin-top:0}
-.arch-events h3{margin-bottom:.1rem}
-/* QR codes only help on a bigger screen; on touch devices the buttons do the job */
-@media(hover:none) and (pointer:coarse),(max-width:700px){a.qr-wrap,.qr-cap{display:none}}
 
-/* readability floor: nothing smaller than 12px on any screen */
-html body :is(.dock a,.btn,.btn.sm,.attend-chip,.ev-all,.ev-every,.link-btn,.rsvp-submit,.arch-dow,.arch-city,.arch-events .when,.banner-txt .c,.banner-txt .n,.cv-date,.cv-eye,.foot-bless,.foot-date,.v-dates,.v-for,.rsvp-card label,.inv-small,.ev-time,.eyebrow,.tap-hint,.tap-hint small,.ev-opt .t small,.ev-head small,.grands small,.step,.step em,.rsvp-card label em,.done-sum li span,.fmsg,.hint,.sum,.rsvp-note,.tbc-note,.qr-cap,.ph,.scroll-cue span,.map-veil){font-size:max(.78rem,12.5px)}
-html body .ev-opt .t small b,html body .arch-events .when b{font-size:inherit}
-html body .rsvp-submit{letter-spacing:.34em}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
-}
+/* ═══════════ 3 · SHAHI BAARAT & CELEBRATIONS ═══════════ */
+.tbc-note{margin-top:.4rem;font-family:var(--sans);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-soft)}
+.sched{position:relative;width:min(calc(100vw - 30px),500px);aspect-ratio:1/var(--sched-ar);margin:2.4rem 0 0 50%;transform:translateX(-50%);container-type:inline-size;box-shadow:0 30px 70px rgba(0,0,0,.55);outline:2px solid transparent}
+.sched::before{content:"";position:absolute;inset:-8px;border:2px solid transparent;border-image:var(--foil-border) 1;pointer-events:none}
+.sched > img,.sched > .sheen{position:absolute;inset:0;width:100%;height:100%}
+.sched > img{object-fit:cover}
+.sched > .sheen{opacity:.6}
+.sf{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5cqw;text-align:center;text-decoration:none;color:inherit;padding:0 1cqw;border-radius:6px;
+  opacity:0;transform:translateY(10px) scale(.97);transition:opacity .9s ease,transform .9s cubic-bezier(.22,.61,.36,1),background .35s ease;transition-delay:calc(var(--k) * .18s + .25s)}
+.sched.in .sf{opacity:1;transform:none}
+.sf:hover,.sf:focus-visible{background:rgba(212,175,55,.12)}
+.sf-d{font-family:var(--sans);font-size:3.25cqw;letter-spacing:.06em;color:var(--gold-ink);white-space:nowrap;line-height:1.2}
+.sf-e{font-family:var(--serif);font-weight:600;font-size:4.35cqw;line-height:1.12;color:var(--accent-deep);text-wrap:balance}
+.sf-go{font-family:var(--caps);font-size:2.5cqw;letter-spacing:.2em;text-transform:uppercase;color:var(--g-2);opacity:.9}
+.sched-hint{margin-top:1.4rem;font-family:var(--sans);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--on-dark-soft)}
 
-/* ---------- Sangeet song box ---------- */
-#songWrap .cin{padding-top:.2rem}
-#songWrap input{margin-top:.1rem}
-
-/* ---------- Thank-you page (shown from the date set in shared.js) ---------- */
-#thanks{display:none}
-body.after #thanks{display:block}
-body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:none !important}
-.thanks-msg{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,3.8vw,1.5rem);line-height:1.8;color:var(--ink);max-width:34ch;margin:0 auto 1.6rem;text-wrap:balance}
-.thanks-btns{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
-.thanks-btns .btn{min-height:46px}
-
-/* ---------- accessibility pass ---------- */
-.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-:where(a,button,input,textarea,summary):focus-visible{outline:2px solid var(--gold-ink);outline-offset:3px}
-.dock a{min-height:44px}
-.ev-all{min-height:44px}
-.rsvp-card input[type=text],.rsvp-card input[type=tel]{min-height:48px}
-.v-name a,.v-addr a{display:inline-block;padding:.3em 0}
-
-/* ---------- Royal theme: maroon, gold and ivory (preview with ?theme=royal) ---------- */
-html[data-theme="royal"]{
-  --cream:#f8f0de;--cream-2:#fdf8ec;--cream-3:#f1e4c6;--paper:#f3e6c8;
-  --gold:#b8862b;--gold-soft:#c9a24b;--gold-pale:#e8d59b;--gold-ink:#7a5217;
-  --olive:#7a1f2b;--olive-deep:#561220;--sage:#b8862b;
-  --blush:#c9a24b;--blush-deep:#8f1d2e;--marigold:#d9981e;--marigold-ink:#8a4a10;
-  --ink:#4a2a24;--ink-soft:#6e4b42;--wax:#6b1522;
-  --roy:#4a0f1a;--roy-2:#6b1522;--roy-gold:#f3dfa6;--roy-gold-2:#e8d59b;
-}
-html[data-theme="royal"] ::selection{background:var(--gold-pale);color:var(--olive-deep)}
-/* cover: deep maroon with gold type; the wax seal turns gold */
-html[data-theme="royal"] #intro{background:radial-gradient(ellipse 90% 55% at 50% 0%,rgba(168,52,66,.55),transparent 65%),var(--roy)}
-html[data-theme="royal"] :is(.cv-eye,.cv-date,.tap-hint){color:var(--roy-gold-2)}
-html[data-theme="royal"] .cv-names{color:var(--roy-gold)}
-html[data-theme="royal"] .tap-hint small{color:#d9c58a}
-html[data-theme="royal"] .seal{background:radial-gradient(circle at 34% 30%,#f0d58a,#c9a24b 55%,#8a5f17);color:var(--roy);box-shadow:0 10px 22px rgba(0,0,0,.4),inset 0 2px 4px rgba(255,245,210,.5),inset 0 -4px 8px rgba(90,60,10,.45)}
-html[data-theme="royal"] .seal::after{border-color:rgba(74,15,26,.5)}
-html[data-theme="royal"] .seal::before,html[data-theme="royal"] .seal-wrap .seal::before,html[data-theme="royal"] .seal-wrap .ring2{border-color:rgba(232,213,155,.6)}
-html[data-theme="royal"] .tap-dot{background:rgba(255,255,255,.35)}
-/* hero: maroon behind the painting, mantra in gold */
-html[data-theme="royal"] .scroll-cue span{color:var(--roy-gold-2)}
-html[data-theme="royal"] .scroll-cue i{border-color:var(--roy-gold-2)}
-html[data-theme="royal"] #home{background:var(--roy);box-shadow:inset 0 -4px 0 var(--gold-soft)}
-html[data-theme="royal"] .hero-bokeh img{opacity:.28}
-html[data-theme="royal"] .hero-mantra{background:linear-gradient(180deg,rgba(74,15,26,0) 0,rgba(74,15,26,.9) 26%,var(--roy) 42%)}
-html[data-theme="royal"] .hero-mantra .deva{color:var(--roy-gold)}
-html[data-theme="royal"] .hero-mantra .rom{color:var(--roy-gold-2)}
-html[data-theme="royal"] #invitation{margin-top:0;padding-top:0}
-html[data-theme="royal"] .bridge{display:none}
-/* washes on the cream sections: faint maroon and gold */
-html[data-theme="royal"] :is(#invitation,#flow,#venue,#rsvp,#thanks,#events){--wa:rgba(143,29,46,.08);--wb:rgba(184,134,43,.16)}
-/* the river and ticks */
-html[data-theme="royal"] #rg stop:nth-child(1){stop-color:#8f1d2e}
-html[data-theme="royal"] #rg stop:nth-child(2){stop-color:#b8862b}
-html[data-theme="royal"] #rg stop:nth-child(3){stop-color:#c9a24b}
-html[data-theme="royal"] #rg stop:nth-child(4){stop-color:#8f1d2e}
-html[data-theme="royal"] #riverBase{stroke:rgba(184,134,43,.3)}
-html[data-theme="royal"] .stop .dot{box-shadow:0 0 0 6px rgba(143,29,46,.1)}
-html[data-theme="royal"] .stop .dot.lit{background:var(--marigold);border-color:var(--olive-deep)}
-html[data-theme="royal"] .rsvp-card .ev-opt:has(input:checked){background:rgba(143,29,46,.07)}
-html[data-theme="royal"] .dock a.on{background:rgba(143,29,46,.12)}
-html[data-theme="royal"] .stepper button:active{background:rgba(143,29,46,.12)}
-html[data-theme="royal"] .ev-every:hover,html[data-theme="royal"] .ev-every.on{background:rgba(143,29,46,.1)}
-html[data-theme="royal"] .saved-banner{background:rgba(143,29,46,.06);border-color:rgba(143,29,46,.3)}
-html[data-theme="royal"] .attend-chip.on{background:var(--olive-deep);border-color:var(--olive-deep)}
-html[data-theme="royal"] .rsvp-submit{background:var(--olive-deep)}
-/* closing blessing and footer: maroon band, gold type */
-html[data-theme="royal"] :is(#mantra,footer){background:var(--roy)}
-html[data-theme="royal"] #mantra{box-shadow:inset 0 4px 0 var(--gold-soft)}
-html[data-theme="royal"] .mantra-mean{color:var(--roy-gold-2)}
-html[data-theme="royal"] .foot-mono{color:var(--roy-gold-2)}
-html[data-theme="royal"] .foot-names{color:var(--roy-gold)}
-html[data-theme="royal"] .foot-date{color:var(--roy-gold-2)}
-html[data-theme="royal"] .foot-bless{color:#d9c58a}
-
-/* ---------- Royal: arch (mehrab) and elephants ---------- */
-.arch-frame,.eleph,.mantra-elephants{display:none}
-html[data-theme="royal"] #home{--mantra-h:206px}
-html[data-theme="royal"] .hero-art{
-  width:min(88vw,430px);aspect-ratio:auto;top:26px;height:calc(100% - var(--mantra-h) - 34px);
-  -webkit-mask-image:none;mask-image:none;clip-path:url(#archClip);
-}
-html[data-theme="royal"] .hero-art img{transform:scale(1.04);object-position:50% 38%}
-html[data-theme="royal"] body.opened .hero-art img{transform:scale(1)}
-html[data-theme="royal"] .hero-breathe{top:calc((100% - var(--mantra-h)) * .5)}
-html[data-theme="royal"] .arch-frame{
-  display:block;position:absolute;left:50%;transform:translateX(-50%);top:26px;
-  width:min(88vw,430px);height:calc(100% - var(--mantra-h) - 34px);pointer-events:none;z-index:1;
-  filter:drop-shadow(0 0 10px rgba(232,213,155,.35));
-}
-html[data-theme="royal"] .eleph{
-  display:block;position:absolute;z-index:3;pointer-events:none;
-  width:min(36vw,190px);bottom:calc(var(--mantra-h) + 26px);
-  filter:drop-shadow(0 8px 10px rgba(0,0,0,.45));
-  opacity:0;transition:opacity 1.4s ease 1.4s,transform 1.6s cubic-bezier(.22,.61,.36,1) 1.4s;
-}
-html[data-theme="royal"] .eleph.el{left:max(-3vw,calc(50% - 292px));transform:translateX(-40px)}
-html[data-theme="royal"] .eleph.er{right:max(-3vw,calc(50% - 292px));transform:translateX(40px) scaleX(-1)}
-html[data-theme="royal"] body.opened .eleph.el{opacity:1;transform:none}
-html[data-theme="royal"] body.opened .eleph.er{opacity:1;transform:scaleX(-1)}
-html[data-theme="royal"] #home .lamp{z-index:4}
-html[data-theme="royal"] .mantra-elephants{display:flex;justify-content:center;gap:min(30vw,170px);margin:0 auto 1.2rem;position:relative;z-index:1}
-html[data-theme="royal"] .mantra-elephants img{width:min(32vw,150px);height:auto;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
-html[data-theme="royal"] .mantra-elephants img.flip{transform:scaleX(-1)}
-@media(prefers-reduced-motion:reduce){html[data-theme="royal"] .eleph{transition:none}}
-
-/* ═══════════ Royal polish: cover frame, gold foil, light spill, hero life, swipe days ═══════════ */
-
-/* cover: gold-framed maroon painting instead of a cream mat */
-html[data-theme="royal"] .door-frame{background:#3a0b14;border-color:var(--gold-soft);outline-color:rgba(232,213,155,.45);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 46px rgba(201,162,75,.16)}
-html[data-theme="royal"] .door-frame::after{border-color:rgba(232,213,155,.32)}
-html[data-theme="royal"] .door-stack{background:#3a0b14}
-html[data-theme="royal"] .door-stack .glow{background:radial-gradient(circle at 50% 44%,rgba(255,226,150,.95),rgba(255,184,80,.38) 40%,transparent 70%)}
-
-/* light spilling out of the doorway while the doors swing open */
-.door-stack .rays{display:none}
-html[data-theme="royal"] .door-stack .rays{
-  display:block;position:absolute;inset:0;opacity:0;pointer-events:none;mix-blend-mode:screen;transform-origin:50% 44%;
-  background:repeating-conic-gradient(from 0deg at 50% 44%,rgba(255,222,150,0) 0 6deg,rgba(255,226,160,.26) 6deg 8.2deg,rgba(255,222,150,0) 8.2deg 16deg);
-  -webkit-mask-image:radial-gradient(circle at 50% 44%,#000 0,rgba(0,0,0,.55) 38%,transparent 72%);
-  mask-image:radial-gradient(circle at 50% 44%,#000 0,rgba(0,0,0,.55) 38%,transparent 72%);
-  transition:opacity 1.3s ease .45s;animation:raysTurn 28s linear infinite;
-}
-html[data-theme="royal"] #intro.opening .rays{opacity:1}
-@keyframes raysTurn{to{transform:rotate(360deg)}}
-
-/* gold foil: the names write themselves in, then a highlight keeps sliding across the gold */
-@keyframes foil{0%{background-position:130% 0}100%{background-position:-130% 0}}
-@keyframes writeOn{from{clip-path:inset(-30% 100% -30% -4%)}to{clip-path:inset(-30% -4% -30% -4%)}}
-html[data-theme="royal"] .cv-names{width:fit-content;margin:.15rem auto;animation:writeOn 2.3s cubic-bezier(.45,0,.2,1) .35s both}
-@supports ((-webkit-background-clip:text) or (background-clip:text)){
-  html[data-theme="royal"] :is(.cv-names,.foot-names){
-    background-image:linear-gradient(100deg,#b88a2e 0%,#e6c777 26%,#fff3c4 45%,#e6c777 58%,#b88a2e 100%);
-    background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
-    animation:foil 7s linear infinite;
-  }
-  html[data-theme="royal"] .cv-names{animation:writeOn 2.3s cubic-bezier(.45,0,.2,1) .35s both,foil 7s linear 2.6s infinite}
-}
-
-/* hero: the painting lives (flickering diyas, drifting gold dust, a slow shaft of light) */
-.hero-media{position:absolute;inset:0}
-.hero-media canvas{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-html[data-theme="royal"] .hero-media{transform:scale(1.04);transition:transform 2.8s cubic-bezier(.22,.61,.36,1);will-change:transform}
-html[data-theme="royal"] body.opened .hero-media{transform:scale(1)}
-html[data-theme="royal"] .hero-art img,html[data-theme="royal"] body.opened .hero-art img{transform:none;transition:none}
-html[data-theme="royal"] .hero-media canvas{display:block;opacity:0;transition:opacity 2.4s ease 1.1s}
-html[data-theme="royal"] body.opened .hero-media canvas{opacity:1}
-
-/* ---------- Celebrations: one swipe row per day ---------- */
+/* day by day: one swipe row per day */
 #days{
-  margin-top:2.4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:3.4rem;--cw:min(76vw,290px);
-  --card-bg:linear-gradient(165deg,#fdf8ec,#f3e6c8);--card-line:var(--gold-soft);--card-ink:var(--olive-deep);--card-soft:var(--ink-soft);
-  --ico:var(--gold-ink);--ico-fill:rgba(184,137,74,.16);--ico-bg:rgba(184,137,74,.07);--ico-line:rgba(184,137,74,.45);
-  --pill-bg:rgba(224,147,47,.1);--pill-ink:var(--marigold-ink);--pill-line:rgba(224,147,47,.35);
-}
-html[data-theme="royal"] #days{
-  --card-bg:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(168,52,66,.55),transparent 70%),linear-gradient(170deg,#5d1220,#3f0b16);
-  --card-line:#c9a24b;--card-ink:#f3dfa6;--card-soft:#ead9b8;
-  --ico:#f3dfa6;--ico-fill:rgba(243,223,166,.14);--ico-bg:rgba(243,223,166,.05);--ico-line:rgba(243,223,166,.4);
+  margin-top:3.2rem;display:grid;grid-template-columns:minmax(0,1fr);gap:3.2rem;--cw:min(76vw,290px);
+  --card-bg:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(18,61,46,.95),transparent 70%),linear-gradient(170deg,#0e3a2a,#081d15);
+  --card-ink:#f3e6c0;--card-soft:#d8cba4;--ico:#f3dfa6;--ico-fill:rgba(243,223,166,.14);--ico-bg:rgba(243,223,166,.05);--ico-line:rgba(243,223,166,.4);
   --pill-bg:rgba(243,223,166,.08);--pill-ink:#f3dfa6;--pill-line:rgba(243,223,166,.4);
 }
-.day{min-width:0}
+html[data-side="bride"] #days{--card-bg:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(155,27,72,.85),transparent 70%),linear-gradient(170deg,#7a1430,#4a091d);--card-ink:#f7e7b4;--card-soft:#efd2c4}
+.day{min-width:0;scroll-margin-top:24px}
 .day-head{margin-bottom:1rem}
-.day-n{display:block;font-family:var(--sans);font-size:.8rem;letter-spacing:.5em;text-indent:.5em;text-transform:uppercase;color:var(--gold-ink)}
-.day-d{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,7vw,2.5rem);color:var(--olive-deep);line-height:1.1;margin:.3rem 0 .2rem}
-.day-c{font-family:var(--sans);font-weight:300;font-size:.8rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--ink-soft)}
-.swipe-hint{display:inline-flex;align-items:center;gap:.6em;margin-top:.7rem;font-family:var(--sans);font-size:.78rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--gold-ink);transition:opacity .5s ease}
+.day-n{display:block;font-family:var(--caps);font-weight:500;font-size:.8rem;letter-spacing:.46em;text-indent:.46em;text-transform:uppercase;color:var(--g-1)}
+.day-d{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,7vw,2.5rem);color:var(--on-dark);line-height:1.1;margin:.3rem 0 .2rem}
+.day-c{font-family:var(--sans);font-size:.8rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--on-dark-soft)}
+.swipe-hint{display:inline-flex;align-items:center;gap:.6em;margin-top:.7rem;font-family:var(--sans);font-size:.78rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--g-1);transition:opacity .5s ease}
 .swipe-hint i{display:block;width:30px;height:1px;background:currentColor;position:relative;animation:nudgeX 1.8s ease-in-out infinite}
 .swipe-hint i::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border:solid currentColor;border-width:1px 1px 0 0;transform:rotate(45deg)}
 @keyframes nudgeX{0%,100%{transform:translateX(-4px)}50%{transform:translateX(5px)}}
 .day.swiped .swipe-hint{opacity:0}
-.track-wrap{position:relative;margin:0 -1.4rem}
-.track{
-  position:relative;display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;text-align:center;
-  padding:22px max(1.4rem,calc((100% - var(--cw))/2)) 38px;margin:-14px 0 -18px;
-}
+.track-wrap{position:relative;margin:0 -1.2rem}
+.track{position:relative;display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;text-align:center;padding:22px max(1.2rem,calc((100% - var(--cw))/2)) 38px;margin:-14px 0 -18px}
 .track::-webkit-scrollbar{display:none}
-.track:focus-visible{outline:2px solid var(--gold-ink);outline-offset:-2px}
-.card{
-  flex:0 0 var(--cw);scroll-snap-align:center;position:relative;min-height:310px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.65rem;padding:1.6rem 1.3rem 1.5rem;
-  border:1px solid var(--card-line);background:var(--card-bg);box-shadow:0 10px 22px rgba(60,10,20,.2);
-}
-.card::after{content:"";position:absolute;inset:6px;border:1px solid rgba(201,162,75,.3);pointer-events:none}
+.track:focus-visible{outline:2px solid var(--g-1);outline-offset:-2px}
+.card{flex:0 0 var(--cw);scroll-snap-align:center;position:relative;min-height:310px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.65rem;padding:1.6rem 1.3rem 1.5rem;
+  border:1.5px solid transparent;border-image:var(--foil-border) 1;background:var(--card-bg);box-shadow:0 12px 26px rgba(0,0,0,.35)}
+.card::after{content:"";position:absolute;inset:6px;border:1px solid rgba(212,175,55,.32);pointer-events:none}
 .card .ev-ico{width:96px;height:96px;flex:none;margin-bottom:.1rem}
 .ev-ico .ring{fill:var(--ico-bg);stroke:var(--ico-line);stroke-width:1}
 .ev-ico .ring2{fill:none;stroke:var(--ico-line);stroke-width:.8;stroke-dasharray:1.5 3.5}
 .ev-ico .g{fill:none;stroke:var(--ico);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .ev-ico .f{fill:var(--ico-fill);stroke:var(--ico);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.card .t{display:inline-block;font-family:var(--sans);font-size:.78rem;letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;color:var(--pill-ink);background:var(--pill-bg);border:1px solid var(--pill-line);padding:.45em .95em}
-.card h4{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.2;color:var(--card-ink);margin-top:.15rem;text-wrap:balance}
-.card p{font-family:var(--sans);font-weight:300;font-size:.88rem;line-height:1.6;letter-spacing:.03em;color:var(--card-soft);text-wrap:balance}
-.tr-btn{
-  position:absolute;top:50%;transform:translateY(-50%);z-index:2;display:none;place-items:center;
-  width:46px;height:46px;border-radius:50%;border:1px solid var(--gold-soft);background:rgba(253,248,236,.94);color:var(--olive-deep);
-  cursor:pointer;box-shadow:0 8px 20px rgba(60,10,20,.25);transition:opacity .3s ease,background .3s ease;
-}
+.card .t{display:inline-block;font-family:var(--sans);font-size:.8rem;letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:var(--pill-ink);background:var(--pill-bg);border:1px solid var(--pill-line);padding:.45em .95em}
+.card h4{font-family:var(--serif);font-weight:600;font-size:1.55rem;line-height:1.2;color:var(--card-ink);margin-top:.15rem;text-wrap:balance}
+.card p{font-family:var(--sans);font-size:.9rem;line-height:1.6;letter-spacing:.02em;color:var(--card-soft);text-wrap:balance}
+.tr-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:2;display:none;place-items:center;width:46px;height:46px;border-radius:50%;border:1px solid var(--g-1);background:rgba(253,248,236,.94);color:var(--accent-deep);cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.3);transition:opacity .3s ease}
 .tr-btn.prev{left:1.6rem}.tr-btn.next{right:1.6rem}
 .tr-btn::before{content:"";width:11px;height:11px;border:solid currentColor;border-width:0 2px 2px 0}
 .tr-btn.prev::before{transform:rotate(135deg);margin-left:4px}
@@ -798,25 +375,198 @@ html[data-theme="royal"] #days{
 .tr-btn:disabled{opacity:.25;cursor:default}
 @media (hover:hover){.tr-btn{display:grid}.swipe-hint{display:none}}
 .dots{display:flex;gap:8px;justify-content:center;margin-top:.1rem}
-.dots i{width:7px;height:7px;border-radius:5px;background:var(--gold-pale);border:1px solid var(--gold-soft);transition:width .35s ease,background .35s ease}
-.dots i.on{width:22px;background:var(--olive);border-color:var(--olive)}
+.dots i{width:7px;height:7px;border-radius:5px;background:rgba(243,230,192,.25);border:1px solid var(--g-1);transition:width .35s ease,background .35s ease}
+.dots i.on{width:22px;background:var(--g-1)}
+
+/* ═══════════ venues ═══════════ */
+.venues{display:grid;gap:2.4rem;margin-top:3rem}
+@media(min-width:860px){.venues{grid-template-columns:1fr 1fr;gap:2.4rem}}
+.venue-card{padding:2.8rem 1.4rem 2.4rem}
+.v-orn{width:62px;height:auto;margin:0 auto .3rem;color:var(--g-2)}
+.v-city{font-family:var(--script);font-size:clamp(2.6rem,7vw,3.4rem);color:var(--script-ink);line-height:1.15}
+.v-dates{font-family:var(--caps);font-weight:500;font-size:.72rem;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase;color:var(--gold-ink);margin-top:.3rem}
+.v-for{font-family:var(--sans);font-size:.85rem;letter-spacing:.12em;color:var(--ink-soft);margin-top:.5rem}
+.v-name{font-size:1.55rem;font-weight:600;color:var(--accent-deep);margin-top:1.3rem}
+.v-addr{font-size:1.15rem;line-height:1.7;color:var(--ink);margin-top:.4rem}
+.v-name a,.v-addr a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s;display:inline-block;padding:.3em 0}
+.v-name a:hover,.v-addr a:hover,.v-name a:focus-visible,.v-addr a:focus-visible{border-color:var(--gold-ink)}
+.v-map{position:relative;margin:1.5rem auto 0;border:1px solid var(--gold-soft);padding:6px;background:var(--cream-2)}
+.v-map iframe{display:block;width:100%;height:230px;border:0;filter:saturate(.85) sepia(.08)}
+.map-veil{display:none;z-index:2;position:absolute;inset:6px;border:0;background:rgba(253,250,241,.01);cursor:pointer;align-items:flex-end;justify-content:center;padding:0 0 .7rem;font-family:var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep)}
+.map-veil span{background:rgba(253,250,241,.94);border:1px solid var(--gold-soft);padding:.5em 1em;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+@media(hover:none){.map-veil{display:flex}}
+.qr-wrap{margin:1.8rem auto 0;width:min(210px,62%);position:relative;padding:14px;background:var(--cream-2);border:1px solid var(--gold-soft);display:block;text-decoration:none}
+.qr-wrap::before,.qr-wrap::after{content:"";position:absolute;width:16px;height:16px;border:2px solid var(--g-2)}
+.qr-wrap::before{top:-5px;left:-5px;border-right:none;border-bottom:none}
+.qr-wrap::after{bottom:-5px;right:-5px;border-left:none;border-top:none}
+.qr-wrap svg{display:block;width:100%;height:auto;fill:var(--accent-deep)}
+.qr-cap{font-family:var(--sans);font-size:.62rem;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase;color:var(--ink-soft);margin-top:1.1rem}
+@media(hover:none) and (pointer:coarse),(max-width:700px){a.qr-wrap,.qr-cap{display:none}}
+.v-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem;align-items:flex-start}
+.btn{display:inline-block;font-family:var(--sans);font-size:.66rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--accent-deep);text-decoration:none;border:1px solid var(--g-2);padding:1em 1.5em;transition:all .4s ease;background:transparent;cursor:pointer}
+.btn:hover{background:var(--accent-deep);border-color:var(--accent-deep);color:var(--plate)}
+button.btn{font-family:var(--sans)}
+.cal{position:relative}
+.cal summary{list-style:none;cursor:pointer}
+.cal summary::-webkit-details-marker{display:none}
+.cal[open] summary{background:var(--accent-deep);color:var(--plate)}
+.cal-opts{display:flex;flex-direction:column;gap:.5rem;margin-top:.6rem;min-width:200px}
+.btn.sm{padding:.9em 1.2em;font-size:.6rem;background:var(--cream-2);text-align:center}
+@media(max-width:640px){.v-map iframe{height:210px}}
+
+/* ═══════════ RSVP ═══════════ */
+#rsvp .rsvp-card{max-width:660px;margin:2.8rem auto 0;text-align:center;padding:clamp(1.8rem,5vw,3.2rem)}
+.rsvp-card label{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-ink);margin:1.2rem 0 .5rem;text-align:left}
+.rsvp-card input[type=text],.rsvp-card input[type=tel],.rsvp-card textarea,.rsvp-card select{width:100%;background:transparent;border:none;border-bottom:1px solid var(--gold-soft);font-family:var(--serif);font-size:1.15rem;color:var(--ink);padding:.5em .2em;outline:none;transition:border-color .3s;min-height:48px}
+.rsvp-card textarea{resize:vertical;min-height:70px}
+.rsvp-card input:focus,.rsvp-card textarea:focus{border-color:var(--accent)}
+.rsvp-card .trap{position:absolute !important;left:-9999px !important;width:1px !important;height:1px !important;opacity:0 !important}
+.rsvp-submit{margin-top:.8rem;font-family:var(--sans);font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;cursor:pointer;color:var(--plate);background:var(--accent-deep);border:1px solid var(--accent-deep);padding:1.1em 2.6em;transition:all .4s ease;box-shadow:inset 0 0 0 1px rgba(212,175,55,.5)}
+.rsvp-submit:hover{background:transparent;color:var(--accent-deep)}
+.rsvp-submit:disabled{opacity:.7;cursor:progress}
+.attend-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.4rem}
+.attend-chip{font-family:var(--sans);font-size:.64rem;letter-spacing:.14em;line-height:1.35;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--gold-soft);padding:.95em .6em;cursor:pointer;transition:all .35s;background:transparent;text-align:center}
+.attend-chip.on{background:var(--accent-deep);border-color:var(--accent-deep);color:var(--plate)}
+@media(max-width:380px){.attend-row{grid-template-columns:1fr}}
+.rsvp-note{margin-top:1.4rem;font-family:var(--sans);font-size:.74rem;letter-spacing:.1em;color:var(--ink)}
+.hint{font-family:var(--sans);font-size:.78rem;letter-spacing:.03em;color:var(--ink);text-align:left;margin-top:.55rem;line-height:1.55}
+.hint.ok{color:var(--accent)}
+#phoneNote{min-height:2.4em}#phoneNote.bad{color:var(--warn)}
+.rsvp-err{margin-top:1.1rem;color:var(--warn);font-family:var(--sans);font-size:.84rem;letter-spacing:.03em;line-height:1.5}
+.rsvp-done[hidden],#rsvpFormBody[hidden],.hint[hidden],.rsvp-err[hidden]{display:none}
+.rsvp-card input[readonly]{opacity:.7}
+.ev-day{margin-top:1.1rem;text-align:left}
+.ev-head{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem}
+.ev-head b{display:block;font-family:var(--serif);font-weight:600;font-size:1.22rem;color:var(--accent-deep)}
+.ev-head small{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-ink);margin:.25rem 0 0}
+.ev-all{background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-decoration:underline;text-underline-offset:4px;padding:.5em 0;min-height:44px}
+.ev-opts{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.rsvp-card .ev-opt{position:relative;display:flex;align-items:center;gap:.8rem;margin:0;padding:.85rem 1rem;min-height:56px;border:1px solid var(--gold-pale);background:rgba(255,255,255,.55);cursor:pointer;transition:border-color .3s,background .3s;font-family:var(--serif);font-size:1.1rem;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--ink);text-align:left}
+.ev-opt input{position:absolute;opacity:0;pointer-events:none}
+.ev-opt .box{flex:none;width:22px;height:22px;border:1.5px solid var(--gold-soft);background:var(--cream-2);display:grid;place-items:center;transition:background .25s,border-color .25s}
+.ev-opt .box::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) scale(0);transition:transform .2s;margin-top:-2px}
+.ev-opt input:checked ~ .box{background:var(--accent);border-color:var(--accent)}
+.ev-opt input:checked ~ .box::after{transform:rotate(45deg) scale(1)}
+.rsvp-card .ev-opt:has(input:checked){border-color:var(--accent);background:rgba(212,175,55,.12)}
+.ev-opt input:focus-visible ~ .box{outline:2px solid var(--g-2);outline-offset:2px}
+.ev-opt .t{line-height:1.25;display:block}
+.ev-opt .t small{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--marigold-ink);margin-top:.25rem}
+.ev-opt .t small b{font-weight:500;color:var(--accent-deep);letter-spacing:.12em}
+@media(max-width:560px){.ev-opts{grid-template-columns:1fr}}
+.rsvp-done{text-align:center;padding:.4rem 0}
+.rsvp-done .lotus-div{width:60px;margin:0 auto .4rem}
+.done-title{font-family:var(--script);font-size:clamp(2.7rem,9vw,3.7rem);color:var(--script-ink);line-height:1.2}
+.done-msg{font-size:1.2rem;color:var(--ink);margin-top:.6rem;line-height:1.6}
+.done-sum{list-style:none;margin:1.5rem auto 0;max-width:440px;text-align:left}
+.done-sum li{padding:.7rem 0;border-bottom:1px dashed var(--gold-pale);font-size:1.08rem;line-height:1.45;word-break:break-word;animation:swapIn .6s ease both}
+.done-sum li span{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:.2rem}
+.done-sum li:nth-child(2){animation-delay:.08s}.done-sum li:nth-child(3){animation-delay:.16s}.done-sum li:nth-child(4){animation-delay:.24s}.done-sum li:nth-child(5){animation-delay:.32s}
+.saved-banner{margin:0 0 1rem;padding:.7rem .9rem;background:rgba(212,175,55,.12);border:1px solid rgba(170,119,28,.4);font-family:var(--sans);font-size:max(.78rem,12.5px);line-height:1.6;color:var(--ink);text-align:left}
+.saved-banner .link-btn{margin:0 0 0 .3rem;font-size:max(.78rem,12.5px)}
+.link-btn{margin-top:1.6rem;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.74rem;letter-spacing:.1em;color:var(--accent);text-decoration:underline;text-underline-offset:4px;padding:.6em;min-height:44px}
+.link-btn.alt{display:block;margin:.2rem auto 0;color:var(--ink-soft)}
+.form-lead{font-size:1.18rem;color:var(--ink);margin-bottom:.4rem}
+.step{display:flex;align-items:center;gap:.7rem;margin:1.7rem 0 .2rem;font-family:var(--sans);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent-deep);text-align:left}
+.step i{font-style:normal;flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--g-2);display:grid;place-items:center;font-family:var(--caps);font-size:.9rem;letter-spacing:0;color:var(--gold-ink);background:rgba(212,175,55,.1)}
+.step em,.rsvp-card label em{font-style:normal;text-transform:none;letter-spacing:.04em;color:var(--ink-soft);opacity:.85}
+.rsvp-card input.good{border-color:var(--accent)}
+.rsvp-card input.bad,.rsvp-card textarea.bad{border-color:var(--warn)}
+.fmsg{font-family:var(--sans);font-size:.78rem;letter-spacing:.03em;color:var(--warn);margin-top:.45rem;text-align:left}
+.fmsg:empty{display:none}
+.collapse{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .55s cubic-bezier(.22,.61,.36,1),opacity .4s ease,visibility 0s linear .55s}
+.collapse.open{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .55s cubic-bezier(.22,.61,.36,1),opacity .5s ease .08s,visibility 0s}
+.collapse>.cin{min-height:0;overflow:hidden}
+.collapse.open>.cin{overflow:visible}
+.stepper{display:flex;align-items:center;gap:1.2rem;margin-top:.3rem}
+.stepper button{width:48px;height:48px;border-radius:50%;border:1px solid var(--gold-soft);background:var(--cream-2);color:var(--accent-deep);font-family:var(--serif);font-size:1.7rem;line-height:1;cursor:pointer;transition:background .25s,transform .15s,border-color .25s}
+.stepper button:hover{border-color:var(--accent)}
+.stepper button:active{transform:scale(.92);background:rgba(212,175,55,.2)}
+.stepper button:disabled{opacity:.35;cursor:default}
+.stepper output{min-width:2ch;text-align:center;font-family:var(--serif);font-size:2rem;color:var(--accent-deep);font-variant-numeric:tabular-nums}
+.stepper output.bump{animation:bump .3s ease}
+@keyframes bump{40%{transform:scale(1.25)}}
+.ev-every{display:block;width:100%;margin:.2rem 0 .2rem;background:none;border:1px solid var(--gold-soft);color:var(--accent-deep);font-family:var(--sans);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.9em 1.3em;min-height:44px;cursor:pointer;transition:background .3s,border-color .3s}
+.ev-every:hover,.ev-every.on{background:rgba(212,175,55,.15);border-color:var(--accent)}
+.sum{margin-top:1.8rem;font-family:var(--sans);font-size:.82rem;letter-spacing:.05em;color:var(--accent-deep);min-height:1.4em}
+.sum:empty{visibility:hidden}
+.nudge{animation:nudge .5s ease}
+@keyframes nudge{20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.rsvp-done:not([hidden]),#rsvpFormBody:not([hidden]){animation:swapIn .7s cubic-bezier(.22,.61,.36,1) both}
+@keyframes swapIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.rsvp-done:not([hidden]) .lotus-div{animation:bloomIn 1s cubic-bezier(.22,.61,.36,1) .1s both}
+@keyframes bloomIn{from{opacity:0;transform:scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
+.rsvp-submit:active,.attend-chip:active,.btn:active{transform:scale(.97)}
+.contact-line{margin-top:.6rem;font-family:var(--sans);font-size:.82rem;letter-spacing:.05em;color:var(--ink)}
+.contact-line a{color:var(--accent-deep)}
+#songWrap .cin{padding-top:.2rem}
+
+/* ═══════════ dock, progress, cue, offline ═══════════ */
+.progress{position:fixed;left:0;right:0;top:0;height:3px;z-index:60;pointer-events:none}
+.progress i{display:block;height:100%;background:var(--foil);transform-origin:0 50%;transform:scaleX(0);transition:transform .15s linear}
+.dock{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));z-index:55;display:flex;gap:.2rem;padding:.35rem;border-radius:999px;background:rgba(253,250,241,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--g-1);box-shadow:0 10px 30px rgba(0,0,0,.35);transform:translate(-50%,140%);opacity:0;pointer-events:none;transition:transform .6s cubic-bezier(.22,.61,.36,1),opacity .45s ease;max-width:calc(100vw - 20px)}
+.dock.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.dock a{font-family:var(--sans);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);padding:.8em 1em;border-radius:999px;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;transition:background .35s,color .35s}
+.dock a.on{background:rgba(212,175,55,.22);color:var(--accent-deep)}
+.dock a.go{background:var(--accent-deep);color:var(--plate)}
+.dock a.go.pulse{animation:dockpulse 1.6s ease-out 2}
+@keyframes dockpulse{0%{box-shadow:0 0 0 0 rgba(212,175,55,.6)}100%{box-shadow:0 0 0 14px rgba(212,175,55,0)}}
+@media(max-width:380px){.dock a{padding:.8em .7em;font-size:.62rem;letter-spacing:.08em}}
+.scroll-cue{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));z-index:54;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:none;border:0;padding:.4rem .8rem;display:flex;flex-direction:column;align-items:center;gap:.15rem;cursor:pointer;font-family:var(--sans);font-size:.74rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--on-dark);text-shadow:0 1px 8px rgba(0,0,0,.6);transition:opacity .6s ease,transform .6s ease}
+.scroll-cue i{display:block;width:16px;height:16px;border:solid var(--g-1);border-width:0 2px 2px 0;transform:rotate(45deg);animation:cueBob 1.5s ease-in-out infinite}
+body.cue-on .scroll-cue{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+@keyframes cueBob{0%,100%{transform:translateY(-3px) rotate(45deg);opacity:.45}50%{transform:translateY(5px) rotate(45deg);opacity:1}}
+body.cue-on .dock.show{opacity:0;pointer-events:none}
+.offline-bar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:50%;z-index:90;transform:translate(-50%,-160%);background:var(--accent-deep);color:var(--plate);font-family:var(--sans);font-size:max(.78rem,12.5px);letter-spacing:.08em;padding:.55em 1.1em;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.3);transition:transform .5s cubic-bezier(.22,.61,.36,1);pointer-events:none;white-space:nowrap}
+.offline-bar.show{transform:translate(-50%,0)}
+
+/* ═══════════ thank you, closing blessing, footer ═══════════ */
+#thanks{display:none}
+body.after #thanks{display:block}
+body.after :is(#intro,#invitation,#flow,#venue,#rsvp,#dock,#scrollCue){display:none !important}
+body.after .farman{opacity:1;transform:none;filter:none}
+.thanks-plate{max-width:640px;margin:2rem auto 0;padding:2.4rem 1.4rem}
+.thanks-msg{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,3.8vw,1.5rem);line-height:1.8;color:var(--ink);max-width:34ch;margin:0 auto 1.6rem;text-wrap:balance}
+.thanks-btns{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+.thanks-btns .btn{min-height:46px}
+#mantra{text-align:center;padding:clamp(3.5rem,8vw,6rem) 1.4rem 1rem;position:relative}
+.mantra-inner{position:relative;max-width:760px;margin:0 auto}
+.mantra-deva{font-family:var(--deva);font-size:clamp(1.4rem,5vw,2rem);line-height:1.6;letter-spacing:.04em}
+.mantra-mean{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,3.6vw,1.4rem);line-height:1.8;color:var(--on-dark-soft);margin-top:.8rem;text-wrap:balance}
+footer{text-align:center;padding:3rem 1.4rem calc(3rem + env(safe-area-inset-bottom));position:relative}
+.foot-mono{font-family:var(--display);font-size:1.2rem;letter-spacing:.3em;color:var(--g-1)}
+.foot-names{font-family:var(--script);font-size:2.8rem;margin:.6rem auto;width:fit-content;padding:0 .2em}
+.foot-date{font-family:var(--sans);font-size:.66rem;letter-spacing:.42em;color:var(--on-dark-soft);text-transform:uppercase}
+.foot-bless{font-family:var(--caps);font-size:.64rem;letter-spacing:.36em;color:var(--g-1);text-transform:uppercase;margin-top:.8rem}
+
+/* ═══════════ small screens, readability floor, motion ═══════════ */
+@media(max-width:640px){
+  .eyebrow{font-size:.74rem;letter-spacing:.28em}
+  .btn,.attend-chip,.rsvp-submit{min-height:46px;display:inline-flex;align-items:center;justify-content:center}
+  .rsvp-card input[type=text],.rsvp-card input[type=tel],.rsvp-card textarea{font-size:16px}
+  .pad-section{padding-left:1rem;padding-right:1rem}
+  .track-wrap{margin:0 -1rem}
+  .inv-plate{border-width:10px}
+  .plate::before{inset:-10px}
+}
+:where(a,button,input,textarea,summary):focus-visible{outline:2px solid var(--g-1);outline-offset:3px}
+.btn,.attend-chip,.ev-opt,.rsvp-submit{-webkit-tap-highlight-color:transparent}
+@media (hover:hover){.ev-opt:hover{border-color:var(--gold-ink)}.card{transition:transform .5s cubic-bezier(.22,.61,.36,1)}.card:hover{transform:translateY(-3px)}}
+html body :is(.dock a,.btn,.btn.sm,.attend-chip,.ev-all,.ev-every,.link-btn,.rsvp-submit,.v-dates,.v-for,.rsvp-card label,.inv-small,.eyebrow,.tap-hint,.tap-hint small,.ev-opt .t small,.ev-head small,.grands small,.step,.step em,.rsvp-card label em,.done-sum li span,.fmsg,.hint,.sum,.rsvp-note,.tbc-note,.qr-cap,.ph,.scroll-cue span,.map-veil,.cv-date,.cv-eye,.day-c,.sched-hint,.foot-date,.foot-bless){font-size:max(.78rem,12.5px)}
+html body .ev-opt .t small b{font-size:inherit}
 @media (prefers-reduced-motion:reduce){
-  .swipe-hint i{animation:none}
-  html[data-theme="royal"] .cv-names{animation:none;clip-path:none}
-  @supports ((-webkit-background-clip:text) or (background-clip:text)){
-    html[data-theme="royal"] :is(.cv-names,.foot-names){animation:none;background-position:40% 0}
-  }
-  html[data-theme="royal"] .door-stack .rays{animation:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;animation-delay:0s !important;transition-duration:.01ms !important;transition-delay:0s !important}
+  .farman-wrap{animation:none}
 }
 </style>
 </head>
 <body class="locked">
 
-<!-- shared SVG bits: lotus divider + watercolour filters -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- shared SVG: lotus divider, door cut-outs, foil stroke -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="lotus" viewBox="0 0 60 40">
-      <g fill="rgba(230,211,172,.45)" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round">
+      <g fill="rgba(212,175,55,.22)" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round">
         <path d="M30 3 C21 13 21 28 30 37 C39 28 39 13 30 3Z"/>
         <path d="M30 37 C15 35 7 25 5 14 C16 16 25 24 30 37Z"/>
         <path d="M30 37 C45 35 53 25 55 14 C44 16 35 24 30 37Z"/>
@@ -824,43 +574,45 @@ html[data-theme="royal"] #days{
         <path d="M30 37 C46 39 56 35 60 28 C50 26 38 28 30 37Z"/>
       </g>
     </symbol>
-    <filter id="wc" x="-20%" y="-30%" width="140%" height="160%">
-      <feTurbulence type="fractalNoise" baseFrequency=".011" numOctaves="3" seed="7" result="n"/>
-      <feDisplacementMap in="SourceGraphic" in2="n" scale="70"/>
-      <feGaussianBlur stdDeviation="9"/>
-    </filter>
-    <filter id="wobble" x="-10%" y="-2%" width="120%" height="104%">
-      <feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="2" seed="3" result="n"/>
-      <feDisplacementMap in="SourceGraphic" in2="n" scale="7"/>
-      <feGaussianBlur stdDeviation=".6"/>
-    </filter>
+    <!-- the carved door in each gateway painting, in fractions of the picture -->
+    <clipPath id="doorG" clipPathUnits="objectBoundingBox"><path d="M.215 .965L.215 .41C.215 .355 .235 .315 .262 .29C.29 .265 .3 .24 .33 .225C.37 .205 .43 .2 .5 .182C.57 .2 .63 .205 .67 .225C.7 .24 .71 .265 .738 .29C.765 .315 .785 .355 .785 .41L.785 .965Z"/></clipPath>
+    <clipPath id="doorGL" clipPathUnits="objectBoundingBox"><path d="M.215 .965L.215 .41C.215 .355 .235 .315 .262 .29C.29 .265 .3 .24 .33 .225C.37 .205 .43 .2 .5 .182L.5 .965Z"/></clipPath>
+    <clipPath id="doorGR" clipPathUnits="objectBoundingBox"><path d="M.5 .182C.57 .2 .63 .205 .67 .225C.7 .24 .71 .265 .738 .29C.765 .315 .785 .355 .785 .41L.785 .965L.5 .965Z"/></clipPath>
+    <clipPath id="doorB" clipPathUnits="objectBoundingBox"><path d="M.405 .668L.405 .53C.405 .503 .425 .492 .447 .487C.47 .482 .49 .48 .5 .474C.51 .48 .53 .482 .553 .487C.575 .492 .595 .503 .595 .53L.595 .668Z"/></clipPath>
+    <clipPath id="doorBL" clipPathUnits="objectBoundingBox"><path d="M.405 .668L.405 .53C.405 .503 .425 .492 .447 .487C.47 .482 .49 .48 .5 .474L.5 .668Z"/></clipPath>
+    <clipPath id="doorBR" clipPathUnits="objectBoundingBox"><path d="M.5 .474C.51 .48 .53 .482 .553 .487C.575 .492 .595 .503 .595 .53L.595 .668L.5 .668Z"/></clipPath>
+    <linearGradient id="foilStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bf953f"/><stop offset=".3" stop-color="#fcf6ba"/><stop offset=".6" stop-color="#b38728"/><stop offset=".8" stop-color="#fbf5b7"/><stop offset="1" stop-color="#aa771c"/></linearGradient>
+    <radialGradient id="budGrad" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#ffd1e2"/><stop offset=".6" stop-color="#ec7aa6"/><stop offset="1" stop-color="#b23a6a"/></radialGradient>
+    <pattern id="crestJaali" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="none"/><path d="M7 0L14 7L7 14L0 7Z" fill="none" stroke="#b38728" stroke-width=".6" opacity=".35"/><circle cx="7" cy="7" r="1.1" fill="#b38728" opacity=".35"/></pattern>
   </defs>
 </svg>
 
 <main id="main">
 <h1 class="sr-only" id="pageTitle">Wedding invitation</h1>
-<!-- ══════════ INTRO: closed door + seal ══════════ -->
+
+<!-- ══════════ 1 · THE ROYAL GATEWAY ══════════ -->
 <div id="intro" role="dialog" aria-label="Wedding invitation opening">
-  <div class="cover-top"><span class="cv-eye">You are invited</span><div class="cv-names">Nidhi &amp; Nikhil</div><div class="cv-date">9 · 10 · 15 December 2026</div></div>
-  <div class="door-stage" id="doorStage">
-    <div class="door-frame">
-      <div class="door-stack" id="doorStack">
-        <img class="door-open-img" src="../assets/door-open.webp" alt="" aria-hidden="true">
-        <div class="glow" aria-hidden="true"></div>
-        <div class="rays" aria-hidden="true"></div>
-        <div class="leaf l"><img src="../assets/door-closed.webp" alt="Painting of an ornate carved wedding doorway decorated with flowers and lanterns"></div>
-        <div class="leaf r"><img src="../assets/door-closed.webp" alt="" aria-hidden="true"></div>
-      </div>
+  <canvas id="introFx" aria-hidden="true"></canvas>
+  <div class="cover-top"><span class="cv-eye">Shubha Vivaha</span><div class="cv-names foil-run">Nidhi &amp; Nikhil</div><div class="cv-date">9 · 10 · 15 December 2026</div></div>
+  <div class="gate-wrap">
+    <div class="gate" id="gate" role="button" tabindex="0" aria-label="Open the doors">
+      <img class="base" src="../assets/gate-bride.webp" alt="Painted Mysore palace jharokha hung with jasmine garlands and lotus buds, brass oil lamps on either side and a small carved door">
+      <div class="inside" aria-hidden="true"><img src="../assets/card-bride.webp" alt=""></div>
+      <div class="door-rays" aria-hidden="true"></div>
+      <div class="seam" aria-hidden="true"></div>
+      <div class="leaf l" aria-hidden="true"><img src="../assets/gate-bride.webp" alt=""></div>
+      <div class="leaf r" aria-hidden="true"><img src="../assets/gate-bride.webp" alt=""></div>
+      <div class="flames" id="flames" aria-hidden="true"></div>
+      <div class="sheen" aria-hidden="true"></div>
     </div>
   </div>
   <div class="seal-row">
     <span class="tap-arrow" aria-hidden="true"></span>
     <div class="seal-wrap"><button class="seal" id="openBtn" aria-label="Open the invitation">N·N</button><span class="ring2" aria-hidden="true"></span><span class="tap-dot" aria-hidden="true"></span></div>
-    <span class="tap-hint" id="tapHint">Tap the seal to open<small>or tap the door</small></span>
+    <span class="tap-hint" id="tapHint">Tap the seal to open<small>or tap the doors</small></span>
   </div>
 </div>
 
-<!-- falling petals layer -->
 <div id="petals" aria-hidden="true"></div>
 <div class="progress" aria-hidden="true"><i id="progBar"></i></div>
 <button type="button" class="scroll-cue" id="scrollCue" aria-label="Scroll down to see the celebrations"><span>Scroll down</span><i aria-hidden="true"></i></button>
@@ -868,57 +620,69 @@ html[data-theme="royal"] #days{
   <a href="#flow" data-s="flow">Celebrations</a><a href="#venue" data-s="venue">Venue</a><a href="#rsvp" data-s="rsvp" class="go">RSVP</a>
 </nav>
 
-<!-- ══════════ HERO: the open doorway + the Ganesh mantra ══════════ -->
-<section id="home">
-  <div class="hero-bokeh" aria-hidden="true"><img src="../assets/door-open.webp" alt=""></div>
-  <div class="hero-art" id="heroArt"><div class="hero-media"><img src="../assets/door-open.webp" alt="Painting of Lord Ganesha seated in an open wedding doorway, with flowers, diyas and lanterns"><canvas id="heroFx" aria-hidden="true"></canvas></div></div>
-  <div class="hero-breathe" aria-hidden="true"></div>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><clipPath id="archClip" clipPathUnits="objectBoundingBox"><path d="M0,1 L0,.36 C0,.22 .12,.15 .26,.11 C.38,.08 .46,.05 .5,0 C.54,.05 .62,.08 .74,.11 C.88,.15 1,.22 1,.36 L1,1 Z"/></clipPath></defs></svg>
-  <svg class="arch-frame" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true"><path d="M0,1 L0,.36 C0,.22 .12,.15 .26,.11 C.38,.08 .46,.05 .5,0 C.54,.05 .62,.08 .74,.11 C.88,.15 1,.22 1,.36 L1,1" fill="none" stroke="#e8d59b" stroke-width="6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><path d="M0,1 L0,.36 C0,.22 .12,.15 .26,.11 C.38,.08 .46,.05 .5,0 C.54,.05 .62,.08 .74,.11 C.88,.15 1,.22 1,.36 L1,1" fill="none" stroke="#7a1f2b" stroke-width="1.4" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>
-  <img class="eleph el" src="../assets/elephant.webp" alt="" aria-hidden="true">
-  <img class="eleph er" src="../assets/elephant.webp" alt="" aria-hidden="true">
-  <div class="lamp l1" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt=""></div></div>
-  <div class="lamp l2" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt=""></div></div>
+<!-- ══════════ 2 · THE ROYAL FARMAN ══════════ -->
+<section id="home" aria-label="The invitation card">
+  <div class="farman-wrap" id="farmanWrap">
+    <div class="farman royal-card-bride" id="farman">
+      <img src="../assets/card-bride.webp" alt="Rani pink and gold invitation card: Lord Ganesha on a lotus, twin peacocks, royal umbrellas and a Kanjeevaram zari border">
+      <div class="halo" aria-hidden="true"></div>
+      <canvas id="heroFx" aria-hidden="true"></canvas>
+      <div class="sheen" aria-hidden="true"></div>
+      <div class="glare" aria-hidden="true"></div>
+      <div class="f-txt" id="fTxt">
+        <span class="f-eye fit" style="--k:0">Shubha Vivaha</span>
+        <span class="f-name" style="--k:1">Nidhi</span>
+        <span class="f-amp" style="--k:2">weds</span>
+        <span class="f-name" style="--k:3">Nikhil</span>
+        <span class="f-rule" style="--k:4" aria-hidden="true"></span>
+        <span class="f-line fit" style="--k:4">9 · 10 · 15 December</span>
+        <span class="f-city fit" style="--k:5">2026</span>
+      </div>
+    </div>
+  </div>
   <div class="hero-mantra">
-    <p class="deva">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
+    <p class="deva gold-text">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
     <p class="rom">Vakratunda Mahakaya, Suryakoti Samaprabha<br>Nirvighnam Kuru Me Deva, Sarvakaryeshu Sarvada</p>
   </div>
 </section>
 
 <!-- ══════════ INVITATION ══════════ -->
 <section id="invitation" class="band">
-  <div class="bridge" aria-hidden="true">
-    <svg viewBox="0 0 1200 500" preserveAspectRatio="none">
-      <g filter="url(#wc)">
-        <ellipse cx="220" cy="120" rx="330" ry="120" fill="#dfa392" opacity=".30"/>
-        <ellipse cx="620" cy="60" rx="380" ry="95" fill="#e6d3ac" opacity=".55"/>
-        <ellipse cx="1010" cy="150" rx="300" ry="115" fill="#a9b48a" opacity=".24"/>
-        <ellipse cx="430" cy="250" rx="260" ry="80" fill="#e9a3b0" opacity=".16"/>
-      </g>
-    </svg>
-  </div>
-  <img loading="lazy" decoding="async" class="corner tr" src="../assets/floral-corner_sm.webp" alt="" aria-hidden="true">
-  <img loading="lazy" decoding="async" class="corner bl" src="../assets/floral-corner_sm.webp" alt="" aria-hidden="true">
   <div class="pad-section reveal">
-    <img class="ganesha-img" loading="lazy" decoding="async" src="../assets/ganesha_sm.webp" alt="Watercolour illustration of Lord Ganesha">
-    <p class="blessing">॥ श्री गणेशाय नमः ॥</p>
-    <span class="eyebrow">With the blessings of our families</span>
-    <h2 class="section-title">You are cordially invited</h2>
-    <div class="grands" id="grands" hidden></div>
-    <svg class="lotus-div" aria-hidden="true"><use href="#lotus"/></svg>
-    <div class="inv words" id="inv"></div>
+    <div class="plate inv-plate">
+      <div class="crest" aria-hidden="true">
+        <svg viewBox="0 0 400 100" id="crestSvg">
+          <path class="face" d="M0 100A29.7 29.7 0 0 1 30.8 56.7A45.9 45.9 0 0 1 103.3 18.6A54.8 54.8 0 0 1 200 4A54.8 54.8 0 0 1 296.7 18.6A45.9 45.9 0 0 1 369.2 56.7A29.7 29.7 0 0 1 400 100Z"/>
+          <path class="inner" transform="translate(16 8) scale(.92)" d="M0 100A29.7 29.7 0 0 1 30.8 56.7A45.9 45.9 0 0 1 103.3 18.6A54.8 54.8 0 0 1 200 4A54.8 54.8 0 0 1 296.7 18.6A45.9 45.9 0 0 1 369.2 56.7A29.7 29.7 0 0 1 400 100Z"/>
+          <path class="rule" d="M0 100A29.7 29.7 0 0 1 30.8 56.7A45.9 45.9 0 0 1 103.3 18.6A54.8 54.8 0 0 1 200 4A54.8 54.8 0 0 1 296.7 18.6A45.9 45.9 0 0 1 369.2 56.7A29.7 29.7 0 0 1 400 100"/>
+          <path class="rule2" transform="translate(16 8) scale(.92)" d="M0 100A29.7 29.7 0 0 1 30.8 56.7A45.9 45.9 0 0 1 103.3 18.6A54.8 54.8 0 0 1 200 4A54.8 54.8 0 0 1 296.7 18.6A45.9 45.9 0 0 1 369.2 56.7A29.7 29.7 0 0 1 400 100"/>
+          <g class="jasmine" id="jasmine"></g>
+        </svg>
+        <div class="medal"><span>ॐ</span></div>
+      </div>
+      <p class="blessing">॥ श्री गणेशाय नमः ॥</p>
+      <span class="eyebrow">With the blessings of our families</span>
+      <h2 class="inv-title">You are cordially invited</h2>
+      <div class="grands" id="grands" hidden></div>
+      <svg class="lotus-div" viewBox="0 0 60 40" aria-hidden="true"><use href="#lotus"/></svg>
+      <div class="inv words" id="inv"></div>
+    </div>
   </div>
 </section>
 
-<!-- ══════════ CELEBRATIONS ══════════ -->
-<!-- ══════════ EVENT FLOW: the river ══════════ -->
+<!-- ══════════ 3 · SHAHI BAARAT & CELEBRATIONS ══════════ -->
 <section id="flow" class="band">
   <div class="pad-section">
     <div class="reveal">
-      <span class="eyebrow">The celebrations</span>
-      <h2 class="section-title">Three days of festivities</h2>
+      <span class="eyebrow">Kalyana celebrations</span>
+      <h2 class="section-title bride-royal-heading">Three days of festivities</h2>
       <p class="tbc-note" id="tbcNote"><span class="ph">The Lucknow reception time will be shared soon</span></p>
     </div>
+    <div class="sched" id="sched">
+      <img loading="lazy" decoding="async" src="../assets/events-bride.webp" alt="Ivory and gold schedule card with a skyline of palace pavilions, a kalash, hands painted with mehendi, a veena with tabla, and a bridal doli">
+      <div class="sheen" aria-hidden="true"></div>
+    </div>
+    <p class="sched-hint">Tap a celebration for the details</p>
     <div class="days" id="days"></div>
   </div>
 </section>
@@ -928,7 +692,7 @@ html[data-theme="royal"] #days{
   <div class="pad-section">
     <div class="reveal">
       <span class="eyebrow">Where</span>
-      <h2 class="section-title">Where to find us</h2>
+      <h2 class="section-title bride-royal-heading">Where to find us</h2>
     </div>
     <div class="venues" id="venues"></div>
   </div>
@@ -936,11 +700,9 @@ html[data-theme="royal"] #days{
 
 <!-- ══════════ RSVP ══════════ -->
 <section id="rsvp" class="band">
-  <img loading="lazy" decoding="async" class="corner tl" src="../assets/floral-corner_sm.webp" alt="" aria-hidden="true" style="top:-80px">
-  <img loading="lazy" decoding="async" class="corner br" src="../assets/floral-corner_sm.webp" alt="" aria-hidden="true" style="bottom:-80px">
   <div class="pad-section reveal">
     <span class="eyebrow">Kindly reply</span>
-    <h2 class="section-title">Will you join us?</h2>
+    <h2 class="section-title bride-royal-heading">Will you join us?</h2>
     <form class="rsvp-card" id="rsvpForm" novalidate>
       <div id="rsvpFormBody">
         <p class="form-lead">It takes under a minute. We just need to know who is coming.</p>
@@ -986,7 +748,7 @@ html[data-theme="royal"] #days{
         <p class="rsvp-note" id="rsvpNote">Your reply goes straight to the couple.</p>
       </div>
       <div class="rsvp-done" id="rsvpDone" hidden aria-live="polite">
-        <svg class="lotus-div" aria-hidden="true"><use href="#lotus"/></svg>
+        <svg class="lotus-div" viewBox="0 0 60 40" aria-hidden="true"><use href="#lotus"/></svg>
         <div class="done-title">You're all set</div>
         <p class="done-msg" id="doneMsg"></p>
         <ul class="done-sum" id="doneSum"></ul>
@@ -997,23 +759,25 @@ html[data-theme="royal"] #days{
   </div>
 </section>
 
+
 <!-- ══════════ THANK YOU: replaces the invitation sections after the wedding (see THANKS in shared.js) ══════════ -->
 <section id="thanks" class="band" aria-labelledby="thanksTitle">
   <div class="pad-section reveal">
     <span class="eyebrow">With gratitude</span>
-    <h2 class="section-title" id="thanksTitle">Thank you</h2>
-    <svg class="lotus-div" aria-hidden="true"><use href="#lotus"/></svg>
-    <p class="thanks-msg">Thank you for celebrating with us. Your blessings and your company made our wedding days complete.</p>
-    <div class="v-btns thanks-btns" id="thanksBtns"></div>
+    <h2 class="section-title bride-royal-heading" id="thanksTitle">Thank you</h2>
+    <div class="plate thanks-plate">
+      <svg class="lotus-div" viewBox="0 0 60 40" aria-hidden="true"><use href="#lotus"/></svg>
+      <p class="thanks-msg">Thank you for celebrating with us. Your blessings and your company made our wedding days complete.</p>
+      <div class="v-btns thanks-btns" id="thanksBtns"></div>
+    </div>
   </div>
 </section>
 
-<!-- ══════════ CLOSING MANTRA ══════════ -->
+<!-- ══════════ CLOSING BLESSING ══════════ -->
 <section id="mantra" aria-label="Closing blessing">
-  <div class="lamp ml" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt=""></div></div>
-  <div class="lamp mr" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt=""></div></div>
-  <div class="mantra-elephants" aria-hidden="true"><img src="../assets/elephant.webp" alt=""><img class="flip" src="../assets/elephant.webp" alt=""></div>
-  <div class="mantra-inner">
+  <div class="mantra-inner reveal">
+    <svg class="lotus-div" viewBox="0 0 60 40" aria-hidden="true" style="color:var(--g-1)"><use href="#lotus"/></svg>
+    <p class="mantra-deva gold-text">॥ शुभ विवाह ॥</p>
     <p class="mantra-mean">O Lord of the curved trunk and mighty form, whose radiance equals a million suns, remove all obstacles from our path, always.</p>
   </div>
 </section>
@@ -1022,7 +786,7 @@ html[data-theme="royal"] #days{
 
 <footer>
   <div class="foot-mono">N &nbsp;·&nbsp; N</div>
-  <div class="foot-names">Nidhi &amp; Nikhil</div>
+  <div class="foot-names foil-run">Nidhi &amp; Nikhil</div>
   <div class="foot-date">9 · 10 · 15 December 2026</div>
   <div class="foot-bless">With the blessings of our families</div>
 </footer>
@@ -1065,24 +829,46 @@ const CONFIG = {
   ]
 };
 
-/* Events: one list feeds the timeline, the celebration cards and the RSVP tick-boxes (key:1 events only). Timings from the family itinerary. time:null shows a [time] placeholder. */
+/* Events: one list feeds the schedule card, the day-by-day cards and the RSVP tick-boxes (key:1 events only). "short" is the name used on the painted schedule card.
+   Timings from the family itinerary. time:null shows a [time] placeholder. */
 const DAYS = [
   { n: "Day One", date: "9 December", dow: "Wednesday", city: "Bangalore", events: [
-    { time: "3:00 PM",          title: "Haldi Ceremony",                  line: "The turmeric ceremony with family", key: 1 },
-    { time: "5:00 PM",          title: "Var Pooja, Tilak & Engagement",   line: "Blessings, rituals and the exchange of rings", key: 1 },
-    { time: "6:00 PM",          title: "Baraat",                          line: "The procession arrives with music and dance", key: 1 },
-    { time: "6:30 PM",          title: "Sangeet",                         line: "An evening of music, dance and joy", key: 1 },
-    { time: "7:30 – 9:00 PM",   title: "Dinner",                          line: "Dinner for all our guests", key: 1 }
+    { time: "3:00 PM",          title: "Haldi Ceremony",                  short: "Haldi",              line: "The turmeric ceremony with family", key: 1 },
+    { time: "5:00 PM",          title: "Var Pooja, Tilak & Engagement",   short: "Tilak & Engagement", line: "Blessings, rituals and the exchange of rings", key: 1 },
+    { time: "6:00 PM",          title: "Baraat",                          short: "Baraat",             line: "The procession arrives with music and dance", key: 1 },
+    { time: "6:30 PM",          title: "Sangeet",                         short: "Sangeet",            line: "An evening of music, dance and joy", key: 1 },
+    { time: "7:30 – 9:00 PM",   title: "Dinner",                          short: "Dinner",             line: "Dinner for all our guests", key: 1 }
   ]},
   { n: "Day Two", date: "10 December", dow: "Thursday", city: "Bangalore", events: [
-    { time: "8:45 AM",          title: "Muhurtham",                       line: "Sacred vows and traditional ceremonies until 11:00 AM", key: 1 },
-    { time: "12:00 PM",         title: "Reception & Lunch",               line: "Meet the bride and groom; lunch is served alongside", key: 1 }
+    { time: "8:45 AM",          title: "Muhurtham",                       short: "Muhurtham",          line: "Sacred vows and traditional ceremonies until 11:00 AM", key: 1 },
+    { time: "12:00 PM",         title: "Reception & Lunch",               short: "Reception",          line: "Meet the bride and groom; lunch is served alongside", key: 1 }
   ]},
   { n: "Day Three", date: "15 December", dow: "Tuesday", city: "Lucknow", events: [
-    { time: "6:00 PM onwards", title: "Reception", line: "Join us in Lucknow to celebrate with the couple", key: 1 }
+    { time: "6:00 PM onwards", title: "Reception", short: "Lucknow Reception", line: "Join us in Lucknow to celebrate with the couple", key: 1 }
   ]}
 ];
+
+/* Painted schedule card: which events share each of its four frames, in order. [day index, [event indexes]] */
+const SCHED_GROUPS = [ [0, [0, 1]], [0, [2, 3, 4]], [1, [0, 1]], [2, [0]] ];
 /* ═══════════════════════════════════════════════════════ */
+
+/* Where things sit on each side's artwork, as fractions of the picture (measured off the paintings) */
+const ART = {
+  groom: {
+    frames: [[.33, .255, .82, .345], [.33, .42, .82, .515], [.33, .60, .67, .70], [.33, .785, .67, .885]],   /* left, top, right, bottom */
+    flames: [],
+    door: { x: .5, y: .574, w: .57, h: .783 },
+    petals: ['#e0932f', '#f2b632', '#d4af37', '#c96a1c', '#f6d27a', '#e8a33c'],
+    burst:  ['#d4af37', '#fff4c2', '#e0932f', '#f2b632', '#b38728']
+  },
+  bride: {
+    frames: [[.35, .26, .85, .355], [.13, .44, .63, .54], [.36, .63, .86, .725], [.13, .81, .62, .905]],
+    flames: [[.085, .505, 4.5], [.165, .505, 4.5], [.075, .62, 6], [.18, .62, 6], [.915, .505, 4.5], [.835, .505, 4.5], [.925, .62, 6], [.82, .62, 6]],   /* x, y, size % */
+    door: { x: .5, y: .571, w: .19, h: .194 },
+    petals: ['#fffaf0', '#fffdf7', '#f3ead8', '#e86a9a', '#f4a6c1', '#E5B842'],
+    burst:  ['#fffaf0', '#f4a6c1', '#e86a9a', '#E5B842', '#ffe699']
+  }
+}[SIDE];
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -1093,7 +879,6 @@ $('#pageTitle').textContent = NAMES + ' wedding invitation, 9, 10 and 15 Decembe
 /* after the wedding the page turns itself into a thank-you page; add ?thanks=1 to preview it */
 const AFTER = (typeof THANKS !== 'undefined') && (Date.now() >= Date.parse(THANKS.from) || /[?&]thanks=1/.test(location.search));
 const slot = e => [e.when, e.time].filter(Boolean).join(' · ');   /* e.g. "Afternoon · 4:00 PM" */
-const ROYAL = document.documentElement.dataset.theme === 'royal';
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 history.scrollRestoration = 'manual'; window.scrollTo(0, 0);
 if (AFTER){
@@ -1125,6 +910,9 @@ if (AFTER){
      <p class="inv-name">${esc(SECOND.name)}</p>` +
     (known(SECOND.parents) ? `<p class="inv-small">${SECOND.role} of</p><p class="inv-parents">${esc(SECOND.parents)}</p>` : '');
   document.querySelectorAll('#inv > p').forEach((p,i)=>{ p.classList.add('w'); p.style.transitionDelay = (i*140)+'ms'; });
+  /* the names on the gateway, the main card and the footer follow this page's order too */
+  document.querySelectorAll('.cv-names,.foot-names').forEach(el => el.textContent = NAMES);
+  const fn = document.querySelectorAll('#fTxt .f-name'); fn[0].textContent = FIRST.name; fn[1].textContent = SECOND.name;
 })();
 
 /* ── the celebrations: one swipe row per day, each card with its own small illustration ── */
@@ -1139,12 +927,24 @@ const GLYPHS = {
   fire: `<path class="f" d="M48 18C58 32 65 40 65 52C65 63 58 71 48 71C38 71 31 63 31 52C31 44 38 39 42 30C44 35 46 37 48 39C51 33 50 25 48 18Z"/><path class="g" d="M48 40C53 47 56 51 56 57C56 63 52 66 48 66C44 66 40 63 40 57C40 52 44 49 48 40Z"/><path class="g" d="M28 78L68 72M28 72L68 78"/>`,
   toast: `<g transform="translate(37 52) rotate(-16)"><path class="f" d="M-7 -24L7 -24L5 2Q0 9 -5 2Z"/><path class="g" d="M0 7V24M-8 24H8"/></g><g transform="translate(59 52) rotate(16)"><path class="f" d="M-7 -24L7 -24L5 2Q0 9 -5 2Z"/><path class="g" d="M0 7V24M-8 24H8"/></g><path class="g" d="M48 18V23M40 21L42 25M56 21L54 25"/>`,
   arch: `<path class="f" d="M24 76V46C24 32 38 26 48 14C58 26 72 32 72 46V76Z"/><path class="g" d="M34 76V50C34 41 42 37 48 29C54 37 62 41 62 50V76"/><path class="g" d="M20 76H76"/><path class="g" d="M48 56C45 60 45 64 48 66C51 64 51 60 48 56Z"/>`,
-  lotus: `<path class="f" d="M48 26C40 36 40 52 48 62C56 52 56 36 48 26Z"/><path class="f" d="M48 62C36 60 28 52 26 42C37 43 45 50 48 62Z"/><path class="f" d="M48 62C60 60 68 52 70 42C59 43 51 50 48 62Z"/>`
+  lotus: `<path class="f" d="M48 26C40 36 40 52 48 62C56 52 56 36 48 26Z"/><path class="f" d="M48 62C36 60 28 52 26 42C37 43 45 50 48 62Z"/><path class="f" d="M48 62C60 60 68 52 70 42C59 43 51 50 48 62Z"/>`,
+  /* Awadhi markers (groom) */
+  baradari: `<path class="f" d="M48 22C54 24 60 30 60 40H36C36 30 42 24 48 22Z"/><path class="g" d="M48 22V15"/><circle class="f" cx="48" cy="14" r="2.2"/><path class="f" d="M20 40C20 35 23 33 26 31C29 33 32 35 32 40Z"/><path class="f" d="M64 40C64 35 67 33 70 31C73 33 76 35 76 40Z"/><path class="g" d="M16 40H80M18 46H78M20 78H76"/><path class="g" d="M22 78V54C22 50 25 48 28 48C31 48 34 50 34 54V78M40 78V54C40 50 44 48 48 48C52 48 56 50 56 54V78M62 78V54C62 50 65 48 68 48C71 48 74 50 74 54V78"/>`,
+  sitar: `<path class="g" d="M30 70L72 22"/><path class="f" d="M18 70C18 60 26 54 34 56C42 58 44 68 38 76C32 84 18 80 18 70Z"/><circle class="f" cx="70" cy="26" r="5"/><path class="g" d="M45 54L50 58M51 47L56 51M57 40L62 44M63 33L68 37"/><path class="g" d="M74 20L78 16M76 23L81 21"/><ellipse class="f" cx="68" cy="66" rx="9" ry="5"/><path class="g" d="M59 66V76C59 79 77 79 77 76V66"/>`,
+  /* Karnataka markers (bride) */
+  kalash: `<ellipse class="f" cx="48" cy="21" rx="7" ry="8.5"/><path class="f" d="M48 30C40 23 30 23 22 28C31 31 40 31 48 30Z"/><path class="f" d="M48 30C56 23 66 23 74 28C65 31 56 31 48 30Z"/><path class="f" d="M40 30H56L54 35H42Z"/><path class="f" d="M30 52C30 41 39 35 48 35C57 35 66 41 66 52C66 64 58 72 48 72C38 72 30 64 30 52Z"/><path class="g" d="M32 49H64M33 55H63"/><path class="g" d="M41 72L39 79H57L55 72"/>`,
+  lamp: `<path class="g" d="M48 12V17"/><circle class="f" cx="48" cy="19" r="3"/><path class="f" d="M28 34H68L61 42H35Z"/><path class="f" d="M31 33C30 29 32 27 33 25C35 28 35 30 34 33Z"/><path class="f" d="M47 31C46 27 48 25 49 23C51 26 51 28 50 31Z"/><path class="f" d="M62 33C61 29 63 27 64 25C66 28 66 30 65 33Z"/><path class="g" d="M48 22V34M48 42V70"/><ellipse class="f" cx="48" cy="52" rx="4.5" ry="3"/><ellipse class="f" cx="48" cy="62" rx="3.5" ry="2.4"/><path class="f" d="M34 80C34 74 40 70 48 70C56 70 62 74 62 80Z"/>`,
+  veena: `<path class="g" d="M26 66L72 26"/><circle class="f" cx="29" cy="64" r="12"/><circle class="g" cx="29" cy="64" r="4.5"/><circle class="f" cx="70" cy="30" r="6.5"/><path class="g" d="M73 26C79 22 80 16 76 13"/><path class="g" d="M42 53L46 57M49 47L53 51M56 41L60 45M63 35L67 39"/>`,
+  doli: `<path class="g" d="M12 46H84"/><circle class="f" cx="12" cy="46" r="2"/><circle class="f" cx="84" cy="46" r="2"/><path class="f" d="M30 46C30 34 39 28 48 28C57 28 66 34 66 46Z"/><path class="g" d="M48 28V20"/><circle class="f" cx="48" cy="18.5" r="2.4"/><path class="f" d="M32 46V72H64V46"/><path class="g" d="M40 72V56C40 51 44 49 48 49C52 49 56 51 56 56V72"/><path class="g" d="M30 76H66"/>`
 };
-const iconFor = t => ICO(GLYPHS[/haldi/i.test(t) ? 'haldi' : /pooja|tilak|engagement/i.test(t) ? 'rings' : /baraat/i.test(t) ? 'dhol' : /sangeet/i.test(t) ? 'music' : /dinner/i.test(t) ? 'thali' : /muhurtham/i.test(t) ? 'fire' : /lunch/i.test(t) ? 'toast' : /reception/i.test(t) ? 'arch' : 'lotus']);
+/* each side marks its own celebrations: Awadhi pavilion and sitar for the groom, kalash, lamp, veena and doli for the bride */
+const GLYPH_FOR = SIDE === 'bride'
+  ? [[/haldi/i, 'kalash'], [/pooja|tilak|engagement/i, 'lamp'], [/baraat/i, 'dhol'], [/sangeet/i, 'veena'], [/dinner/i, 'thali'], [/muhurtham/i, 'fire'], [/lunch/i, 'toast'], [/reception/i, 'doli']]
+  : [[/haldi/i, 'haldi'], [/pooja|tilak|engagement/i, 'rings'], [/baraat/i, 'baradari'], [/sangeet/i, 'sitar'], [/dinner/i, 'thali'], [/muhurtham/i, 'fire'], [/lunch/i, 'toast'], [/reception/i, 'arch']];
+const iconFor = t => ICO(GLYPHS[(GLYPH_FOR.find(g => g[0].test(t)) || [0, 'lotus'])[1]]);
 $('#days').innerHTML = DAYS.map((d, di) => {
   const many = d.events.length > 1;
-  return `<section class="day reveal" aria-label="${esc(d.n)}, ${esc(d.date)}">
+  return `<section class="day reveal" id="day-${di}" aria-label="${esc(d.n)}, ${esc(d.date)}">
     <header class="day-head"><span class="day-n">${esc(d.n)}</span><h3 class="day-d">${esc(d.date)}</h3><p class="day-c">${esc(d.dow)} · ${esc(d.city)}</p>${many ? '<span class="swipe-hint" aria-hidden="true">Swipe<i></i></span>' : ''}</header>
     <div class="track-wrap">
       <div class="track" tabindex="0" role="group" aria-label="${esc(d.n)} celebrations${many ? ', scroll sideways to see all' : ''}">
@@ -1168,6 +968,21 @@ document.querySelectorAll('#days .track').forEach(tr => {
 
 $('#tbcNote').hidden = !DAYS.some(d => d.events.some(e => !e.time));
 
+/* ── the painted schedule card: four frames filled from DAYS, each a link to that day ── */
+(function(){
+  const sched = $('#sched'), ab = d => d.date.replace(' December', ' Dec');
+  const clock = t => (t || '').split(/\s*[–-]\s*|\s+onwards/)[0];
+  sched.insertAdjacentHTML('beforeend', SCHED_GROUPS.map(([di, evs], k) => {
+    const d = DAYS[di], list = evs.map(i => d.events[i]).filter(Boolean), [l, t, r, b] = ART.frames[k];
+    const when = list[0] && list[0].time ? clock(list[0].time) : '';
+    return `<a class="sf" href="#day-${di}" style="--k:${k};left:${l * 100}%;top:${t * 100}%;width:${(r - l) * 100}%;height:${(b - t) * 100}%"
+      aria-label="${esc(d.dow + ' ' + d.date + ', ' + list.map(e => e.title).join(', '))}">
+      <span class="sf-d fit">${esc(ab(d))}${when ? ' · ' + esc(when) : ''}</span>
+      <span class="sf-e">${list.map(e => esc(e.short || e.title)).join('&nbsp;· ')}</span></a>`;
+  }).join(''));
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting){ sched.classList.add('in'); o.disconnect(); } }, { threshold: .25 }).observe(sched);
+})();
+
 /* ── venues: tap-through maps, embedded map, QR, calendar ── */
 function qrSvg(text){
   const q = qrcode(0, 'M'); q.addData(text); q.make();
@@ -1176,7 +991,6 @@ function qrSvg(text){
   for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r,c)) s += `<rect x="${c}" y="${r}" width="1.02" height="1.02" rx=".16"/>`;
   return s + '</svg>';
 }
-const lampHTML = cls => `<div class="lamp ${cls}" aria-hidden="true"><div class="chain"></div><div class="body"><img src="../assets/lantern_sm.webp" alt="" loading="lazy"></div></div>`;
 const venueDays = v => DAYS.filter(d => d.city === v.city);
 const utc = s => new Date(s + ':00+05:30').toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');   /* times are India time */
 const slotTitle = (v, sl) => `${NAMES} - ${DAYS[sl.d].date} (${v.city})`;
@@ -1222,7 +1036,7 @@ function downloadICS(i){
 }
 $('#venues').innerHTML = CONFIG.venues.map((v,i) => `
   <div class="venue-card rise" style="--i:${i}">
-    ${lampHTML('a')}${lampHTML('b')}
+    <svg class="v-orn" viewBox="0 0 60 40" aria-hidden="true"><use href="#lotus"/></svg>
     <div class="v-city">${esc(v.city)}</div>
     <div class="v-dates">${esc(v.dates)}</div>
     <div class="v-for">${esc(v.for)}</div>
@@ -1247,111 +1061,158 @@ $('#venues').addEventListener('click', e => {
   const b = e.target.closest('[data-ics]'); if (b) downloadICS(+b.dataset.ics);
 });
 
-/* ── 3. Hero life: flickering diyas, drifting gold dust and a slow shaft of light (royal look only; paused when off-screen) ── */
-const heroFx = (function(){
-  const cv = document.getElementById('heroFx'), none = { go(){} };
-  if (!cv || !ROYAL || reduce || AFTER || !cv.getContext) return none;
+/* ── 3. Living artwork: gold dust over the gateway and the card (paused when off-screen or hidden) ── */
+function goldDust(cv, o){
+  const none = { go(){}, stop(){} };
+  if (!cv || reduce || !cv.getContext) return none;
   const ctx = cv.getContext('2d'), box = cv.parentElement;
-  const IW = 1000, IH = 1333, OPY = .38;                       /* painting size, and the object-position used by the page */
-  const FLAMES = [[.393,.660,.075],[.525,.668,.110],[.633,.713,.060],[.595,.746,.050],[.367,.885,.095],[.683,.897,.095]];   /* x, y, glow size as fractions of the painting */
-  let W = 0, H = 0, dpr = 1, sc = 1, ox = 0, oy = 0, raf = 0, last = 0, armed = false, seen = true, dust = [];
-  const flick = (t, p) => .86 + .08 * Math.sin(t * 7.3 + p) + .06 * Math.sin(t * 12.1 + p * 2.3) + .04 * Math.sin(t * 3.1 + p * .7);
+  let W = 0, H = 0, dpr = 1, raf = 0, last = 0, armed = false, seen = true, dust = [];
   function size(){
     W = box.offsetWidth; H = box.offsetHeight; if (!W || !H) return;
     dpr = Math.min(2, devicePixelRatio || 1);
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-    sc = Math.max(W / IW, H / IH); ox = (W - IW * sc) * .5; oy = (H - IH * sc) * OPY;
-    const n = W < 500 ? 22 : 34;
-    dust = Array.from({ length: n }, () => ({ x: Math.random(), y: Math.random(), r: .6 + Math.random() * 1.5, v: .012 + Math.random() * .022, p: Math.random() * 6.28, s: .004 + Math.random() * .012 }));
+    const n = Math.round(o.count * (W < 500 ? .65 : 1));
+    dust = Array.from({ length: n }, () => ({ x: Math.random(), y: Math.random(), r: o.r[0] + Math.random() * o.r[1], v: .01 + Math.random() * .025, p: Math.random() * 6.28, s: .004 + Math.random() * .012 }));
   }
   function frame(now){
     raf = requestAnimationFrame(frame);
     const t = now / 1000, dt = Math.min(.05, (now - last) / 1000 || .016); last = now;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
     ctx.globalCompositeOperation = 'screen';
-    const cyc = (t % 12) / 12, a = Math.sin(cyc * Math.PI);          /* a slow shaft of light crossing the doorway every 12 seconds */
-    if (a > .02){
-      ctx.save(); ctx.translate(W * (.1 + cyc * .8), H * .5); ctx.rotate(-.32);
-      const g = ctx.createLinearGradient(-W * .16, 0, W * .16, 0);
-      g.addColorStop(0, 'rgba(255,226,160,0)'); g.addColorStop(.5, `rgba(255,226,160,${.11 * a})`); g.addColorStop(1, 'rgba(255,226,160,0)');
-      ctx.fillStyle = g; ctx.fillRect(-W * .16, -H, W * .32, H * 2); ctx.restore();
-    }
-    FLAMES.forEach((f, i) => {
-      const x = ox + f[0] * IW * sc, y = oy + f[1] * IH * sc, k = flick(t, i * 1.7), r = f[2] * IW * sc * (.9 + .2 * k);
-      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-      g.addColorStop(0, `rgba(255,232,160,${.62 * k})`); g.addColorStop(.3, `rgba(255,178,70,${.26 * k})`); g.addColorStop(1, 'rgba(255,140,40,0)');
-      ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2);
-    });
     dust.forEach(d => {
       d.y -= d.v * dt; d.x += Math.sin(t * .6 + d.p) * d.s * dt; if (d.y < -.03){ d.y = 1.03; d.x = Math.random(); }
-      const tw = .35 + .65 * Math.abs(Math.sin(t * 1.4 + d.p)), x = d.x * W, y = d.y * H;
-      const g = ctx.createRadialGradient(x, y, 0, x, y, d.r * 3.2);
-      g.addColorStop(0, `rgba(255,236,170,${.85 * tw})`); g.addColorStop(1, 'rgba(255,220,130,0)');
-      ctx.fillStyle = g; ctx.fillRect(x - d.r * 3.2, y - d.r * 3.2, d.r * 6.4, d.r * 6.4);
+      const tw = .3 + .7 * Math.abs(Math.sin(t * 1.3 + d.p)), x = d.x * W, y = d.y * H, R = d.r * 3.2;
+      const g = ctx.createRadialGradient(x, y, 0, x, y, R);
+      g.addColorStop(0, `rgba(${o.rgb},${.85 * tw})`); g.addColorStop(1, `rgba(${o.rgb},0)`);
+      ctx.fillStyle = g; ctx.fillRect(x - R, y - R, R * 2, R * 2);
     });
   }
   const sync = () => { const on = armed && seen && !document.hidden; if (on && !raf){ last = 0; raf = requestAnimationFrame(frame); } else if (!on && raf){ cancelAnimationFrame(raf); raf = 0; } };
   size(); new ResizeObserver(size).observe(box);
-  new IntersectionObserver(es => { seen = es[0].isIntersecting; sync(); }).observe(document.getElementById('home'));
+  new IntersectionObserver(es => { seen = es[0].isIntersecting; sync(); }).observe(box);
   document.addEventListener('visibilitychange', sync);
-  return { go(){ armed = true; sync(); } };
+  return { go(){ armed = true; sync(); }, stop(){ armed = false; sync(); } };
+}
+const introFx = AFTER ? { go(){}, stop(){} } : goldDust($('#introFx'), { count: 46, r: [.8, 1.8], rgb: '255,226,150' });
+const heroFx = goldDust($('#heroFx'), { count: 30, r: [.6, 1.5], rgb: '255,236,170' });
+introFx.go();
+if (AFTER) heroFx.go();
+
+/* lamp flames on the bride's jharokha */
+$('#flames').innerHTML = ART.flames.map(([x, y, sz], i) => `<i class="flame" style="--x:${x * 100}%;--y:${y * 100}%;--s:${sz}%;--d:${(-i * .37).toFixed(2)}s"></i>`).join('');
+
+/* Mysore mallige: a jasmine garland with lotus buds strung under the bride's crest */
+(function(){
+  if (SIDE !== 'bride') return;
+  const q = (a, c, b, t) => (1 - t) * (1 - t) * a + 2 * (1 - t) * t * c + t * t * b;
+  let h = '';
+  for (let i = 0; i <= 46; i++){ const t = i / 46; h += `<circle cx="${q(40, 200, 360, t).toFixed(1)}" cy="${q(62, 120, 62, t).toFixed(1)}" r="${(i % 2 ? 2.6 : 3.3)}"/>`; }
+  for (const [x0, x1] of [[40, 34], [360, 366]]) for (let i = 1; i <= 7; i++){ const t = i / 8; h += `<circle cx="${(x0 + (x1 - x0) * t).toFixed(1)}" cy="${(62 + 34 * t).toFixed(1)}" r="2.7"/>`; }
+  const bud = (x, y, k) => `<path class="bud" transform="translate(${x} ${y}) scale(${k})" d="M0 -9C5 -4 6 3 0 9C-6 3 -5 -4 0 -9Z"/>`;
+  $('#jasmine').innerHTML = h + bud(200, 100, 1.05) + bud(34, 104, .9) + bud(366, 104, .9);
 })();
 
-/* ── 1. Door opening sequence ── */
-const intro = $('#intro');
+/* the card follows the hand (or a phone's tilt) a little, with a glint of light across the gold */
+(function(){
+  if (reduce) return;
+  const wrap = $('#farmanWrap'), card = $('#farman');
+  let raf = 0, nx = 0, ny = 0;
+  const apply = () => { raf = 0;
+    card.style.setProperty('--ry', (nx * 7).toFixed(2) + 'deg'); card.style.setProperty('--rx', (-ny * 6).toFixed(2) + 'deg');
+    card.style.setProperty('--gx', (50 + nx * 45).toFixed(1) + '%'); card.style.setProperty('--gy', (35 + ny * 45).toFixed(1) + '%'); };
+  const set = (x, y) => { nx = Math.max(-1, Math.min(1, x)); ny = Math.max(-1, Math.min(1, y)); if (!raf) raf = requestAnimationFrame(apply); };
+  if (matchMedia('(hover:hover)').matches){
+    wrap.addEventListener('pointermove', e => { if (!document.body.classList.contains('opened')) return; const r = wrap.getBoundingClientRect(); document.body.classList.add('tilting'); set((e.clientX - r.left) / r.width * 2 - 1, (e.clientY - r.top) / r.height * 2 - 1); });
+    wrap.addEventListener('pointerleave', () => { set(0, 0); setTimeout(() => document.body.classList.remove('tilting'), 260); });
+  } else if ('DeviceOrientationEvent' in window && typeof DeviceOrientationEvent.requestPermission !== 'function'){
+    addEventListener('deviceorientation', e => {
+      if (e.gamma == null || !document.body.classList.contains('opened') || scrollY > innerHeight) return;
+      document.body.classList.add('tilting'); set(e.gamma / 35 * .6, (e.beta - 45) / 35 * .6);
+    });
+  }
+})();
+
+/* lines painted into small frames shrink until they fit */
+function fitAll(){
+  document.querySelectorAll('.fit').forEach(el => {
+    el.style.fontSize = '';
+    const max = el.parentElement.clientWidth; if (!max || !el.offsetParent) return;
+    let fs = parseFloat(getComputedStyle(el).fontSize), n = 0;
+    while (el.scrollWidth > el.clientWidth + 1 && fs > 9 && n++ < 40){ fs -= .4; el.style.fontSize = fs + 'px'; }
+  });
+}
+let fitT = 0;
+addEventListener('resize', () => { clearTimeout(fitT); fitT = setTimeout(fitAll, 150); });
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(fitAll);
+fitAll();
+
+/* ── 1. The gateway: the doors swing open, light spills out, and we walk through ── */
+const intro = $('#intro'), gate = $('#gate');
 let opened = false;
+function finishIntro(){
+  intro.style.display = 'none'; introFx.stop();
+  document.body.classList.remove('locked');
+  document.documentElement.classList.remove('locked');
+  startPetals(); dockReady = true; updateDock();
+  document.body.classList.add('cue-on');
+  fitAll();
+}
 function openInvite(){
   if (opened) return;
   opened = true;
-  const frame = document.querySelector('.door-frame').getBoundingClientRect();
-  intro.style.setProperty('--zoom', Math.max(1.3, innerHeight / frame.height * 1.02).toFixed(3));
   burstPetals();
+  if (reduce){ document.body.classList.add('opened'); heroFx.go(); intro.classList.add('fade'); setTimeout(finishIntro, 300); return; }
   intro.classList.add('opening');
-  setTimeout(() => { document.body.classList.add('opened'); heroFx.go(); }, 900);
   setTimeout(() => {
-    intro.style.display = 'none';
-    document.body.classList.remove('locked');
-    document.documentElement.classList.remove('locked');
-    startPetals(); dockReady = true; updateDock();
-    document.body.classList.add('cue-on');
-  }, 2100);
+    const r = gate.getBoundingClientRect(), D = ART.door;
+    const cx = r.left + D.x * r.width, cy = r.top + D.y * r.height;
+    const z = Math.max(innerWidth / (D.w * r.width), innerHeight / (D.h * r.height)) * 1.15;
+    gate.style.setProperty('--ox', D.x * 100 + '%'); gate.style.setProperty('--oy', D.y * 100 + '%');
+    gate.style.setProperty('--tx', (innerWidth / 2 - cx).toFixed(1) + 'px'); gate.style.setProperty('--ty', (innerHeight / 2 - cy).toFixed(1) + 'px');
+    gate.style.setProperty('--zoom', z.toFixed(3));
+    intro.classList.add('zoom');
+  }, 1150);
+  setTimeout(() => { document.body.classList.add('opened'); heroFx.go(); intro.classList.add('fade'); }, 2050);
+  setTimeout(finishIntro, 3050);
 }
 $('#openBtn').addEventListener('click', e => { e.stopPropagation(); openInvite(); });
-$('#doorStage').addEventListener('click', openInvite);
+gate.addEventListener('click', openInvite);
+gate.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openInvite(); } });
 setTimeout(() => { if (!opened) $('#tapHint').classList.add('nudge'); }, 5000);
 
 function burstPetals(){
-  const rect = document.querySelector('.door-stack').getBoundingClientRect();
-  const cx = rect.left + rect.width / 2, cy = rect.top + rect.height * .45;
-  const colors = ROYAL ? ['#c9a24b','#e8d59b','#d9981e','#a8344a','#f3dfa6'] : ['#dfa392','#e8b7ab','#e0932f','#caa76b','#e9a3b0'];
-  for (let i = 0; i < 28; i++){
+  const r = gate.getBoundingClientRect();
+  const cx = r.left + r.width * ART.door.x, cy = r.top + r.height * ART.door.y;
+  for (let i = 0; i < 30; i++){
     const p = document.createElement('i');
     p.className = 'burst';
     const s = 7 + Math.random() * 10;
-    p.style.cssText = `left:${cx}px;top:${cy}px;width:${s}px;height:${s}px;background:${colors[i % colors.length]}`;
+    p.style.cssText = `left:${cx}px;top:${cy}px;width:${s}px;height:${s}px;background:${ART.burst[i % ART.burst.length]}`;
     document.body.appendChild(p);
     const ang = Math.random() * Math.PI * 2, v = 90 + Math.random() * 190;
     const dx = Math.cos(ang) * v, dy = Math.sin(ang) * v - 70;
     p.animate([
       { transform:'translate(0,0) rotate(0deg)', opacity:1 },
+      { opacity:1, offset:.6 },
       { transform:`translate(${dx}px,${dy + 220}px) rotate(${Math.random()*540}deg)`, opacity:0 }
     ], { duration: 1400 + Math.random() * 900, easing:'cubic-bezier(.2,.6,.4,1)' }).onfinish = () => p.remove();
   }
 }
 
-/* ── 2. Continuous falling petals ── */
+/* ── 2. Continuous falling petals: marigold and gold for the groom, mallige and lotus pink for the bride ── */
 function makePetal(container){
   const p = document.createElement('div');
   p.className = 'petal';
-  const s = 8 + Math.random() * 12;
-  const colors = ROYAL ? ['#8f1d2e','#c9a24b','#d9981e','#b8862b','#a8344a','#e8d59b'] : ['#dfa392','#eec3b8','#e0932f','#d8b788','#e9a3b0','#c97f6c'];
+  const s = 8 + Math.random() * 11;
   p.style.left = Math.random() * 100 + 'vw';
   p.style.animationDuration = (3.4 + Math.random() * 3.2) + 's';
   p.style.animationDelay = -(Math.random() * 6) + 's';
   const i = document.createElement('i');
+  const c = ART.petals[Math.floor(Math.random() * ART.petals.length)];
+  if (SIDE === 'bride' && /^#f[ef]/i.test(c)) i.className = 'jas';
   i.style.width = s + 'px';
   i.style.height = s * .82 + 'px';
-  i.style.background = colors[Math.floor(Math.random() * colors.length)];
+  i.style.background = c;
   i.style.animationDuration = (7 + Math.random() * 7) + 's';
   i.style.animationDelay = p.style.animationDelay;
   p.appendChild(i);
@@ -1360,10 +1221,9 @@ function makePetal(container){
 function startPetals(){
   if (reduce) return;
   const c = $('#petals');
-  const n = innerWidth < 640 ? 6 : 10;
+  const n = innerWidth < 640 ? 7 : 11;
   for (let k = 0; k < n; k++) makePetal(c);
 }
-
 /* ── 4. Scroll reveals ── */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -1403,8 +1263,6 @@ let ticking = false;
 function onScroll(){
   if (ticking) return; ticking = true;
   requestAnimationFrame(() => {
-    const y = scrollY, art = $('#heroArt');
-    if (!reduce && y < innerHeight * 1.2) art.style.translate = `0 ${y * .1}px`;
     updateDock();
     ticking = false;
   });
